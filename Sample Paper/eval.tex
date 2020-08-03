@@ -1,0 +1,98 @@
+\section{Evaluation}
+\label{sec:eval}
+
+\input{tables/table-network-eval}
+
+We evaluated \textit{Network RACOONS} by performing various experiments
+aimed at answering the following research questions. 
+
+\begin{enumerate}	
+  \item \textbf{RQ1: Network Overhead} What is the overhead on the
+  bandwidth and the latency introduced on the network by the detection
+  app?
+  \item \textbf{RQ2: Accuracy} What is the accuracy of detecting attacks?
+  \item \textbf{RQ3: Detection Time} How long does it take for the
+  detection app to detect a reconnaissance attempt after a fake packet\_in
+  is received?
+\end{enumerate}
+
+We setup a small scale SDN environment to run our experiments. Our
+testing environment is built with 1 virtual switch (using OpenVSwitch),
+1 HP 2920-24G SDN enabled switch, and 5 virtual machines (Ubuntu 16.04) 
+running on 2 physical hosts (Ubuntu 16.04) using VirtualBox. The SDN 
+controller was run on a Macbook Pro running OSX. Benign traffic was
+generated using 3 BeagleBone Blacks running Ubuntu, acting as low 
+resource hosts. One of the three BeagleBone Blacks was used in the
+simulation of a compromised switch and created the probe packets that
+were changed by the malicious SDN app. The remaining two BeagleBone
+Blacks  used a combination of D-ITG and iperf to generate traffic during
+testing.
+
+\input{tables/table-accuracy}
+\input{tables/table-detection-time}
+
+\myparagraph{Network Overhead} We used iperf to measure the bandwidth
+achieved with and without the detection app running in the presence of
+other benign traffic. Since the malicious app is not a part of the
+detection mechanism but is required to simulate fake packet\_in messages,
+we ran the baseline with the malicious app running along with a 
+forwarding app. The baseline bandwidth achieved was then compared to the
+bandwidth achieved with both the malicious and detection apps running. To
+measure the changes in network latency, ping was used between hosts
+while other benign traffic ran in the background. The overhead introduced
+by the detection app was around 2.2\% in the achievable bandwidth and 
+around 3\% in the latency of the network as seen in 
+Table~\ref{tab:throughput}.
+
+\myparagraph{Accuracy} We evaluated Network RACOONS for accuracy,
+specifically for false positives and false negatives. To test the
+accuracy, the same environment described above was used and benign 
+traffic between the hosts was generated in the same way. While benign 
+traffic was being generated, spoofed packets were created at the
+malicious host and the resulting packet\_in messages were further
+modified by the malicious app. The number of packet\_in messages 
+processed by the detection app and the number of packet\_in messages 
+flagged as network reconnaissance packets were recorded for the duration
+of the experiments. 
+
+Table~\ref{tab:accuracy} shows the results of the accuracy testing. Rows
+1 to 3 were run under normal configuration of the detection app, row 4
+is discussed below. For each test of the normal configuration the
+detection app successfully detected spoofed packet\_in messages with no
+false positives or false negatives. The duration of each test run was
+longer than the last, allowing the app to capture and inspect as close
+to 1,000, 1,500, and 2,000 packet\_in messages as possible.
+
+The experiment run in Row 4 of Table~\ref{tab:accuracy} simulates race
+conditions that may cause false positives. These conditions are very
+unlikely and did not appear during the testing of \name. To ensure the
+conditions are met to cause a false positive, \name was modified to send
+flow entries to switches with hard timeouts of less than .01 ms. Under
+this condition, when the next switch sends a packet\_in message and the 
+previous switch is queried, the corresponding flow will have expired from
+the switch. Using this delay, two situations were simulated. First a 
+situation where a switch is overwhelmed and takes a longer time than the 
+prune interval of the ephemeral flood map to generate a packet\_in message
+for a packet flooded by a previous switch. Second it simulated the
+situation where a packet matches a flow, right before the flow expires
+and when the app checks for the installed flow it does not find it. Both 
+of these simulated conditions lead to false positives. The results of 
+testing with these induced corner cases can be seen in row 4 of 
+Table~\ref{tab:accuracy}. 
+
+\myparagraph{Detection Time} Because our solution does not proactively
+block the reconnaissance or probe packets, it is important to know how
+much time it takes to detect such a packet and assess how much
+information may have been learned by the attacker on a compromised
+switch before being detected. In order to measure the time, we record
+the time as soon a packet\_in message is received by the detection app
+and subtract this time from the time when a message is classified as
+benign or malicious. 
+
+Table~\ref{tab:detection-time} shows the average detection time when 
+the previous switch does not need to be queried is around 1 millisecond
+and in the case where the detection app has to request flow statistics 
+from the previous switch, the average detection time is around 72.3 
+milliseconds. This shows the adversary has limited time to send a
+reconnaissance probe, analyze the result and launch an attack before
+their compromised switch is flagged. 
