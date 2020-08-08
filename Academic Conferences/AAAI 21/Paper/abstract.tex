@@ -1,13 +1,15 @@
 \begin{abstract}
-When a shopper goes shopping in a retail store or surfs on app for purchasing merchandises, 
-he/she generally has merchandise list either in the form of notes or on top of his mind. 
-In general the merchandise list of the regular shoppers happens to be huge and has hidden pattern. 
-The problem on hand uses customer and his/her transaction data over time and attempts to predict 
-the next basket of the customer leveraging his/her past purchased merchandises.This will provide 
-very smooth and delightful shopping experience for the shoppers. It is meant to acheive three major 
-objectives: - Revenue Enablement: A SmartList that predicts what merchandise a customer is likely to 
-purchase during his next visit Relevance: The SmartList prediction is expected to achieve a 
-satisfactory accuracy level so that the customer finds the SmartList relevant User Experience: 
-The size of a SmartList should be manageable so as not to overwhelm the customers with too many 
-merchandises. Build a framework to predict the next basket for each customer.
+Modelling consumer behaviour is one of the most challenging problems for large retail firms, given the operational
+scale both in terms of consumer and inventory. Retailers spend a lot of money and resources to ensure a very smooth and delightful 
+consumer shopping experience by recommending and maintaining right inventory at right time. Accuractely determining 
+the products consumer would purchase in the near future not only enriches the consumer shopping experience but also plays a
+pivotal role in managing inventory by reducing the chances of Out of stock as well as Excess Inventory. 
+This problem has been there since a long time and has been adrressed by ML researchers in conventional manner
+through recommender systems and varying ML approaches. But, to my knowledge none of the models have generalized well 
+in predicting the items consumer is likely to purchase at given time point due to immense non-linearity existing
+in the consumer purchase pattern. In order to address this problem I present my study of consumer purchase 
+behaviour using e-commerce retail data. Considering each consumer-product as an individual time series, I then 
+build generalised models to predict the propensity of an item to be purchased by a consumer for a given time frame.
+I demonstrate the robust performance by experimenting with different neural architectures including Multi-Layered Perceptron (MLP), 
+Long Short Term Memeory (LSTM), Convolution Neural Networks (CNN), CNN-LSTM and their combined performance as meta models.
 \end{abstract}

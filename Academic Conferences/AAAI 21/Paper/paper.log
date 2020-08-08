@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  8 AUG 2020 00:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  8 AUG 2020 18:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -168,17 +168,17 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
 2.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) (./abstract.tex) (./intro.tex) (./methodology.tex
-<img/MLP.png, id=1, 621.32124pt x 399.4925pt>
-File: img/MLP.png Graphic file (type png)
-<use img/MLP.png>
-Package pdftex.def Info: img/MLP.png  used on input line 20.
-(pdftex.def)             Requested size: 238.49121pt x 153.34485pt.
- [1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) (./abstract.tex) (./intro.tex) (./methodology.tex [1{/usr/local/texlive/2020/
+texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
 ]
+<img/MLP.png, id=8, 621.32124pt x 399.4925pt>
+File: img/MLP.png Graphic file (type png)
+<use img/MLP.png>
+Package pdftex.def Info: img/MLP.png  used on input line 20.
+(pdftex.def)             Requested size: 238.49121pt x 153.34485pt.
 <img/LSTM.png, id=10, 621.32124pt x 399.4925pt>
 File: img/LSTM.png Graphic file (type png)
 <use img/LSTM.png>
@@ -190,12 +190,16 @@ File: img/CONV1D.png Graphic file (type png)
 <use img/CONV1D.png>
 Package pdftex.def Info: img/CONV1D.png  used on input line 97.
 (pdftex.def)             Requested size: 238.49121pt x 153.34485pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 <img/CONV1D-LSTM.png, id=21, 621.32124pt x 399.4925pt>
 File: img/CONV1D-LSTM.png Graphic file (type png)
 <use img/CONV1D-LSTM.png>
 Package pdftex.def Info: img/CONV1D-LSTM.png  used on input line 141.
 (pdftex.def)             Requested size: 238.49121pt x 153.34485pt.
-) (./eval.tex [3 <./img/CONV1D.png> <./img/CONV1D-LSTM.png>]
+)
+(./eval.tex [3 <./img/CONV1D.png> <./img/CONV1D-LSTM.png>]
 File: img/MLP.png Graphic file (type png)
 <use img/MLP.png>
 Package pdftex.def Info: img/MLP.png  used on input line 33.
@@ -209,7 +213,10 @@ File: img/MLP.png Graphic file (type png)
 <use img/MLP.png>
 Package pdftex.def Info: img/MLP.png  used on input line 120.
 (pdftex.def)             Requested size: 238.49121pt x 153.34485pt.
-) [5] (./paper.aux)
+) [5] [6
+
+]
+(./paper.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -217,7 +224,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  2804 strings out of 480608
  44228 string characters out of 5903631
- 291967 words of memory out of 5000000
+ 289967 words of memory out of 5000000
  18690 multiletter control sequences out of 15000+600000
  543847 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -229,10 +236,10 @@ ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
 e/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
 020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (5 pages, 164814 bytes).
+Output written on paper.pdf (6 pages, 165945 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 57 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
