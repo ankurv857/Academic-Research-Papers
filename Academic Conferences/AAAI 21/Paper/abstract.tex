@@ -1,15 +1,14 @@
 \begin{abstract}
-Modelling consumer behaviour is one of the most challenging problems for large retail firms, given the operational
-scale both in terms of consumer and inventory. Retailers spend a lot of money and resources to ensure a very smooth and delightful 
-consumer shopping experience by recommending and maintaining right inventory at right time. Accuractely determining 
-the products consumer would purchase in the near future not only enriches the consumer shopping experience but also plays a
-pivotal role in managing inventory by reducing the chances of Out of stock as well as Excess Inventory. 
-This problem has been there since a long time and has been adrressed by ML researchers in conventional manner
-through recommender systems and varying ML approaches. But, to my knowledge none of the models have generalized well 
-in predicting the items consumer is likely to purchase at given time point due to immense non-linearity existing
-in the consumer purchase pattern. In order to address this problem I present my study of consumer purchase 
-behaviour using e-commerce retail data. Considering each consumer-product as an individual time series, I then 
-build generalised models to predict the propensity of an item to be purchased by a consumer for a given time frame.
-I demonstrate the robust performance by experimenting with different neural architectures including Multi-Layered Perceptron (MLP), 
-Long Short Term Memeory (LSTM), Convolution Neural Networks (CNN), CNN-LSTM and their combined performance as meta models.
+Predicting consumer purchase pattern is one of the most challenging problems for large scale retail firms. 
+Retailers spend a lot of money and resources to ensure smooth and delightful shopping experience. 
+This includes recommending relevant items to consumers and maintaining right inventory. The later 
+helps minimise the instances of Out of stock and Excess Inventory. Consumer purchase prediction problem has generally been 
+addressed by ML researchers in conventional manner either through recommender systems or traditional ML approaches. 
+To our knowledge none of the models have generalized well enough in predicting the consumer purchase pattern.
+In this paper we present our study of consumer purchase behaviour at the intersection of consumer, item and time using 
+e-commerce retail data. For each of the relevant consumer-item combination, we create a sequential time-series data.
+We then build generalised non-linear model to predict propensity of consumer to purchase the item for given time horizon.
+We demonstrate robust performance by experimenting with different neural network architectures, ML models and their combination.
+We showcase the benefits that neural network architectures like Multi-Layered Perceptron, Long Short Term Memory and Convolution 
+Neural Network bring over ML models like Xgboost and RandomForest.
 \end{abstract}
