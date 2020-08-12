@@ -1,25 +1,25 @@
 \section{Introduction}
-When a shopper goes shopping in a retail store or surfs on app for purchasing merchandises, 
-he/she generally has merchandise list either in the form of notes or on top of his mind. 
-In general the merchandise list of the regular shoppers happens to be huge and has hidden pattern. 
-The problem on hand uses customer and his/her transaction data over time and attempts to predict 
-the next basket of the customer leveraging his/her past purchased merchandises.This will provide 
-very smooth and delightful shopping experience for the shoppers. It is meant to acheive three major 
-objectives: - Revenue Enablement: A SmartList that predicts what merchandise a customer is likely to 
-purchase during his next visit Relevance: The SmartList prediction is expected to achieve a 
-satisfactory accuracy level so that the customer finds the SmartList relevant User Experience: 
-The size of a SmartList should be manageable so as not to overwhelm the customers with too many 
-merchandises. Build a framework to predict the next basket for each customer.
-When a shopper goes shopping in a retail store or surfs on app for purchasing merchandises, 
-he/she generally has merchandise list either in the form of notes or on top of his mind. 
-In general the merchandise list of the regular shoppers happens to be huge and has hidden pattern. 
-The problem on hand uses customer and his/her transaction data over time and attempts to predict 
-the next basket of the customer leveraging his/her past purchased merchandises.This will provide 
-very smooth and delightful shopping experience for the shoppers. It is meant to acheive three major 
-objectives: - Revenue Enablement: A SmartList that predicts what merchandise a customer is likely to 
-purchase during his next visit Relevance: The SmartList prediction is expected to achieve a 
-satisfactory accuracy level so that the customer finds the SmartList relevant User Experience: 
-The size of a SmartList should be manageable so as not to overwhelm the customers with too many 
-merchandises. Build a framework to predict the next basket for each customer.
-When a shopper goes shopping in a retail store or surfs on app for purchasing merchandises, 
-he/she generally has merchandise list either in the form of notes or on top of his mind. 
+Consumer behaviour insights have always been one of the key business drivers for retail, specially given
+fast changing consumer needs. Existing trend, competitor pricing, item reviews and marketing are some of the 
+key factors driving todays consumer world in retail. While very little information is available
+on future variablities of the above factors, what retailers have is large volumes of transactional data.
+Retailers use conventional techniques to model transactional data for predicting consumer choice. 
+While these help in estimating purchase pattern for loyal consumers and high selling items with reasonable accuracy, they 
+don't perform well for the rest. Since multiple parameters interact non-linearly to define consumer purchase pattern,
+traditional models are not sufficient to achieve high accuracy across thousands to millions of consumers.
+
+In many of the retail brands, short term (4-6 weeks ahead) inventory planning is done on the basis of consumer 
+purchase pattern. Given that every demand planner works on a narrow segment of item portfolio, there is high 
+variability in choices that different planners recommend. Also, given their busy schedule, they have very less interaction
+moments to discuss their views and insights over their recommendations. Hence, subtle effects like item cannibalization,
+item affinity, pricing remains unaccounted correctly. Such inefficiencies lead to gap between consumer needs 
+and item availablity, resulting in loss of business opportunities in terms of consumer churn, out of stock 
+and excess inventory.
+
+In this paper, we apply multiple deep learning architectures along with tree based machine learning algorithms
+to predict the next logical purchase at consumer level. We showcase the performance of individual models with 
+varying hyper configurations. We also show the performance of stacked generalization ensemble and F1-maximization 
+which involves combining predictions from different models and fine tuning purchase probability cut-off at
+consumer level respectively. The following section explains the overall methodology adopted to solve the problem.
+It also lays out various algorithmic variants and neural network architectures applied to the problem.
+Finally, section 3 describes the experiments and results obtained in various scenarios of modelling.
