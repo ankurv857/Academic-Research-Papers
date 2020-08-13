@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  13 AUG 2020 16:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  13 AUG 2020 17:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -206,7 +206,7 @@ Underfull \hbox (badness 1057) in paragraph at lines 133--140
  []
 
 
-Overfull \hbox (237.60156pt too wide) in paragraph at lines 166--180
+Overfull \hbox (237.6041pt too wide) in paragraph at lines 166--180
  [][] 
  []
 
@@ -231,7 +231,7 @@ ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
 cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loca
 l/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/
 2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (4 pages, 340952 bytes).
+Output written on paper.pdf (4 pages, 341103 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream
