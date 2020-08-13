@@ -1,6 +1,9 @@
 \section{Methodology}
 We treat each consumer-item as an individual object and generate weekly time series based on historical transaction for 
 each object. The target value at each time step (week) takes a binary input, 1/0 (purchased/not purchased).
+We adopted walk forward Validation strategy for model testing and generalization. We split the data into 4 parts
+based on the time series. The last 3 time steps for each of the Time series was used as Validation (hyperparameter Optimization),
+Test1 (Stacked Generalization) and Test2 (Reporting Accuracy metric) respectively, and the remaining data was used for training.
 We then generate various types of features including datetime related, label encoded and target encoded 
 within and across objects. Below are the feature groups with the type of features within each group:
 \begin{itemize}
@@ -39,7 +42,19 @@ d\textsubscript{t} is derived from datetime to capture trend and seasonality.
 Finally, n is the number of time lags.
 
 \subsection{Accuracy Measure}
-Consumer Basket prediction framework should be able to strike good balance between Precision and Recall. 
+Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] seemed most logical loss function 
+for training all our models. Also, the same metric was used during stacking to generate final probabilities for 
+F1-Maximization. But, we used F1-Score [~\ref{eqn:F1}] values for reporting accuracy as we wanted to maintain a good balance between
+Recall and Precision.
+
+  \begin{equation}
+      \begin{array}{l}
+        H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y\textsubscript{i}.log(p(y\textsubscript{i}))+
+        (1- y\textsubscript{i}).log(1-p(y\textsubscript{i}))
+      \end{array}
+    \label{eqn:logloss}
+  \end{equation}
+where y is the label and p(y) is the predicted probability.
 Precision refers to the ratio of number of predicted items actually purchased from the predicted items
   \begin{equation}
       \begin{array}{l}
@@ -47,7 +62,6 @@ Precision refers to the ratio of number of predicted items actually purchased fr
       \end{array}
     \label{eqn:Precision}
   \end{equation}
-
 where TP refers to True Positive and FP refers to False Positive.
 Recall refers to the ratio of predicted items actually purchased from the items in the actual basket. 
   \begin{equation}
@@ -56,7 +70,6 @@ Recall refers to the ratio of predicted items actually purchased from the items 
         \end{array}
     \label{eqn:Recall}
   \end{equation}
-
 where TP refers to True Positive and FN refers to False Negative.
 F1 Score is needed when you want to seek a balance between Precision and Recall.
 We have previously seen that accuracy can be largely contributed by a large number of True Negatives which 
@@ -125,8 +138,8 @@ in the following section. This was decided after some preliminary experiments. H
 using Bayesian Hyper-parameter Optimization Technique. LSTM, CONV1D and CNNLSTM models were trained in sequence to sequence 
 fashion using entire life-cycle data of a time series (Consumer-Item).
 
-We applied empirical approach to tune the hyperparameters for Deep learning models. We list some of the params
-along with the values we used for Deep learning models.
+We applied empirical approach to tune the hyperparameters for Deep learning models. All hyperparameter Optimization
+was performed over Validation dataset. We list some of the params along with the values we used for Deep learning models.
   \begin{itemize}
     \item {\bf Optimizer Parameters:} RMSProp and Adam were used as different trial configurations. The learning rate 
     was experimentally tuned to 1e-3. We also did weight decay of 1e-5 which helped a bit in model Regularization.
@@ -140,20 +153,41 @@ along with the values we used for Deep learning models.
   \end{itemize}
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
-and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
+and embedding sizes for the categorical features. BCELOSS was used a loss function for the backward and forward
+passes in Deep Learning setting. Deep learning models are built using deep learning framework
 PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
-based models like RandomForest and XGBoost.
+based models like RandomForest and XGBoost. We built a total of 46 models, 9 different param configurations for each of 4 
+Deep Learning models and 5 best trials for each of 2 Machine Learning models as shown in table 1.
+
+\begin{table}[t]
+\caption{Model Types with Specification}
+\vspace{0.1 in}
+\centering
+\resizebox{6.6in}{!}
+{%
+\begin{tabular}{c|c|c}
+\hline
+{\bf Model Type} & {\bf Selected Trials} & {\bf Model Tuning parameters} \\  \hline
+MLP	  		&  9 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers \\ \hline
+LSTM  		& 9 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers  \\ \hline
+CONV1D			& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  \\ \hline
+CNNLSTM 		& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  \\ \hline
+Xgboost 		& 5	& Learning rate, Tree Depth, Regularization parameters  \\ \hline
+RandomForest 		& 5	& Tree Depth, Regularization parameters \\ \hline
+\end{tabular}
+}
+\label{tab:accuracy}
+\end{table}
 
 \subsection{Stacked Generalization}
-Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
-number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
-and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
-PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
-based models like RandomForest and XGBoost.
+For simplicity and better generalization we adopted non-parameteric approach for stacking.
+We used Weighted K Best Stacked Generalization Ensemble for combining the 46 models (candidates) from Table 1. 
+Test1 Logloss was used as metric to compute weight for each of the 46 candidates. We set the k to 25 and 
+took the Weighted Average of the top 25 candidates based upon Test1 Logloss.
 
 \subsection{F1-Maximization}
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
 PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
-based models like RandomForest and XGBoost.
+based models like RandomForest and Xgboost.
