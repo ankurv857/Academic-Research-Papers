@@ -38,13 +38,6 @@ ic\textsubscript{t} is transactional attributes of the consumer 'c'  towards ite
 d\textsubscript{t} is derived from datetime to capture trend and seasonality. 
 Finally, n is the number of time lags.
 
-%\begin{figure}[t]
-%  \centering 
-%  \includegraphics[width=3.3in]{img/MLP.png} 
-%  \caption{Overall Approach} 
-%  \label{fig:Approach} 
-%\end{figure}
-
 \subsection{Accuracy Measure}
 Consumer Basket prediction framework should be able to strike good balance between Precision and Recall. 
 Precision refers to the ratio of number of predicted items actually purchased from the predicted items
@@ -78,12 +71,6 @@ between Precision and Recall and there is an uneven class distribution (large nu
   \end{equation}
 
 \subsection{Model Architectures}
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
-Hence, we work with Deep learning models ranging from Multi-Layered Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Convolution Neural Network (CNN) to few of the machine learning tree based models like Random 
-Forest and various flavours of Gradient Boosted Trees. Architectures of MLP, LSTM, CONV1D and CNNLSTM 
-models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:CONV1D}
-and Figure~\ref{fig:CNNLSTM}
 
   \begin{figure}[t]
     \centering 
@@ -92,22 +79,12 @@ and Figure~\ref{fig:CNNLSTM}
     \label{fig:MLP} 
   \end{figure}
 
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
-Hence, we work with Deep learning models ranging from Multi-Layered Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Convolution Neural Network (CNN) to few of the machine learning tree based models like Random 
-Forest and various flavours of Gradient Boosted Trees. Architectures of MLP and LSTM models are shown in Figure~\ref{fig:Approach}
-
-
   \begin{figure}[t]
     \centering 
     \includegraphics[width=3.3in]{img/LSTM.png} 
     \caption{Long Short Term Memory (LSTM)} 
     \label{fig:LSTM} 
   \end{figure}
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
-Hence, we work with Deep learning models ranging from Multi-Layered Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Convolution Neural Network (CNN) to few of the machine learning tree based models like Random 
-Forest and various flavours of Gradient Boosted Trees. Architectures of MLP and LSTM models are shown in Figure~\ref{fig:Approach}
 
   \begin{figure}[t]
     \centering 
@@ -115,10 +92,6 @@ Forest and various flavours of Gradient Boosted Trees. Architectures of MLP and 
     \caption{Convolution Neural Network 1D (CONV1D)} 
     \label{fig:CONV1D} 
   \end{figure}
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
-Hence, we work with Deep learning models ranging from Multi-Layered Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Convolution Neural Network (CNN) to few of the machine learning tree based models like Random 
-Forest and various flavours of Gradient Boosted Trees. Architectures of MLP and LSTM models are shown in Figure~\ref{fig:Approach}
 
   \begin{figure}[t]
     \centering 
@@ -128,6 +101,59 @@ Forest and various flavours of Gradient Boosted Trees. Architectures of MLP and 
   \end{figure}
 
 As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
-Hence, we work with Deep learning models ranging from Multi-Layered Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Convolution Neural Network (CNN) to few of the machine learning tree based models like Random 
-Forest and various flavours of Gradient Boosted Trees. Architectures of MLP and LSTM models are shown in Figure~\ref{fig:Approach}
+Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
+to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
+Term Memory (LSTM) and Convolution Neural Network (CNN). Architectures of MLP, LSTM, CONV1D and CNNLSTM 
+models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:CONV1D}
+and Figure~\ref{fig:CNNLSTM}.
+
+The consumer purchase pattern has huge variation in terms of time of purchase (weekday/weekends), 
+cadence of purchase (days to months), purchased item types (dairy/meat/grocery/apparels/etc.)
+and brand loyalty (tendency to substitute items). Given such huge variance it becomes imperative 
+to cross learn consumer behaviour from like consumer groups. To learn such relationships its very 
+important to capture non-linear relationship between target and regressors at the most granular level.
+Tree based and Deep learning models are chosen for their ability to model feature interactions even if transient in time, 
+so that they capture non-linearity well. Utility of traditional machine learning algorithms like Logistic regression
+, SVM and recommender systems are limited given the scale of large retail firms 
+(Millions of customers with thousands of products). Such models do not scale well for large sets of data and hyperparameters.
+
+Tree based models and MLP are trained in such a way where lagged values of time varying features are used
+to capture temporal dependencies. We use lagged values of temporal features up to last n time steps (n goes till 52 weeks).
+Multiple Lagged values as well as Statistical rolling operations like mean, median, quantiles, variance, kurtosis and 
+skewness over varying lag periods are used for feature generation. Details around datasets and derived features are explained 
+in the following section. This was decided after some preliminary experiments. Hyper-parameters of tree based models are optimized
+using Bayesian Hyper-parameter Optimization Technique. LSTM, CONV1D and CNNLSTM models were trained in sequence to sequence 
+fashion using entire life-cycle data of a time series (Consumer-Item).
+
+We applied empirical approach to tune the hyperparameters for Deep learning models. We list some of the params
+along with the values we used for Deep learning models.
+  \begin{itemize}
+    \item {\bf Optimizer Parameters:} RMSProp and Adam were used as different trial configurations. The learning rate 
+    was experimentally tuned to 1e-3. We also did weight decay of 1e-5 which helped a bit in model Regularization.
+    \item {\bf Scheduler Parameters:} Cyclic and ReduceLROnPlateau Learning rates were used as different trial configurations.
+    we used 1e-3 as max lr and 1e-6 as base lr for Cyclical learning rate along with the step size being the function of
+    length of train loader. ReduceLROnPlateau was tuned for 1e-6 as min lr.
+    \item {\bf SWA:} Stochastic Weight Averaging (SWA) is used to improve generalization across Deep Learning
+    models. SWA performs an equal average of the weights traversed by SGD with a modified learning rate schedule. We used 
+    1e-3 as SWA learning rate.
+    \item {\bf Regularization Parameters:} We also L1 and L2 norm for better generalisation of the models.
+  \end{itemize}
+Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
+number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
+and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
+PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
+based models like RandomForest and XGBoost.
+
+\subsection{Stacked Generalization}
+Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
+number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
+and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
+PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
+based models like RandomForest and XGBoost.
+
+\subsection{F1-Maximization}
+Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
+number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
+and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
+PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
+based models like RandomForest and XGBoost.
