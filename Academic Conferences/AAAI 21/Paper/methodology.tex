@@ -41,12 +41,9 @@ ic\textsubscript{t} is transactional attributes of the consumer 'c'  towards ite
 d\textsubscript{t} is derived from datetime to capture trend and seasonality. 
 Finally, n is the number of time lags.
 
-\subsection{Accuracy Measure}
+\subsection{Loss Function}
 Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] seemed most logical loss function 
-for training all our models. Also, the same metric was used during stacking to generate final probabilities for 
-F1-Maximization. But, we used F1-Score [~\ref{eqn:F1}] values for reporting accuracy as we wanted to maintain a good balance between
-Recall and Precision.
-
+for training all our models.
   \begin{equation}
       \begin{array}{l}
         H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y\textsubscript{i}.log(p(y\textsubscript{i}))+
@@ -55,33 +52,6 @@ Recall and Precision.
     \label{eqn:logloss}
   \end{equation}
 where y is the label and p(y) is the predicted probability.
-Precision refers to the ratio of number of predicted items actually purchased from the predicted items
-  \begin{equation}
-      \begin{array}{l}
-        Precision = \frac{TP} {TP + FP}
-      \end{array}
-    \label{eqn:Precision}
-  \end{equation}
-where TP refers to True Positive and FP refers to False Positive.
-Recall refers to the ratio of predicted items actually purchased from the items in the actual basket. 
-  \begin{equation}
-      \begin{array}{l}
-        Recall = \frac{TP} {TP + FN}
-        \end{array}
-    \label{eqn:Recall}
-  \end{equation}
-where TP refers to True Positive and FN refers to False Negative.
-F1 Score is needed when you want to seek a balance between Precision and Recall.
-We have previously seen that accuracy can be largely contributed by a large number of True Negatives which 
-in most business circumstances, we do not focus on much whereas False Negative and False Positive usually has 
-business costs, thus F1 Score might be a better measure to use if we need to seek a balance
-between Precision and Recall and there is an uneven class distribution (large number of Actual Negatives).
-  \begin{equation}
-      \begin{array}{l}
-        F1-Score = \frac{2 * Precision * Recall} {Precision + Recall}
-      \end{array}
-    \label{eqn:F1}
-  \end{equation}
 
 \subsection{Model Architectures}
 
@@ -153,17 +123,17 @@ was performed over Validation dataset. We list some of the params along with the
   \end{itemize}
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
-and embedding sizes for the categorical features. BCELOSS was used a loss function for the backward and forward
-passes in Deep Learning setting. Deep learning models are built using deep learning framework
+and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] was used as loss 
+function for all the models. Deep learning models are built using deep learning framework
 PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
 based models like RandomForest and XGBoost. We built a total of 46 models, 9 different param configurations for each of 4 
 Deep Learning models and 5 best trials for each of 2 Machine Learning models as shown in table 1.
 
 \begin{table}[t]
-\caption{Model Types with Specification}
+\caption{ Model Specifics}
 \vspace{0.1 in}
 \centering
-\resizebox{6.6in}{!}
+\resizebox{3.3in}{!}
 {%
 \begin{tabular}{c|c|c}
 \hline
@@ -176,18 +146,108 @@ Xgboost 		& 5	& Learning rate, Tree Depth, Regularization parameters  \\ \hline
 RandomForest 		& 5	& Tree Depth, Regularization parameters \\ \hline
 \end{tabular}
 }
-\label{tab:accuracy}
+\label{tab:models}
 \end{table}
 
 \subsection{Stacked Generalization}
 For simplicity and better generalization we adopted non-parameteric approach for stacking.
 We used Weighted K Best Stacked Generalization Ensemble for combining the 46 models (candidates) from Table 1. 
-Test1 Logloss was used as metric to compute weight for each of the 46 candidates. We set the k to 25 and 
-took the Weighted Average of the top 25 candidates based upon Test1 Logloss.
+Test1 Logloss was used as metric to compute weight for each of the 46 candidates. We set the k to 25 and selected 
+these top 25 candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
+the probabilities for Validation, Test1 and Test2 time steps for each consumer-item combination.
 
 \subsection{F1-Maximization}
-Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
-number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
-and embedding sizes for the categorical features.Deep learning models are built using deep learning framework
-PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
-based models like RandomForest and Xgboost.
+Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
+probability distribution of test1 at consumer level. As instance, lets say we generated purchase probabilities for 
+n\textsubscript{i} items of b\textsubscript{i} actually purchased items for consumer c\textsubscript{i}.
+Let Actual items purchased by consumer c\textsubscript{i} at test1 time step be [Ia\textsubscript{1}, Ia\textsubscript{2}
+,.., Ia\textsubscript{b\textsubscript{i}}] whereas items for which the model generated probabilities for the 
+consumer c\textsubscript{i} at test1 time step be [Ip\textsubscript{1}, Ip\textsubscript{2} ,.., 
+Ip\textsubscript{n\textsubscript{i}}]. 
+
+  \begin{equation}
+    \begin{array}{l}
+      A\textsubscript{c\textsubscript{i}} = [a\textsubscript{1}, a\textsubscript{1}, .., a\textsubscript{n\textsubscript{i}}] 
+       \; \forall \; a\textsubscript{j} \in \; $\{0,1\}$
+    \end{array}
+    \label{eqn:Precision}
+  \end{equation}
+
+  \begin{equation}
+    \begin{array}{l}
+      P\textsubscript{c\textsubscript{i}} = [p\textsubscript{1}, p\textsubscript{1}, .., p\textsubscript{n\textsubscript{i}}]
+      \; \forall \; p\textsubscript{j} \in \; [0,1]
+    \end{array}
+    \label{eqn:Precision}
+  \end{equation}
+
+  \begin{equation}
+    \begin{array}{l}
+      P\textsuperscript{'}\textsubscript{c\textsubscript{i}} = [p\textsuperscript{'}\textsubscript{1}, 
+      p\textsuperscript{'}\textsubscript{1}, .., p\textsuperscript{'}\textsubscript{n\textsubscript{i}}]\; 
+      \forall \; p\textsuperscript{'}\textsubscript{j} \in \; $\{0,1\}$
+    \end{array}
+    \label{eqn:Precision}
+  \end{equation}
+
+  \begin{equation}
+    \begin{array}{l}
+      D(Prob\textsubscript{c\textsubscript{i}}) : P\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
+      \to P\textsuperscript{'}\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
+      %\begin{cases}
+      %0 \\   %\text{if } p\textsubscript{j} < Prob\textsubscript{c\textsubscript{i}} \\
+      %1      %& \text{if } p\textsubscript{j} >= Prob\textsubscript{c\textsubscript{i}}
+      %\end{cases}
+    \end{array}
+    \label{eqn:Precision}
+  \end{equation}
+A decision rule D converts probabilities 
+P\textsubscript{c\textsubscript{i}}
+to binary predictions P\textsuperscript{'}\textsubscript{c\textsubscript{i}}.
+If p\textsubscript{j} is less than Prob\textsubscript{c\textsubscript{i}} then 0 else 1.
+Then the binary predictions are multiplied with actuals to compute 
+
+  \begin{equation}
+    \begin{array}{l}
+      V(Prob\textsubscript{c\textsubscript{i}}) = 
+      P\textsuperscript{'}\textsubscript{c\textsubscript{i}}
+      \;\times\; A\textsubscript{c\textsubscript{i}}\textsuperscript{T}
+      \\
+      \Rightarrow	
+      \left( \begin{array}{ccccc}
+      p\textsuperscript{'}\textsubscript{1} & p\textsuperscript{'}\textsubscript{1} & .&. & 
+      p\textsuperscript{'}\textsubscript{n\textsubscript{i}}
+      \end{array} \right)
+      \times
+      %
+      \left( \begin{array}{ccccc}
+      a\textsubscript{1} \\
+      a\textsubscript{1} \\
+      . \\
+      . \\
+      a\textsubscript{n\textsubscript{i}} \\
+      \end{array} \right)
+
+    \end{array}
+    \label{eqn:Precision}
+  \end{equation}
+
+    \begin{equation}
+      \begin{array}{l}
+        F\textsubscript{1} = \frac{2 * Precision * Recall} {Precision + Recall}
+      \end{array}
+    \label{eqn:F1}
+  \end{equation}
+
+  \begin{equation}
+    \begin{array}{l}
+      F\textsubscript{1\textsubscript{c\textsubscript{i}}} = 2 * 
+      \frac{
+        V(Prob\textsubscript{c\textsubscript{i}})
+      }
+      {
+        n\textsubscript{i} + b\textsubscript{i}
+      }
+    \end{array}
+    \label{eqn:Precision}
+  \end{equation}
