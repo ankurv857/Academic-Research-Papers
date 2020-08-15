@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  14 AUG 2020 16:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  15 AUG 2020 22:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -93,23 +93,7 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count178
 \l__pdf_internal_box=\box45
 )
-(./paper.aux
-
-LaTeX Warning: Label `eqn:Precision' multiply defined.
-
-
-LaTeX Warning: Label `eqn:Precision' multiply defined.
-
-
-LaTeX Warning: Label `eqn:Precision' multiply defined.
-
-
-LaTeX Warning: Label `eqn:Precision' multiply defined.
-
-
-LaTeX Warning: Label `eqn:Precision' multiply defined.
-
-)
+(./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
@@ -183,79 +167,75 @@ texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 <img/MLP.png, id=8, 711.65875pt x 397.485pt>
 File: img/MLP.png Graphic file (type png)
 <use img/MLP.png>
-Package pdftex.def Info: img/MLP.png  used on input line 60.
+Package pdftex.def Info: img/MLP.png  used on input line 61.
 (pdftex.def)             Requested size: 238.49121pt x 133.20227pt.
 <img/LSTM.png, id=10, 537.00626pt x 400.49625pt>
 File: img/LSTM.png Graphic file (type png)
 <use img/LSTM.png>
-Package pdftex.def Info: img/LSTM.png  used on input line 67.
+Package pdftex.def Info: img/LSTM.png  used on input line 68.
 (pdftex.def)             Requested size: 238.49121pt x 177.86276pt.
 <img/CONV1D.png, id=11, 537.00626pt x 414.54875pt>
 File: img/CONV1D.png Graphic file (type png)
 <use img/CONV1D.png>
-Package pdftex.def Info: img/CONV1D.png  used on input line 74.
+Package pdftex.def Info: img/CONV1D.png  used on input line 75.
 (pdftex.def)             Requested size: 238.49121pt x 184.10356pt.
 <img/CNNLSTM.png, id=12, 596.2275pt x 414.54875pt>
 File: img/CNNLSTM.png Graphic file (type png)
 <use img/CNNLSTM.png>
-Package pdftex.def Info: img/CNNLSTM.png  used on input line 81.
+Package pdftex.def Info: img/CNNLSTM.png  used on input line 82.
 (pdftex.def)             Requested size: 238.49121pt x 165.81656pt.
 
-Underfull \hbox (badness 3199) in paragraph at lines 93--102
+Underfull \hbox (badness 3199) in paragraph at lines 94--103
 []\OT1/ptm/m/n/10 The con-sumer pur-chase pat-tern has huge vari-a-tion
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 93--102
+Underfull \hbox (badness 1033) in paragraph at lines 94--103
 \OT1/ptm/m/n/10 in terms of time of pur-chase (week-day/weekends), ca-
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 103--110
+Underfull \hbox (badness 1253) in paragraph at lines 104--111
 \OT1/ptm/m/n/10 to cap-ture tem-po-ral de-pen-den-cies. We use lagged val-
  []
 
 
-Underfull \hbox (badness 1057) in paragraph at lines 103--110
+Underfull \hbox (badness 1057) in paragraph at lines 104--111
 \OT1/ptm/m/n/10 tis-ti-cal rolling op-er-a-tions like mean, me-dian, quan-tiles
 ,
  []
 
 [2 <./img/MLP.png> <./img/LSTM.png>]
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
-71.
+72.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 171.
- [3 <./img/CONV1D.png> <./img/CNNLSTM.png>]) [4
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
+ [3 <./img/CONV1D.png> <./img/CNNLSTM.png>]) (./eval.tex) [4
 
-] (./paper.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 2832 strings out of 480608
- 44649 string characters out of 5903631
- 290967 words of memory out of 5000000
- 18715 multiletter control sequences out of 15000+600000
+ 2840 strings out of 480608
+ 44727 string characters out of 5903631
+ 292967 words of memory out of 5000000
+ 18721 multiletter control sequences out of 15000+600000
  547331 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,18n,42p,232b,278s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
-20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
-0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (4 pages, 347184 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.en
+c}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
+usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
+cal/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/
+2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on paper.pdf (4 pages, 349218 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

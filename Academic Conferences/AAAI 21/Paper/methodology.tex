@@ -42,8 +42,9 @@ d\textsubscript{t} is derived from datetime to capture trend and seasonality.
 Finally, n is the number of time lags.
 
 \subsection{Loss Function}
-Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] seemed most logical loss function 
+Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss seemed most logical loss function 
 for training all our models.
+
   \begin{equation}
       \begin{array}{l}
         H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y\textsubscript{i}.log(p(y\textsubscript{i}))+
@@ -158,7 +159,7 @@ the probabilities for Validation, Test1 and Test2 time steps for each consumer-i
 
 \subsection{F1-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
-probability distribution of test1 at consumer level. As instance, lets say we generated purchase probabilities for 
+probability distribution of test1 at consumer level. For instance, lets say we generated purchase probabilities for 
 n\textsubscript{i} items of b\textsubscript{i} actually purchased items for consumer c\textsubscript{i}.
 Let Actual items purchased by consumer c\textsubscript{i} at test1 time step be [Ia\textsubscript{1}, Ia\textsubscript{2}
 ,.., Ia\textsubscript{b\textsubscript{i}}] whereas items for which the model generated probabilities for the 
@@ -167,87 +168,100 @@ Ip\textsubscript{n\textsubscript{i}}].
 
   \begin{equation}
     \begin{array}{l}
-      A\textsubscript{c\textsubscript{i}} = [a\textsubscript{1}, a\textsubscript{1}, .., a\textsubscript{n\textsubscript{i}}] 
+      A\textsubscript{c\textsubscript{i}} = [a\textsubscript{1}, a\textsubscript{2}, .., a\textsubscript{n\textsubscript{i}}] 
        \; \forall \; a\textsubscript{j} \in \; $\{0,1\}$
     \end{array}
-    \label{eqn:Precision}
+    \label{eqn:A}
   \end{equation}
 
   \begin{equation}
     \begin{array}{l}
-      P\textsubscript{c\textsubscript{i}} = [p\textsubscript{1}, p\textsubscript{1}, .., p\textsubscript{n\textsubscript{i}}]
+      P\textsubscript{c\textsubscript{i}} = [p\textsubscript{1}, p\textsubscript{2}, .., p\textsubscript{n\textsubscript{i}}]
       \; \forall \; p\textsubscript{j} \in \; [0,1]
     \end{array}
-    \label{eqn:Precision}
+    \label{eqn:P}
+  \end{equation}
+A\textsubscript{c\textsubscript{i}} represents the actuals for consumer c\textsubscript{i}, with a\textsubscript{j} being 1/0 
+(purchased/non purchased). P\textsubscript{c\textsubscript{i}} represents the predicted probabilities 
+for consumer c\textsubscript{i} for respective item, with p\textsubscript{j} being probability value. 
+As mentioned above n\textsubscript{i} is the total items model generated purchase probabilities for.
+
+  \begin{equation}
+    \begin{array}{l}
+      D(Pr\textsubscript{c\textsubscript{i}}) : P\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
+      \to P\textsuperscript{'}\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
+      \;\;  p\textsuperscript{'}\textsubscript{j} = $\{1 if p\textsubscript{j} $\geq$ Pr\textsubscript{c\textsubscript{i}}\}$
+    \end{array}
+    \label{eqn:Decision}
   \end{equation}
 
   \begin{equation}
     \begin{array}{l}
       P\textsuperscript{'}\textsubscript{c\textsubscript{i}} = [p\textsuperscript{'}\textsubscript{1}, 
-      p\textsuperscript{'}\textsubscript{1}, .., p\textsuperscript{'}\textsubscript{n\textsubscript{i}}]\; 
+      p\textsuperscript{'}\textsubscript{2}, .., p\textsuperscript{'}\textsubscript{n\textsubscript{i}}]\; 
       \forall \; p\textsuperscript{'}\textsubscript{j} \in \; $\{0,1\}$
     \end{array}
-    \label{eqn:Precision}
+    \label{eqn:Pdash}
   \end{equation}
+Pr\textsubscript{c\textsubscript{i}} is the probability cut-off.
+Decision rule D converts probabilities P\textsubscript{c\textsubscript{i}} to binary predictions 
+P\textsuperscript{'}\textsubscript{c\textsubscript{i}} such that if p\textsubscript{j} is less than 
+Pr\textsubscript{c\textsubscript{i}} then p\textsuperscript{'}\textsubscript{j} equals 0 else 1. 
 
   \begin{equation}
     \begin{array}{l}
-      D(Prob\textsubscript{c\textsubscript{i}}) : P\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
-      \to P\textsuperscript{'}\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
-      %\begin{cases}
-      %0 \\   %\text{if } p\textsubscript{j} < Prob\textsubscript{c\textsubscript{i}} \\
-      %1      %& \text{if } p\textsubscript{j} >= Prob\textsubscript{c\textsubscript{i}}
-      %\end{cases}
-    \end{array}
-    \label{eqn:Precision}
-  \end{equation}
-A decision rule D converts probabilities 
-P\textsubscript{c\textsubscript{i}}
-to binary predictions P\textsuperscript{'}\textsubscript{c\textsubscript{i}}.
-If p\textsubscript{j} is less than Prob\textsubscript{c\textsubscript{i}} then 0 else 1.
-Then the binary predictions are multiplied with actuals to compute 
-
-  \begin{equation}
-    \begin{array}{l}
-      V(Prob\textsubscript{c\textsubscript{i}}) = 
+      V\textsubscript{Pr\textsubscript{c\textsubscript{i}}} = 
       P\textsuperscript{'}\textsubscript{c\textsubscript{i}}
       \;\times\; A\textsubscript{c\textsubscript{i}}\textsuperscript{T}
-      \\
+      \;
       \Rightarrow	
-      \left( \begin{array}{ccccc}
-      p\textsuperscript{'}\textsubscript{1} & p\textsuperscript{'}\textsubscript{1} & .&. & 
+      \left( \begin{array}{ccc}
+      p\textsuperscript{'}\textsubscript{1} & .. & 
       p\textsuperscript{'}\textsubscript{n\textsubscript{i}}
       \end{array} \right)
       \times
       %
-      \left( \begin{array}{ccccc}
+      \left( \begin{array}{ccc}
       a\textsubscript{1} \\
-      a\textsubscript{1} \\
-      . \\
-      . \\
+      .. \\
       a\textsubscript{n\textsubscript{i}} \\
       \end{array} \right)
 
     \end{array}
-    \label{eqn:Precision}
+    \label{eqn:probability}
   \end{equation}
+V\textsubscript{Pr\textsubscript{c\textsubscript{i}}} represents the number of items with purchase 
+probabilities greater than Pr\textsubscript{c\textsubscript{i}} which were actually purchased. Now using the below 
+formulae we calculate Precision, Recall and F\textsubscript{1}-score for consumer c\textsubscript{i}.
 
-    \begin{equation}
-      \begin{array}{l}
-        F\textsubscript{1} = \frac{2 * Precision * Recall} {Precision + Recall}
-      \end{array}
+  \begin{equation}
+    \begin{array}{l}
+      Precision\textsubscript{c\textsubscript{i}}= \frac{V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}} {n\textsubscript{i}}
+      \;\;\;\;\;and\;\;\;\;
+      Recall\textsubscript{c\textsubscript{i}}= \frac{V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}} {b\textsubscript{i}}
+    \end{array}
     \label{eqn:F1}
   \end{equation}
 
   \begin{equation}
     \begin{array}{l}
-      F\textsubscript{1\textsubscript{c\textsubscript{i}}} = 2 * 
+      F\textsubscript{1\textsubscript{c\textsubscript{i}}} = \frac{2 \times Precision\textsubscript{c\textsubscript{i}} 
+      \times Recall\textsubscript{c\textsubscript{i}}} 
+      {Precision\textsubscript{c\textsubscript{i}} + Recall\textsubscript{c\textsubscript{i}}}
+      \;
+      \;\;\;\;\Rightarrow	\;\;\;\;
+      2 * 
       \frac{
-        V(Prob\textsubscript{c\textsubscript{i}})
+        V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}
       }
       {
         n\textsubscript{i} + b\textsubscript{i}
       }
     \end{array}
-    \label{eqn:Precision}
+    \label{eqn:Optimizer}
   \end{equation}
+F\textsubscript{1\textsubscript{c\textsubscript{i}}} becomes the value to be maximised
+by finding optimal Pr\textsubscript{c\textsubscript{i}} for consumer c\textsubscript{i}.
+We apply the above Optimization function over test1 probability distribution 
+at a consumer level to find optimal cut-off. Final purchase predictions happens 
+based on the cut-off value.
