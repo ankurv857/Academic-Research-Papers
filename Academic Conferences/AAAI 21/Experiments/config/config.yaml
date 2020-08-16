@@ -137,7 +137,6 @@ training:
   Metric: BINARY
   future_types:
     - virtual_future
-    # - future
   static_cols:
     - user_id_label_encoded
     - product_id_label_encoded
@@ -239,92 +238,6 @@ training:
             - 200
             - 250
             - 10
-    SGD:
-      min_obj_size: True
-      best_trials: 3
-      multiprocessing: True
-      feature_groups:
-        - regressor
-        - datetime
-        - sinusoidal
-        - lagged
-        - offset
-        - relative
-        - counter
-        - target_encoded
-        - label_encoded
-      exclude_cols: []
-      scale: True
-      max_evals: 50
-      hyperparams:
-        penalty:
-          type: choice
-          params:
-            - l1
-            - l2
-        alpha:
-          type: loguniform
-          params:
-            - 0.01
-            - 0.5
-    SVM:
-      min_obj_size: True
-      best_trials: 3
-      multiprocessing: True
-      feature_groups:
-        - regressor
-        - datetime
-        - sinusoidal
-        - lagged
-        - offset
-        - relative
-        - counter
-        - target_encoded
-        - label_encoded
-      exclude_cols: []
-      scale: True
-      max_evals: 50
-      hyperparams:
-        kernel:
-          type: choice
-          params:
-            - linear
-            - poly
-            - rbf
-            - sigmoid
-        C:
-          type: loguniform
-          params:
-            - 0.5
-            - 1
-    Logit:
-      min_obj_size: True
-      best_trials: 3
-      multiprocessing: True
-      feature_groups:
-        - regressor
-        - datetime
-        - sinusoidal
-        - lagged
-        - offset
-        - relative
-        - counter
-        - target_encoded
-        - label_encoded
-      exclude_cols: []
-      scale: True
-      max_evals: 50
-      hyperparams:
-        penalty:
-          type: choice
-          params:
-            - l1
-            - l2
-        tol:
-          type: loguniform
-          params:
-            - 0.0001
-            - 0.01
     MLP:
       min_obj_size: True
       multiprocessing: False
@@ -710,7 +623,6 @@ training:
 stacking:
   future_types:
     - virtual_future
-    # - future
   NewProduct: False
   model_exclude:
   model_include:
@@ -727,9 +639,6 @@ stacking:
   n_groups:
   model_names:
     - K_best
-    # - _ElasticNet
-    # - _Lasso
-    # - _Ridge
   models:
     _ElasticNet:
       multiprocessing: True
