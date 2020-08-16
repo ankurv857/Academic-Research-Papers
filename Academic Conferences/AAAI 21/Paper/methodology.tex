@@ -72,24 +72,24 @@ where y is the label and p(y) is the predicted probability.
 
   \begin{figure}[t]
     \centering 
-    \includegraphics[width=3.3in]{img/CONV1D.png} 
-    \caption{Convolution Neural Network 1D (CONV1D)} 
-    \label{fig:CONV1D} 
+    \includegraphics[width=3.3in]{img/TCN.png} 
+    \caption{Temporal Convolutional Network (TCN)} 
+    \label{fig:TCN} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
-    \includegraphics[width=3.3in]{img/CNNLSTM.png} 
-    \caption{Convolution Neural Network 1D + Long Short Term Memory (CNNLSTM)} 
-    \label{fig:CNNLSTM} 
+    \includegraphics[width=3.3in]{img/TCNLSTM.png} 
+    \caption{Temporal Convolutional Network + Long Short Term Memory (TCNLSTM)} 
+    \label{fig:TCNLSTM} 
   \end{figure}
 
 As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
 Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Convolution Neural Network (CNN). Architectures of MLP, LSTM, CONV1D and CNNLSTM 
-models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:CONV1D}
-and Figure~\ref{fig:CNNLSTM}.
+Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCNLSTM 
+models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:TCN}
+and Figure~\ref{fig:TCNLSTM}.
 
 The consumer purchase pattern has huge variation in terms of time of purchase (weekday/weekends), 
 cadence of purchase (days to months), purchased item types (dairy/meat/grocery/apparels/etc.)
@@ -138,11 +138,11 @@ Deep Learning models and 5 best trials for each of 2 Machine Learning models as 
 {%
 \begin{tabular}{c|c|c}
 \hline
-{\bf Model Type} & {\bf Number of Selected Trials} & {\bf Model Tuning parameters} \\  \hline
+{\bf Model Type} & {\bf Trials} & {\bf Model hyperparameters} \\  \hline
 MLP	  		&  9 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers \\ \hline
 LSTM  		& 9 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers  \\ \hline
-CONV1D			& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  \\ \hline
-CNNLSTM 		& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  \\ \hline
+TCN			& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  \\ \hline
+TCNLSTM 		& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  \\ \hline
 Xgboost 		& 5	& Learning rate, Tree Depth, Regularization parameters  \\ \hline
 RandomForest 		& 5	& Tree Depth, Regularization parameters \\ \hline
 \end{tabular}
