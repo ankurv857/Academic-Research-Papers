@@ -9,8 +9,8 @@ data:
     numeric:
       - add_to_cart_order
     categorical:
-      - aisle
-      - department
+      - aisle_id
+      - department_id
   temporal_columns:
     - add_to_cart_order
   relative_columns:
@@ -20,6 +20,8 @@ data:
   aggregation_method:
     is_ordered: max
     add_to_cart_order: mean
+    department_id: max
+    aisle_id: max
   fillna_method:
     value:
       is_ordered: 0
@@ -117,13 +119,17 @@ feature_engg:
       - 1
     values:
       - 8
+      - 13
   offset_params:
     period_types:
       - 1
       - 2
       - 4
+      - 6
+      - 12
     function_types:
       - mean
+      - sum
   relative_params:
     relative_periods:
       - 2
@@ -134,16 +140,20 @@ feature_engg:
 
 training:
   GPU: False
-  Metric: BINARY
+  Metric: BCELoss
   future_types:
     - virtual_future
   static_cols:
     - user_id_label_encoded
     - product_id_label_encoded
     - map_label_encoded
+    - aisle_id_label_encoded
+    - department_id_label_encoded
     - user_id_target_encoded
     - product_id_target_encoded
     - map_target_encoded
+    - aisle_id_target_encoded
+    - department_id_target_encoded
   n_groups:
   groups:
     all:
@@ -158,7 +168,7 @@ training:
   val_rounds: 1
   models:
     Xgboost:
-      min_obj_size: True
+      min_obj_size: False
       best_trials: 5
       multiprocessing: True
       feature_groups:
@@ -176,6 +186,10 @@ training:
       max_evals: 100
       early_stopping_rounds: 25
       hyperparams:
+        objective:
+          type: choice
+          params:
+            - binary:logistic
         booster:
           type: choice
           params:
@@ -199,7 +213,7 @@ training:
         n_estimators:
           type: quniform
           params:
-            - 200
+            - 250
             - 400
             - 50
     RandomForest:
@@ -220,6 +234,11 @@ training:
       scale: False
       max_evals: 100
       hyperparams:
+        criterion:
+          type: choice
+          params:
+            - gini
+            - entropy
         max_depth:
           type: quniform
           params:
@@ -239,7 +258,7 @@ training:
             - 250
             - 10
     MLP:
-      min_obj_size: True
+      min_obj_size: False
       multiprocessing: False
       feature_groups:
         - regressor
@@ -308,14 +327,14 @@ training:
             weight_decay: 0.00001
         scheduler_params:
           CyclicLR:
-            base_lr: 0.0001
+            base_lr: 0.00001
             max_lr: 0.001
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.0001
+            min_lr: 0.00001
             patience: 4
         SWA_params:
           swa_start: 10
@@ -403,14 +422,14 @@ training:
             weight_decay: 0.00001
         scheduler_params:
           CyclicLR:
-            base_lr: 0.0001
+            base_lr: 0.00001
             max_lr: 0.001
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.0001
+            min_lr: 0.00001
             patience: 4
         SWA_params:
           swa_start: 10
@@ -484,8 +503,8 @@ training:
           shuffle: True
           num_workers: 16
         convnet_params:
-          kernel_size: 2
-          dilations: 3
+          kernel_size: 1
+          dilations: 2
         optimizer_params:
           RMSprop:
             lr: 0.001
@@ -499,14 +518,14 @@ training:
             weight_decay: 0.00001
         scheduler_params:
           CyclicLR:
-            base_lr: 0.0001
+            base_lr: 0.00001
             max_lr: 0.001
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.0001
+            min_lr: 0.00001
             patience: 4
         SWA_params:
           swa_start: 10
@@ -582,8 +601,8 @@ training:
         LSTM_params:
           lstm_layers: 2
         convnet_params:
-          kernel_size: 2
-          dilations: 3
+          kernel_size: 1
+          dilations: 2
         optimizer_params:
           RMSprop:
             lr: 0.001
@@ -597,14 +616,14 @@ training:
             weight_decay: 0.00001
         scheduler_params:
           CyclicLR:
-            base_lr: 0.0001
+            base_lr: 0.00001
             max_lr: 0.001
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.0001
+            min_lr: 0.00001
             patience: 4
         SWA_params:
           swa_start: 10
@@ -635,20 +654,7 @@ stacking:
   round_penalty: False
   candidate_weight: True
   n_candidates: 50
-  k_best_candidates: 30
+  k_best_candidates: 3
   n_groups:
   model_names:
     - K_best
-  models:
-    _ElasticNet:
-      multiprocessing: True
-      params:
-        alpha: 0.5
-    _Lasso:
-      multiprocessing: True
-      params:
-        alpha: 0.0
-    _Ridge:
-      multiprocessing: True
-      params:
-        alpha: 1.0

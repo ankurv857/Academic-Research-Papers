@@ -34,9 +34,9 @@ if __name__ == '__main__':
     print('Time till Feature Engineering',(time.time() - code_start_time))
 
     #Model Training
-    Model_Trainer.train_models(args.base_path, config)
+    # Model_Trainer.train_models(args.base_path, config)
     print('Time till Training',(time.time() - code_start_time))
 
     #Model Stacking
-    # Model_Stacker.stack_models(args.base_path, config)
+    Model_Stacker.stack_models(args.base_path, config)
     print('Time till Stacking',(time.time() - code_start_time))

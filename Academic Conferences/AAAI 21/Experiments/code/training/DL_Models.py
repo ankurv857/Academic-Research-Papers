@@ -14,7 +14,7 @@ import time
 from . import utils
 from .Loaders import MLPDataset, Dataset
 from .Base_Models import BaseModel
-from .Metrics import wmape, mape, binary_error
+from .Metrics import BCE
 
 np.random.seed(0)
 torch.random.manual_seed(0)

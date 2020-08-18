@@ -5,7 +5,7 @@ We adopted walk forward Validation strategy for model testing and generalization
 based on the time series. The last 3 time steps for each of the Time series was used as Validation (hyperparameter Optimization),
 Test1 (Stacked Generalization) and Test2 (Reporting Accuracy metric) respectively, and the remaining data was used for training.
 We then generate various types of features including datetime related, label encoded and target encoded 
-within and across objects. Below are the feature groups with the type of features within each group:
+within and across objects. Below are the feature groups we experimented with explicitly or unexplicitly:
 \begin{itemize}
 \item {\bf Datetime:} Transactional metrics at various temporal cuts including week, month and quarter. 
 Fourier and Taylor functions to capture seasonality and trends.
@@ -106,7 +106,7 @@ to capture temporal dependencies. We use lagged values of temporal features up t
 Multiple Lagged values as well as Statistical rolling operations like mean, median, quantiles, variance, kurtosis and 
 skewness over varying lag periods are used for feature generation. Details around datasets and derived features are explained 
 in the following section. This was decided after some preliminary experiments. Hyper-parameters of tree based models are optimized
-using Bayesian Hyper-parameter Optimization Technique. LSTM, CONV1D and CNNLSTM models were trained in sequence to sequence 
+using Bayesian Hyper-parameter Optimization Technique. LSTM, TCN and TCNLSTM models were trained in sequence to sequence 
 fashion using entire life-cycle data of a time series (Consumer-Item).
 
 We applied empirical approach to tune the hyperparameters for Deep learning models. All hyperparameter Optimization

@@ -13,7 +13,7 @@ from torch.utils.data import DataLoader
 from torchcontrib.optim import SWA
 
 from global_utils import file_utils
-from .Metrics import wmape, mape, binary_error
+from .Metrics import BCE
 
 
 def get_usecols(all_feature_groups: str, dtypes: str,model_feature_groups: str, exclude_cols: str, config: str):
@@ -129,6 +129,7 @@ def get_data(data_path, config, model_config, usecols=None, dtype=None, model= N
                             dtype=dtype , index_col= index_col)
         X = data.drop(columns=config.data.target_column)
         y = data[config.data.target_column].clip(0)
+        y = y.astype(float).astype(int)
         data_list.append((X,y))
 
     return data_list
@@ -494,9 +495,5 @@ def loss_func(config):
 
     """
 
-    if config.training.Metric == 'WMAPE':
-        return wmape
-    elif config.training.Metric == 'MAPE':
-        return mape
-    elif config.training.Metric == 'BINARY':
+    if config.training.Metric == 'BCELoss':
         return nn.BCEWithLogitsLoss()

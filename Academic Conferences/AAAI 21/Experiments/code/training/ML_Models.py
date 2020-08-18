@@ -73,10 +73,11 @@ class Xgboost(xgb.XGBClassifier, BaseModel):
 
         """
         X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            return self._invert_y(super().predict(X, **kwargs))
-        else:
-            return super().predict(X, **kwargs)
+        pred = super().predict_proba(X, **kwargs)
+        pred = pd.DataFrame(pred)
+        # print('pred', pred) ; exit()
+        pred.columns = ['pred0', 'pred1']
+        return pred['pred1'].values
 
     def get_params(self, deep=True):
         params = super().get_params(deep)
@@ -137,10 +138,10 @@ class RandomForest(RandomForestClassifier, BaseModel):
 
         """
         X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            return self._invert_y(super().predict(X, **kwargs))
-        else:
-            return super().predict(X, **kwargs)
+        pred = super().predict_proba(X, **kwargs)
+        pred = pd.DataFrame(pred)
+        pred.columns = ['pred0', 'pred1']
+        return pred['pred1'].values
     
     def get_params(self, deep=True):
         params = super().get_params(deep)
@@ -148,196 +149,3 @@ class RandomForest(RandomForestClassifier, BaseModel):
         cp.__class__ = RandomForestClassifier
         params.update(cp.__class__.get_params(cp, deep))
         return params
-
-class SGD(SGDClassifier, BaseModel):
-
-    def __init__(self, config, feature_groups = None, dtypes = None, model_name = None , **kwargs):
-        """
-
-        Args:
-            config:
-            model_path:
-            **kwargs:
-
-        """
-
-        super().__init__(**kwargs)
-        self.config = config
-        self.model_config = self.config.training.models.get(model_name, {})
-        self.usecols, self.dtypes  = utils.get_usecols(feature_groups, dtypes, self.model_config.feature_groups, 
-                                        self.model_config.exclude_cols, config)
-        self.max_log_y = 1
-
-    def fit(self, X, y, val_data=None, trial=None, val_round=None, **kwargs):
-        """
-
-        Args:
-            X:
-            y:
-            val_data:
-            trial:
-            val_round:
-            **kwargs:
-
-        Returns:
-
-        """
-        self.cat_cols = X.select_dtypes(exclude='number').columns
-        X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            y = self._scale_y(y, fit=True)
-            super().fit(X, y , **kwargs)
-        else:
-            super().fit(X, y, **kwargs)
-
-    def predict(self, X, **kwargs):
-        """
-
-        Args:
-            X:
-            **kwargs:
-
-        Returns:
-
-        """
-        X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            return self._invert_y(super().predict(X, **kwargs))
-        else:
-            return super().predict(X, **kwargs)
-    
-    def get_params(self, deep=True):
-        params = super().get_params(deep)
-        cp = copy.copy(self)
-        cp.__class__ = SGDClassifier
-        params.update(cp.__class__.get_params(cp, deep))
-        return params
-
-class SVM(SVC, BaseModel):
-
-    def __init__(self, config, feature_groups = None, dtypes = None, model_name = None , **kwargs):
-        """
-
-        Args:
-            config:
-            model_path:
-            **kwargs:
-
-        """
-
-        super().__init__(**kwargs)
-        self.config = config
-        self.model_config = self.config.training.models.get(model_name, {})
-        self.usecols, self.dtypes  = utils.get_usecols(feature_groups, dtypes, self.model_config.feature_groups, 
-                                        self.model_config.exclude_cols, config)
-        self.max_log_y = 1
-
-    def fit(self, X, y, val_data=None, trial=None, val_round=None, **kwargs):
-        """
-
-        Args:
-            X:
-            y:
-            val_data:
-            trial:
-            val_round:
-            **kwargs:
-
-        Returns:
-
-        """
-        self.cat_cols = X.select_dtypes(exclude='number').columns
-        X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            y = self._scale_y(y, fit=True)
-            super().fit(X, y , **kwargs)
-        else:
-            super().fit(X, y, **kwargs)
-
-    def predict(self, X, **kwargs):
-        """
-
-        Args:
-            X:
-            **kwargs:
-
-        Returns:
-
-        """
-        X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            return self._invert_y(super().predict(X, **kwargs))
-        else:
-            return super().predict(X, **kwargs)
-
-    def get_params(self, deep=True):
-        params = super().get_params(deep)
-        cp = copy.copy(self)
-        cp.__class__ = SVC
-        params.update(cp.__class__.get_params(cp, deep))
-        return params
-
-class Logit(LogisticRegression, BaseModel):
-
-    def __init__(self, config, feature_groups = None, dtypes = None, model_name = None , **kwargs):
-        """
-
-        Args:
-            config:
-            model_path:
-            **kwargs:
-
-        """
-
-        super().__init__(**kwargs)
-        self.config = config
-        self.model_config = self.config.training.models.get(model_name, {})
-        self.usecols, self.dtypes  = utils.get_usecols(feature_groups, dtypes, self.model_config.feature_groups, 
-                                        self.model_config.exclude_cols, config)
-        self.max_log_y = 1
-
-    def fit(self, X, y, val_data=None, trial=None, val_round=None, **kwargs):
-        """
-
-        Args:
-            X:
-            y:
-            val_data:
-            trial:
-            val_round:
-            **kwargs:
-
-        Returns:
-
-        """
-        self.cat_cols = X.select_dtypes(exclude='number').columns
-        X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            y = self._scale_y(y, fit=True)
-            super().fit(X, y , **kwargs)
-        else:
-            super().fit(X, y, **kwargs)
-
-    def predict(self, X, **kwargs):
-        """
-
-        Args:
-            X:
-            **kwargs:
-
-        Returns:
-
-        """
-        X[self.cat_cols] = X[self.cat_cols].astype(float).astype(int)
-        if self.model_config.scale == True:
-            return self._invert_y(super().predict(X, **kwargs))
-        else:
-            return super().predict(X, **kwargs)
-
-    def get_params(self, deep=True):
-        params = super().get_params(deep)
-        cp = copy.copy(self)
-        cp.__class__ = LogisticRegression
-        params.update(cp.__class__.get_params(cp, deep))
-        return params
-

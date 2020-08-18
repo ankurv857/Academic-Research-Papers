@@ -5,7 +5,7 @@ import torch.nn.functional as F
 import numpy as np
 import pandas as pd
 from sklearn.metrics import r2_score
-from training.Metrics import wmape, mape, binary_error
+from training.Metrics import BCE
 import copy
 from copy import deepcopy
 from itertools import chain
@@ -88,19 +88,21 @@ class BaseModel(ABC):
                 result_df = y.to_frame('actual')
                 result_df['pred'] = y.to_frame('actual')
             else:
-                model_metrics_dict[split] = binary_error(y, self.predict(X))
+                model_metrics_dict[split] = BCE(y, self.predict(X))
                 result_df = y.to_frame('actual')
                 result_df['pred'] = pred
             ts_df = copy.deepcopy(result_df)
+            print('ts_df', ts_df, 'ts_df.actual', ts_df.actual, 'ts_df.pred', ts_df.pred, 'BCE(ts_df.actual, ts_df.pred)', 
+            BCE(ts_df.actual, ts_df.pred)) ; exit()
             if _round == 0 :
                 ts_metric_list.append(dict(
                     _round = _round, data_split = split, ts_id = 'ts_id',
-                    metric_value = binary_error(ts_df.actual, ts_df.pred),
+                    metric_value = BCE(ts_df.actual, ts_df.pred),
                     pred = [ts_df]))
             else:
                 ts_metric_list.append(dict(
                     _round = _round, data_split = split, ts_id = 'ts_id',
-                    metric_value = binary_error(ts_df.actual, ts_df.pred),
+                    metric_value = BCE(ts_df.actual, ts_df.pred),
                     pred = []))
         return model_metrics_dict, ts_metric_list
 

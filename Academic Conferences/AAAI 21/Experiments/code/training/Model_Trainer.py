@@ -10,7 +10,7 @@ import random
 
 from global_utils import file_utils
 from training.Base_Models import BaseModel
-from training.Metrics import wmape
+from training.Metrics import BCE
 from training.hyperparameter import HyperOpt
 from . import utils
 

@@ -22,7 +22,7 @@ class MLPDataset(torch.utils.data.Dataset):
         row = self.X.loc[ind]
         return (row[self.cont_cols].values.astype(np.float32),
                 row[self.emb_cols].values.astype(float).astype(int),
-                self.y.loc[ind])
+                self.y.loc[ind].astype(int))
 
 
 class Dataset(torch.utils.data.Dataset):
@@ -58,4 +58,4 @@ class Dataset(torch.utils.data.Dataset):
                 rows[self.cont_temporal_cols].values.astype(np.float32),
                 rows[self.emb_static_cols].values.astype(int),
                 rows[self.emb_temporal_cols].values.astype(int),
-                y.values)
+                y.values.astype(int))

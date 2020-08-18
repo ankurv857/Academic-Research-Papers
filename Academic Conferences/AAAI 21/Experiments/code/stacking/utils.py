@@ -5,6 +5,7 @@ import copy
 from copy import deepcopy
 
 from global_utils import file_utils 
+from training.Metrics import BCE
 
 def top_candidate_metrics(data_path, config, future_type):
     """
@@ -128,15 +129,8 @@ def create_mpargs(model_data, config):
                 y = (split.drop(columns= ['pred'])
                         .groupby(index_cols)
                         .agg({'actual': 'mean'}))
-                # if not len(X):
-                #     inner_loop_break = False
-                #     break
-                # else:
-                #     inner_loop_break = False
                 data_list.append([X,y])
-            # if inner_loop_break: break
             model_data_dict[data_list_key] = data_list
-        # if inner_loop_break: continue
         mp_args.append(model_data_dict)
     return mp_args
 
@@ -173,10 +167,11 @@ def metric_cal(split, predictions_data, future_type):
     """
 
     future_predictions = copy.deepcopy(predictions_data)
+    print('future_predictions', future_predictions)
     metric = []
     if (future_type =='future') & (split == 'future'):
         metric.append((split, 0))
     else:
-        metric.append((split,sum(np.abs(future_predictions['actual'] - future_predictions['pred']))/sum(future_predictions['actual'])))
+        metric.append((split, BCE(future_predictions['actual'], future_predictions['pred'])))
     metric = pd.DataFrame(metric, columns = ['data_split', 'metric_value'])
     return metric
