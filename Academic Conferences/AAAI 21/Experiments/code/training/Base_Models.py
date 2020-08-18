@@ -92,8 +92,6 @@ class BaseModel(ABC):
                 result_df = y.to_frame('actual')
                 result_df['pred'] = pred
             ts_df = copy.deepcopy(result_df)
-            print('ts_df', ts_df, 'ts_df.actual', ts_df.actual, 'ts_df.pred', ts_df.pred, 'BCE(ts_df.actual, ts_df.pred)', 
-            BCE(ts_df.actual, ts_df.pred)) ; exit()
             if _round == 0 :
                 ts_metric_list.append(dict(
                     _round = _round, data_split = split, ts_id = 'ts_id',

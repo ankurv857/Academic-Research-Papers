@@ -22,15 +22,15 @@ if __name__ == '__main__':
     
     code_start_time = time.time()
     #Data Cleaning I/O operation
-    data_clean.get_clean_data(args.base_path, config)
+    # data_clean.get_clean_data(args.base_path, config)
     print('Time till Data Cleaning',(time.time() - code_start_time))
 
     #Data Preparation I/O operation
-    data_prepare.get_prepared_data(args.base_path, config)
+    # data_prepare.get_prepared_data(args.base_path, config)
     print('Time till Data Preparation',(time.time() - code_start_time))
 
     #Feature Engineering I/O operation
-    feature_module.create_features(args.base_path, config)
+    # feature_module.create_features(args.base_path, config)
     print('Time till Feature Engineering',(time.time() - code_start_time))
 
     #Model Training
