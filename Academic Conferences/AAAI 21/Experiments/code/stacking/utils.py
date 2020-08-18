@@ -67,6 +67,7 @@ def top_candidate_data(top_candidates, data_path, config, future_type):
     """
     
     future_candidates_df = pd.DataFrame()
+    top_candidates   = top_candidates.drop(['ts_id'], axis=1)
 
     for subdir, dirs, files in os.walk(data_path):
         for _file in files:
@@ -78,7 +79,8 @@ def top_candidate_data(top_candidates, data_path, config, future_type):
                     candidate_data = candidate_data.assign(model_name = _path.rsplit('/',2)[-2], level = _path.rsplit('/',4)[-4] )
                     candidate_data['model_key'] = candidate_data[['level','model_name','trial']].astype(str).apply('_'.join,1)
                     candidate_data   = candidate_data.drop(['level', 'model_name', 'trial' ], axis=1)
-                    selected_candidates = pd.merge(candidate_data, top_candidates, on = ['ts_id', 'model_key'], how = 'inner')
+                    selected_candidates = pd.merge(candidate_data, top_candidates, on = ['model_key'], how = 'inner')
+                    
                     if config.stacking.NewProduct:
                         leftover_candidates = candidate_data[~candidate_data['ts_id'].isin(top_candidates['ts_id'])]
                         leftover_candidates['metric_value'] = 1
@@ -167,7 +169,6 @@ def metric_cal(split, predictions_data, future_type):
     """
 
     future_predictions = copy.deepcopy(predictions_data)
-    print('future_predictions', future_predictions)
     metric = []
     if (future_type =='future') & (split == 'future'):
         metric.append((split, 0))

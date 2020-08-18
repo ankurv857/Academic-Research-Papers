@@ -8,19 +8,13 @@ We then generate various types of features including datetime related, label enc
 within and across objects. Below are the feature groups we experimented with explicitly or unexplicitly:
 \begin{itemize}
 \item {\bf Datetime:} Transactional metrics at various temporal cuts including week, month and quarter. 
-Fourier and Taylor functions to capture seasonality and trends.
-\item {\bf Consumer Profile:} Total number of orders by the user, Number of distinct items ordered by the user
-Time since first order by the shopper, Time since last order by the shopper, Averge time gap between orders
-Reorder rate of the user, Reorder frequency of the user, Time of the day user visits, Specific item ordered by user in the past
-Order size based features, Orders with no previously reordered item.
-\item {\bf Item Profile:} Time since first order for the merchandise, Time since last order for the merchandise
-Averge time gap between orders, Reorder rate of the item, Reorder frequency of the item
-Number of co-occuring items with this item, Item's average position in the cart, Statistics around order streak for this item
-Item's total number of orders, Number of distinct users, Number of users buying it as one shot item.
-\item {\bf Consumer-Item Profile:} Time since first order for each combination, Time since last order for each combination
-Averge time gap between orders, Reorder rate of the combination, Reorder frequency of the combination, 
-Streak -user purchased the item in a row, Average position in the cart, Co-occurance Statistics
-Replacement items, Total number of orders for the combination, If user already ordered the item today.
+Datetime related features capturing seasonality and trend.
+\item {\bf Consumer-Item Profile:} Transactional metrics at different granularities including consumer, item,
+consumer-item, department, aisle, etc. The metrics includes some of likes Time since first order, 
+Time since last order, time gap between orders, Reorder rates, Reorder frequency, 
+Streak - user purchased the item in a row, Average position in the cart, Total number of orders.
+\item {\bf Consumer-Item-Time Profile:} Transactional metrics at the intersection of consumer, item and time.
+Interactions capturing consumer behaviour towards items for the given time period.
 \end{itemize}
 The model we needed to build, thus, should learn to identify similarly behaving time series across latent
 parameters, and take into account consumer and item variations in comparing the time series. A row in time series 
@@ -120,15 +114,14 @@ was performed over Validation dataset. We list some of the params along with the
     \item {\bf SWA:} Stochastic Weight Averaging (SWA) is used to improve generalization across Deep Learning
     models. SWA performs an equal average of the weights traversed by SGD with a modified learning rate schedule. We used 
     1e-3 as SWA learning rate.
-    \item {\bf Regularization Parameters:} We also L1 and L2 norm for better generalisation of the models.
   \end{itemize}
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] was used as loss 
 function for all the models. Deep learning models are built using deep learning framework
 PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
-based models like RandomForest and XGBoost. We built a total of 46 models, 9 different param configurations for each of 4 
-Deep Learning models and 5 best trials for each of 2 Machine Learning models as shown in table 1.
+based models like RandomForest and Xgboost. We built a total of 60 models, 12 different param configurations for each of 4 
+Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in table 1.
 
 \begin{table}[t]
 \caption{ Model Specifics}
@@ -139,12 +132,12 @@ Deep Learning models and 5 best trials for each of 2 Machine Learning models as 
 \begin{tabular}{c|c|c}
 \hline
 {\bf Model Type} & {\bf Trials} & {\bf Model hyperparameters} \\  \hline
-MLP	  		&  9 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers \\ \hline
-LSTM  		& 9 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers  \\ \hline
-TCN			& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  \\ \hline
-TCNLSTM 		& 9	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  \\ \hline
-Xgboost 		& 5	& Learning rate, Tree Depth, Regularization parameters  \\ \hline
-RandomForest 		& 5	& Tree Depth, Regularization parameters \\ \hline
+MLP	  		&  12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers \\ \hline
+LSTM  		& 12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers  \\ \hline
+TCN			& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  \\ \hline
+TCNLSTM 		& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  \\ \hline
+Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  \\ \hline
+RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters \\ \hline
 \end{tabular}
 }
 \label{tab:models}
@@ -152,7 +145,7 @@ RandomForest 		& 5	& Tree Depth, Regularization parameters \\ \hline
 
 \subsection{Stacked Generalization}
 For simplicity and better generalization we adopted non-parameteric approach for stacking.
-We used Weighted K Best Stacked Generalization Ensemble for combining the 46 models (candidates) from Table 1. 
+We used Weighted K Best Stacked Generalization Ensemble for combining the 60 models (candidates) from Table 1. 
 Test1 Logloss was used as metric to compute weight for each of the 46 candidates. We set the k to 25 and selected 
 these top 25 candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
 the probabilities for Validation, Test1 and Test2 time steps for each consumer-item combination.

@@ -169,7 +169,7 @@ training:
   models:
     Xgboost:
       min_obj_size: False
-      best_trials: 5
+      best_trials: 6
       multiprocessing: True
       feature_groups:
         - regressor
@@ -217,8 +217,8 @@ training:
             - 400
             - 50
     RandomForest:
-      min_obj_size: True
-      best_trials: 5
+      min_obj_size: False
+      best_trials: 6
       multiprocessing: True
       feature_groups:
         - regressor
@@ -243,7 +243,7 @@ training:
           type: quniform
           params:
             - 2
-            - 8
+            - 10
             - 1
         min_samples_leaf:
           type: quniform
@@ -274,7 +274,7 @@ training:
       feature_group_type:
         feature_group_type1: []
       scale: True
-      trials: 9
+      trials: 12
       hyperparam_trials: True
       random_sample: False
       trial_params:
@@ -302,6 +302,18 @@ training:
         - optimizer: Adam
           scheduler: ReduceLROnPlateau  
           parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
       default_params:
         optimizer: Adam
         scheduler: ReduceLROnPlateau
@@ -367,7 +379,7 @@ training:
       feature_group_type:
         feature_group_type1: []
       scale: True
-      trials: 9
+      trials: 12
       hyperparam_trials: True
       random_sample: False
       trial_params:
@@ -395,6 +407,18 @@ training:
         - optimizer: Adam
           scheduler: ReduceLROnPlateau  
           parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
       default_params:
         optimizer: Adam
         scheduler: ReduceLROnPlateau
@@ -462,7 +486,7 @@ training:
       feature_group_type:
         feature_group_type1: []
       scale: True
-      trials: 9
+      trials: 12
       hyperparam_trials: True
       random_sample: False
       trial_params:
@@ -490,6 +514,18 @@ training:
         - optimizer: Adam
           scheduler: ReduceLROnPlateau  
           parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
       default_params:
         optimizer: Adam
         scheduler: ReduceLROnPlateau
@@ -558,7 +594,7 @@ training:
       feature_group_type:
         feature_group_type1: []
       scale: True
-      trials: 9
+      trials: 12
       hyperparam_trials: True
       random_sample: False
       trial_params:
@@ -586,6 +622,18 @@ training:
         - optimizer: Adam
           scheduler: ReduceLROnPlateau  
           parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
       default_params:
         optimizer: Adam
         scheduler: ReduceLROnPlateau
@@ -649,12 +697,10 @@ stacking:
     - all_LSTM
     - all_WAVENET
     - all_CNN_LSTM
-    - all_Xgboost
-    - all_RandomForest
   round_penalty: False
   candidate_weight: True
   n_candidates: 50
-  k_best_candidates: 3
+  k_best_candidates: 25
   n_groups:
   model_names:
     - K_best
