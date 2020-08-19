@@ -2,8 +2,7 @@
 We treat each consumer-item as an individual object and generate weekly time series based on historical transaction for 
 each object. The target value at each time step (week) takes a binary input, 1/0 (purchased/not purchased).
 We adopted walk forward Validation strategy for model testing and generalization. We split the data into 4 parts
-based on the time series. The last 3 time steps for each of the Time series was used as Validation (hyperparameter Optimization),
-Test1 (Stacked Generalization) and Test2 (Reporting Accuracy metric) respectively, and the remaining data was used for training.
+based on the time series as shown in Table 1.
 We then generate various types of features including datetime related, label encoded and target encoded 
 within and across objects. Below are the feature groups we experimented with explicitly or unexplicitly:
 \begin{itemize}
@@ -35,6 +34,26 @@ ic\textsubscript{t} is transactional attributes of the consumer 'c'  towards ite
 d\textsubscript{t} is derived from datetime to capture trend and seasonality. 
 Finally, n is the number of time lags.
 
+\begin{table}[t]
+\caption{Modelling data splits}
+\vspace{0.1 in}
+\centering
+\resizebox{3.3in}{!}
+{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+{\bf Data Split} & {\bf Specifications} & {\bf Consumer-Item combinations} & {\bf Max Time-Series length} \\  
+\hline\hline
+Train  		&  Model training &  2,279 &  52 weeks \\ \hline
+Validation	  		&  Hyper-Parameter Optimization &  2,359 &  4 weeks \\ \hline
+Test1  		&  Stacked Generalization, F\textsubscript{1}-Maximization & 2,394 &  4 weeks\\ \hline
+Test2	  		&  Reporting Accuracy Metrics & 2,421 &  4 weeks\\
+\hline
+\end{tabular}
+}
+\label{tab:mlmodels}
+\end{table}
+
 \subsection{Loss Function}
 Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss seemed most logical loss function 
 for training all our models.
@@ -50,40 +69,40 @@ where y is the label and p(y) is the predicted probability.
 
 \subsection{Model Architectures}
 
+As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
+Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
+to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
+Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCN-LSTM 
+models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:TCN}
+and Figure~\ref{fig:TCN-LSTM}.
+
   \begin{figure}[t]
     \centering 
-    \includegraphics[width=3.3in]{img/MLP.png} 
     \caption{Multi Layer Perceptron (MLP)} 
+    \includegraphics[width=3.3in]{img/MLP.png} 
     \label{fig:MLP} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
-    \includegraphics[width=3.3in]{img/LSTM.png} 
     \caption{Long Short Term Memory (LSTM)} 
+    \includegraphics[width=3.3in]{img/LSTM.png} 
     \label{fig:LSTM} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
-    \includegraphics[width=3.3in]{img/TCN.png} 
     \caption{Temporal Convolutional Network (TCN)} 
+    \includegraphics[width=3.3in]{img/TCN.png} 
     \label{fig:TCN} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
+    \caption{Temporal Convolutional Network + Long Short Term Memory (TCN-LSTM)} 
     \includegraphics[width=3.3in]{img/TCNLSTM.png} 
-    \caption{Temporal Convolutional Network + Long Short Term Memory (TCNLSTM)} 
     \label{fig:TCNLSTM} 
   \end{figure}
-
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
-Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
-to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCNLSTM 
-models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:TCN}
-and Figure~\ref{fig:TCNLSTM}.
 
 The consumer purchase pattern has huge variation in terms of time of purchase (weekday/weekends), 
 cadence of purchase (days to months), purchased item types (dairy/meat/grocery/apparels/etc.)
@@ -100,7 +119,7 @@ to capture temporal dependencies. We use lagged values of temporal features up t
 Multiple Lagged values as well as Statistical rolling operations like mean, median, quantiles, variance, kurtosis and 
 skewness over varying lag periods are used for feature generation. Details around datasets and derived features are explained 
 in the following section. This was decided after some preliminary experiments. Hyper-parameters of tree based models are optimized
-using Bayesian Hyper-parameter Optimization Technique. LSTM, TCN and TCNLSTM models were trained in sequence to sequence 
+using Bayesian Hyper-parameter Optimization Technique. LSTM, TCN and TCN-LSTM models were trained in sequence to sequence 
 fashion using entire life-cycle data of a time series (Consumer-Item).
 
 We applied empirical approach to tune the hyperparameters for Deep learning models. All hyperparameter Optimization
@@ -123,32 +142,32 @@ PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. sci
 based models like RandomForest and Xgboost. We built a total of 60 models, 12 different param configurations for each of 4 
 Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in table 1.
 
-\begin{table}[t]
-\caption{ Model Specifics}
-\vspace{0.1 in}
+
+\begin{center}
+\begin{table*}[!t]
+\caption{Model Specifications}
 \centering
-\resizebox{3.3in}{!}
-{%
-\begin{tabular}{|c|c|c|}
-\hline
-{\bf Model Type} & {\bf Trials} & {\bf Model hyperparameters} \\  \hline
-MLP	  		&  12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers \\ \hline
-LSTM  		& 12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers  \\ \hline
-TCN			& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  \\ \hline
-TCNLSTM 		& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  \\ \hline
-Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  \\ \hline
-RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters \\ \hline
-\end{tabular}
-}
-\label{tab:models}
-\end{table}
+\resizebox{\textwidth}{!}{\begin{tabular}{|r|l|r|r|}
+  \hline
+ {\bf Model Type} & {\bf Trials} & {\bf Model Hyper-Parameters} & {\bf Loss Functions}\\ 
+ \hline\hline
+MLP	  		&  12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers & BCELoss\\ \hline
+LSTM  		& 12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers & BCELoss \\ \hline
+TCN			& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  & BCELoss\\ \hline
+TCN-LSTM 		& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  & BCELoss\\ \hline
+Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  & Logloss\\ \hline
+RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &  Entropy, Gini\\
+   \hline
+\end{tabular}}
+\end{table*} 
+\end{center}
 
 \subsection{Stacked Generalization}
 For simplicity and better generalization we adopted non-parameteric approach for stacking.
-We used Weighted K Best Stacked Generalization Ensemble for combining the 60 models (candidates) from Table 1. 
-Test1 Logloss was used as metric to compute weight for each of the 46 candidates. We set the k to 25 and selected 
-these top 25 candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
-the probabilities for Validation, Test1 and Test2 time steps for each consumer-item combination.
+We used Weighted K-Best and K-Best as Stacked Generalization Ensemble model for combining the 60 models (candidates) from Table 1. 
+Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We set k to 5, 10 and 25 and selected 
+these top candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
+the probabilities for Train, Validation, Test1 and Test2 time steps for each consumer-item combination.
 
 \subsection{F1-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
