@@ -5,50 +5,31 @@ order id, add to cart order, date of transaction, aisle id and department id.
 Also, from Table 1, we can see that we utilize 1 year data which gets split into train, validation,
 test1 and test2. We generate consumer-item-week level data with purchase/ non purchase being the target.
 We use the above data to generate consumer-item purchase predictions for forwards 2 time steps (2 weeks for our case).
-
-\subsection{Results}
-We started with exploratary data analysis, looking at the data from various cuts and 
-trying to study the variations of the features with target. Some of them include looking at the 
-density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
-across departments Figure~\ref{fig:items}, variation of order probability with add to cart order Figure~\ref{fig:addtocart},
-order probability variations at different temporal cuts like week, month and quarter, transactional metrics at both
-consumer and item levels like total orders, total reorders, recency, gap between orders, etc.
-We then performed multiple experiments with above features and different hyper-configurations.
-Tables 3 and 4 shows the experimental results obtained with different hyper-configurations over multiple models.
-We observe that all the Deep Learning models out perform Machine Learning models including Xgboost and
-RandomForest both in terms of Accuracy and Generalization. This insight can be drawn from table 5 which has the average 
-of BCELoss across trials. Range of scores across train, val , test1 and test2 states that Deep Learning models are 
-showing more stable results in terms of model fit.
-
-We present the effectiveness of combining predictions in the form of stacking. From Table 6, we can see the 
-results of stacking at different values of K, both for Weighted K-Best as well as K-Best model setups. Finally we 
-apply F\textsubscript{1}-Maximization so as to be able to strike a balance between Precision and Recall.
-Table 7 shows the results of the reporting metric.
- \begin{figure}[t]
+ \begin{figure*}[!t]
     \centering 
     \caption{Sample Dataset} 
-    \includegraphics[width=3.3in]{img/sampledata.png} 
+    \includegraphics[width=6.6in]{img/sampledata.png} 
     \label{fig:sampledata} 
-  \end{figure}
+  \end{figure*}
 
   \begin{figure}[t]
     \centering 
     \caption{Most ordered Items across Departments} 
-    \includegraphics[width=3.3in]{img/items.png} 
+    \includegraphics[width=2.5in]{img/items.png} 
     \label{fig:items} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
     \caption{Density of consumers Vs. Basket Size} 
-    \includegraphics[width=3.3in]{img/basket.png} 
+    \includegraphics[width=2.5in]{img/basket.png} 
     \label{fig:basket} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
     \caption{Order probability Vs. Add to cart order} 
-    \includegraphics[width=3.3in]{img/addtocart.png} 
+    \includegraphics[width=2.5in]{img/addtocart.png} 
     \label{fig:addtocart} 
   \end{figure}
 
@@ -145,8 +126,13 @@ Weighted K Best	  		&  25  &  0.0394 &  0.0316 &  0.0287  \\ \hline
 
   \begin{figure}[t]
     \centering 
-    \caption{Probability Distribution} 
+    \caption{Probability Distributions} 
     \includegraphics[width=3.3in]{img/density.png} 
+    {\bf Probability Distributions for the non purchased cases tends towards 0 and tapers as the 
+    probability moves towards 0.5, whereas for purchased cases the distribution witnesses a peak 
+    between 0.2 and 0.3
+
+    purchased cases  0.5} 
     \label{fig:density} 
   \end{figure}
 
@@ -167,6 +153,29 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
 }
 \label{tab:Fscore}
 \end{table}
+
+\subsection{Experimental setup}
+We started with exploratary data analysis, looking at the data from various cuts and 
+trying to study the variations of the features with target. Some of them include looking at the 
+density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
+across departments Figure~\ref{fig:items}, variation of order probability with add to cart order Figure~\ref{fig:addtocart},
+order probability variations at different temporal cuts like week, month and quarter, transactional metrics at both
+consumer and item levels like total orders, total reorders, recency, gap between orders, etc.
+We then performed multiple experiments with above features and different hyper-configurations.
+
+\subsection{Results and Observations}
+Tables 3 and 4 shows the experimental results obtained with different hyper-configurations over multiple models.
+From Table 3, we can infer that RMSprop and CyclicLR emerged as the clear winners as 
+Optimizer and Scheduler respectively. TCN showed the best Accuracy score at test2, with most of the other Deep
+Learning models have comparable results. Also, we observe that all the Deep Learning models out perform Machine Learning 
+models including Xgboost and RandomForest both in terms of Accuracy and Generalization. This insight can be drawn from 
+table 5 which has the average of BCELoss across 3 best trials. Range of scores across val , test1 and test2 states 
+that Deep Learning models are showing more stable results in terms of model fit. 
+We present the effectiveness of combining predictions in the form of stacking. From Table 6, we can see the 
+results of stacking at different values of K, both for Weighted K-Best as well as K-Best model setups. Finally we 
+apply F\textsubscript{1}-Maximization so as to be able to strike a balance between Precision and Recall.
+After F\textsubscript{1}-Maximization we see that all Precision, Recall and F\textsubscript{1}-Score 
+are close enough for all data splits as can be seen from Table 7.
 \subsection{Industrial Applications}
 The Next Logical Purchase framework has multiple applications in retail industry. Some of its applications 
 include:

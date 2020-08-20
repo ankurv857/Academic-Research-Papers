@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  20 AUG 2020 20:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  21 AUG 2020 00:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -95,8 +95,30 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 )
 (./paper.aux
 
+LaTeX Warning: Label `eqn:Pdash' multiply defined.
+
+
 LaTeX Warning: Label `tab:mlmodels' multiply defined.
 
+
+Package natbib Warning: Citation `shaikh2008network' multiply defined.
+
+
+Package natbib Warning: Citation `Shin13Avant' multiply defined.
+
+
+! Package natbib Error: Bibliography not compatible with author-year citations.
+
+(natbib)                Press <return> to continue in numerical citation style.
+
+
+See the natbib package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 ...mand\NAT@force@numbers{}\NAT@force@numbers
+                                                  
+? 
 )
 \openout1 = `paper.aux'.
 
@@ -169,82 +191,108 @@ texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
 
-LaTeX Warning: Reference `fig:TCN-LSTM' on page 2 undefined on input line 77.
+LaTeX Warning: Reference `fig:TCN-LSTM' on page 2 undefined on input line 70.
 
 <img/MLP.png, id=8, 711.65875pt x 397.485pt>
 File: img/MLP.png Graphic file (type png)
 <use img/MLP.png>
-Package pdftex.def Info: img/MLP.png  used on input line 96.
+Package pdftex.def Info: img/MLP.png  used on input line 87.
 (pdftex.def)             Requested size: 238.49121pt x 133.20227pt.
 <img/LSTM.png, id=10, 537.00626pt x 400.49625pt>
 File: img/LSTM.png Graphic file (type png)
 <use img/LSTM.png>
-Package pdftex.def Info: img/LSTM.png  used on input line 103.
+Package pdftex.def Info: img/LSTM.png  used on input line 93.
 (pdftex.def)             Requested size: 238.49121pt x 177.86276pt.
 <img/TCN.png, id=11, 537.00626pt x 414.54875pt>
 File: img/TCN.png Graphic file (type png)
 <use img/TCN.png>
-Package pdftex.def Info: img/TCN.png  used on input line 110.
+Package pdftex.def Info: img/TCN.png  used on input line 99.
 (pdftex.def)             Requested size: 238.49121pt x 184.10356pt.
 <img/TCNLSTM.png, id=12, 596.2275pt x 414.54875pt>
 File: img/TCNLSTM.png Graphic file (type png)
 <use img/TCNLSTM.png>
-Package pdftex.def Info: img/TCNLSTM.png  used on input line 117.
+Package pdftex.def Info: img/TCNLSTM.png  used on input line 105.
 (pdftex.def)             Requested size: 238.49121pt x 165.81656pt.
-
-Underfull \hbox (badness 3199) in paragraph at lines 121--130
-[]\OT1/ptm/m/n/10 The con-sumer pur-chase pat-tern has huge vari-a-tion
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 121--130
-\OT1/ptm/m/n/10 in terms of time of pur-chase (week-day/weekends), ca-
- []
-
 [2 <./img/MLP.png> <./img/LSTM.png>]
-Underfull \hbox (badness 2318) in paragraph at lines 161--162
+Underfull \hbox (badness 2318) in paragraph at lines 148--149
 \OT1/ptm/m/n/10 Apart from these, Reg-u-lar-iza-tion pa-ram-e-ters like Reg
  []
 
 [3 <./img/TCN.png> <./img/TCNLSTM.png>]
-LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 2
-07.
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
+89.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 207.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 189.
 ) (./eval.tex
-<img/sampledata.png, id=29, 810.02625pt x 290.08376pt>
+<img/sampledata.png, id=29, 944.52875pt x 199.74625pt>
 File: img/sampledata.png Graphic file (type png)
 <use img/sampledata.png>
-Package pdftex.def Info: img/sampledata.png  used on input line 30.
-(pdftex.def)             Requested size: 238.49121pt x 85.40576pt.
+Package pdftex.def Info: img/sampledata.png  used on input line 11.
+(pdftex.def)             Requested size: 476.98244pt x 100.87257pt.
 <img/items.png, id=30, 517.935pt x 541.02126pt>
 File: img/items.png Graphic file (type png)
 <use img/items.png>
-Package pdftex.def Info: img/items.png  used on input line 37.
-(pdftex.def)             Requested size: 238.49121pt x 249.12045pt.
+Package pdftex.def Info: img/items.png  used on input line 18.
+(pdftex.def)             Requested size: 180.67499pt x 188.72461pt.
 <img/basket.png, id=31, 481.8pt x 389.455pt>
 File: img/basket.png Graphic file (type png)
 <use img/basket.png>
-Package pdftex.def Info: img/basket.png  used on input line 44.
-(pdftex.def)             Requested size: 238.49121pt x 192.77785pt.
+Package pdftex.def Info: img/basket.png  used on input line 25.
+(pdftex.def)             Requested size: 180.67499pt x 146.04526pt.
 <img/addtocart.png, id=32, 475.7775pt x 384.43625pt>
 File: img/addtocart.png Graphic file (type png)
 <use img/addtocart.png>
-Package pdftex.def Info: img/addtocart.png  used on input line 51.
-(pdftex.def)             Requested size: 238.49121pt x 192.70453pt.
-
-[4]
-<img/density.png, id=37, 356.33125pt x 423.5825pt>
+Package pdftex.def Info: img/addtocart.png  used on input line 32.
+(pdftex.def)             Requested size: 180.67499pt x 145.98756pt.
+<img/density.png, id=33, 356.33125pt x 423.5825pt>
 File: img/density.png Graphic file (type png)
 <use img/density.png>
-Package pdftex.def Info: img/density.png  used on input line 149.
+Package pdftex.def Info: img/density.png  used on input line 130.
 (pdftex.def)             Requested size: 238.49121pt x 283.50148pt.
-) (./conclusion.tex) [5 <./img/sampledata.png> <./img/items.png>] [6 <./img/bas
-ket.png> <./img/addtocart.png> <./img/density.png>] (./paper.aux)
+
+[4]
+Underfull \vbox (badness 6842) has occurred while \output is active []
+
+ [5 <./img/sampledata.png> <./img/items.png> <./img/basket.png>]) (./conclusion
+.tex)
+[6 <./img/addtocart.png> <./img/density.png>] (./paper.bbl
+Underfull \hbox (badness 2894) in paragraph at lines 46--52
+[]\OT1/ptm/m/n/10 O. N. Foun-da-tion.  Open-flow switch spec-i-fi-ca-
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 46--52
+\OT1/ptm/m/n/10 tion, ver-sion 1.5.1.  $https : / / www . opennetworking .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--52
+\OT1/ptm/m/n/10 org / images / stories / downloads / sdn -[] resources / onf -[
+]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--52
+\OT1/ptm/m/n/10 speci^^Lcations / open^^Mow / open^^Mow -[] switch -[] v1 . 5 .
+ 1 . pdf$,
+ []
+
+)
+
+Package natbib Warning: There were multiply defined citations.
+
+[7
+
+] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 
 LaTeX Warning: There were undefined references.
 
@@ -253,13 +301,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2884 strings out of 480608
- 45425 string characters out of 5903631
- 309967 words of memory out of 5000000
- 18757 multiletter control sequences out of 15000+600000
- 548957 words of font info for 47 fonts, out of 8000000 for 9000
+ 2939 strings out of 480608
+ 46513 string characters out of 5903631
+ 317967 words of memory out of 5000000
+ 18807 multiletter control sequences out of 15000+600000
+ 550641 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,42p,232b,294s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,42p,232b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -269,11 +317,12 @@ ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
 0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (6 pages, 1572762 bytes).
+/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
+e1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 1538416 bytes).
 PDF statistics:
- 79 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

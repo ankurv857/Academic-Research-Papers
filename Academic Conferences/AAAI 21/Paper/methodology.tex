@@ -18,7 +18,6 @@ Interactions capturing consumer behaviour towards items for the given time perio
 The model we needed to build, thus, should learn to identify similarly behaving time series across latent
 parameters, and take into account consumer and item variations in comparing the time series. A row in time series 
 is represented by
-
   \begin{equation}
     \begin{array}{l}
       y\textsubscript{cit}  = f(i\textsubscript{t}, c\textsubscript{t},..,c\textsubscript{t-n}, ic\textsubscript{t}
@@ -26,14 +25,12 @@ is represented by
     \end{array}
     \label{eqn:fx}
   \end{equation}
-
 where y\textsubscript{cit} is purchase prediction for consumer 'c' item ’i’ at time ’t’. 
 i\textsubscript{t} is attribute of the item ’i’ like category, department, brand, color, size, etc. 
 c\textsubscript{t} is attribute of the consumer 'c' like age, sex and transactional attributes. 
 ic\textsubscript{t} is transactional attributes of the consumer 'c'  towards item 'i'. 
 d\textsubscript{t} is derived from datetime to capture trend and seasonality. 
 Finally, n is the number of time lags.
-
 \begin{table}[t]
 \caption{Modelling data splits}
 \vspace{0.1 in}
@@ -53,11 +50,9 @@ Test2	  		&  Reporting Accuracy Metrics & 5,910 &  2 weeks\\
 }
 \label{tab:mlmodels}
 \end{table}
-
 \subsection{Loss Function}
 Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss seemed most logical loss function 
 for training all our models.
-
   \begin{equation}
       \begin{array}{l}
         H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y\textsubscript{i}.log(p(y\textsubscript{i}))+
@@ -66,16 +61,13 @@ for training all our models.
     \label{eqn:logloss}
   \end{equation}
 where y is the label and p(y) is the predicted probability.
-
 \subsection{Model Architectures}
-
 As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
 Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
 Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCN-LSTM 
 models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:TCN}
 and Figure~\ref{fig:TCN-LSTM}. As described in architecture diagrams, data was classified into following groups:
-
 \begin{itemize}
 \item {\bf Static Categorical:} These are categorical features which donot vary with time. This includes the consumer
 attributes like sex, marital status and location, different item attributes like category, department and brand.
@@ -89,35 +81,30 @@ traditional attributes like number of orders, add to cart order, etc. falls unde
 In all the above neural network architectures, we learn the embeddings of the categorical features during training phase.
 We embed these attributes in order to both compress their representations while preserving
 salient features, as well as capture mutual similarities and differences.
-
   \begin{figure}[t]
     \centering 
     \caption{Multi Layer Perceptron (MLP)} 
     \includegraphics[width=3.3in]{img/MLP.png} 
     \label{fig:MLP} 
   \end{figure}
-
   \begin{figure}[t]
     \centering 
     \caption{Long Short Term Memory (LSTM)} 
     \includegraphics[width=3.3in]{img/LSTM.png} 
     \label{fig:LSTM} 
   \end{figure}
-
   \begin{figure}[t]
     \centering 
     \caption{Temporal Convolutional Network (TCN)} 
     \includegraphics[width=3.3in]{img/TCN.png} 
     \label{fig:TCN} 
   \end{figure}
-
   \begin{figure}[t]
     \centering 
     \caption{Temporal Convolutional Network + Long Short Term Memory (TCN-LSTM)} 
     \includegraphics[width=3.3in]{img/TCNLSTM.png} 
     \label{fig:TCNLSTM} 
   \end{figure}
-
 The consumer purchase pattern has huge variation in terms of time of purchase (weekday/weekends), 
 cadence of purchase (days to months), purchased item types (dairy/meat/grocery/apparels/etc.)
 and brand loyalty (tendency to substitute items). Given such huge variance it becomes imperative 
@@ -164,8 +151,6 @@ Deep learning models are built using deep learning framework
 PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
 based models like RandomForest and Xgboost. We built a total of 60 models, 12 different param configurations for each of 4 
 Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in table 1.
-
-
 \begin{center}
 \begin{table*}[!t]
 \caption{Model Specifications}
@@ -184,14 +169,12 @@ RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &
 \end{tabular}}
 \end{table*} 
 \end{center}
-
 \subsection{Stacked Generalization}
 For simplicity and better generalization we adopted non-parameteric approach for stacking.
 We used Weighted K-Best and K-Best as Stacked Generalization Ensemble model for combining the 60 models (candidates) from Table 1. 
 Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We set k to 5, 10 and 25 and selected 
 these top candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
 the probabilities for Train, Validation, Test1 and Test2 time steps for each consumer-item combination.
-
 \subsection{F1-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
 probability distribution of test1 at consumer level. For instance, lets say we generated purchase probabilities for 
@@ -200,7 +183,6 @@ Let Actual items purchased by consumer c\textsubscript{i} at test1 time step be 
 ,.., Ia\textsubscript{b\textsubscript{i}}] whereas items for which the model generated probabilities for the 
 consumer c\textsubscript{i} at test1 time step be [Ip\textsubscript{1}, Ip\textsubscript{2} ,.., 
 Ip\textsubscript{n\textsubscript{i}}]. 
-
   \begin{equation}
     \begin{array}{l}
       A\textsubscript{c\textsubscript{i}} = [a\textsubscript{1}, a\textsubscript{2}, .., a\textsubscript{n\textsubscript{i}}] 
@@ -208,7 +190,6 @@ Ip\textsubscript{n\textsubscript{i}}].
     \end{array}
     \label{eqn:A}
   \end{equation}
-
   \begin{equation}
     \begin{array}{l}
       P\textsubscript{c\textsubscript{i}} = [p\textsubscript{1}, p\textsubscript{2}, .., p\textsubscript{n\textsubscript{i}}]
@@ -220,7 +201,6 @@ A\textsubscript{c\textsubscript{i}} represents the actuals for consumer c\textsu
 (purchased/non purchased). P\textsubscript{c\textsubscript{i}} represents the predicted probabilities 
 for consumer c\textsubscript{i} for respective item, with p\textsubscript{j} being probability value. 
 As mentioned above n\textsubscript{i} is the total items model generated purchase probabilities for.
-
   \begin{equation}
     \begin{array}{l}
       D(Pr\textsubscript{c\textsubscript{i}}) : P\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
@@ -229,7 +209,6 @@ As mentioned above n\textsubscript{i} is the total items model generated purchas
     \end{array}
     \label{eqn:Decision}
   \end{equation}
-
   \begin{equation}
     \begin{array}{l}
       P\textsuperscript{'}\textsubscript{c\textsubscript{i}} = [p\textsuperscript{'}\textsubscript{1}, 
@@ -238,11 +217,18 @@ As mentioned above n\textsubscript{i} is the total items model generated purchas
     \end{array}
     \label{eqn:Pdash}
   \end{equation}
+  \begin{equation}
+    \begin{array}{l}
+      k\textsubscript{i} =\sum_{i=1}^{n\textsubscript{i}}p\textsuperscript{'}\textsubscript{i}
+    \end{array}
+    \label{eqn:Pdash}
+  \end{equation}
 Pr\textsubscript{c\textsubscript{i}} is the probability cut-off.
 Decision rule D converts probabilities P\textsubscript{c\textsubscript{i}} to binary predictions 
 P\textsuperscript{'}\textsubscript{c\textsubscript{i}} such that if p\textsubscript{j} is less than 
 Pr\textsubscript{c\textsubscript{i}} then p\textsuperscript{'}\textsubscript{j} equals 0 else 1. 
-
+k\textsubscript{i} is the total number of predictions which Decision rule D converted to 1 or in other words
+number of predictions which model predicted as purchase.
   \begin{equation}
     \begin{array}{l}
       V\textsubscript{Pr\textsubscript{c\textsubscript{i}}} = 
@@ -261,23 +247,20 @@ Pr\textsubscript{c\textsubscript{i}} then p\textsuperscript{'}\textsubscript{j} 
       .. \\
       a\textsubscript{n\textsubscript{i}} \\
       \end{array} \right)
-
     \end{array}
     \label{eqn:probability}
   \end{equation}
 V\textsubscript{Pr\textsubscript{c\textsubscript{i}}} represents the number of items with purchase 
 probabilities greater than Pr\textsubscript{c\textsubscript{i}} which were actually purchased. Now using the below 
 formulae we calculate Precision, Recall and F\textsubscript{1}-score for consumer c\textsubscript{i}.
-
   \begin{equation}
     \begin{array}{l}
-      Precision\textsubscript{c\textsubscript{i}}= \frac{V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}} {n\textsubscript{i}}
+      Precision\textsubscript{c\textsubscript{i}}= \frac{V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}} {k\textsubscript{i}}
       \;\;\;\;\;and\;\;\;\;
       Recall\textsubscript{c\textsubscript{i}}= \frac{V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}} {b\textsubscript{i}}
     \end{array}
     \label{eqn:F1}
   \end{equation}
-
   \begin{equation}
     \begin{array}{l}
       F\textsubscript{1\textsubscript{c\textsubscript{i}}} = \frac{2 \times Precision\textsubscript{c\textsubscript{i}} 
@@ -290,7 +273,7 @@ formulae we calculate Precision, Recall and F\textsubscript{1}-score for consume
         V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}
       }
       {
-        n\textsubscript{i} + b\textsubscript{i}
+        k\textsubscript{i} + b\textsubscript{i}
       }
     \end{array}
     \label{eqn:Optimizer}
