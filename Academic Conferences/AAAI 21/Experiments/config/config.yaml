@@ -8,20 +8,16 @@ data:
   regressor_columns:
     numeric:
       - add_to_cart_order
-    categorical:
-      - aisle_id
-      - department_id
+    categorical: []
   temporal_columns:
     - add_to_cart_order
   relative_columns:
     - add_to_cart_order
   temporal_counter: []
-  forecast_horizon: 1
+  forecast_horizon: 2
   aggregation_method:
     is_ordered: max
     add_to_cart_order: mean
-    department_id: max
-    aisle_id: max
   fillna_method:
     value:
       is_ordered: 0
@@ -36,11 +32,11 @@ data_cleaning:
       - type: subset_data
         column_name: date
         condition: '>'
-        value: '2018-03-31'
+        value: '2017-12-31'
       - type: subset_data
         column_name: date
         condition: '<'
-        value: '2018-08-01'
+        value: '2019-01-01'
 
 data_preparation:
   data_prep_path: data_prepared
@@ -114,11 +110,10 @@ feature_engg:
     - label_encoded
   lag_params:
     range:
-      - 1
-      - 4
+      - 2
+      - 12
       - 1
     values:
-      - 8
       - 13
   offset_params:
     period_types:
@@ -328,33 +323,33 @@ training:
           num_workers: 16
         optimizer_params:
           RMSprop:
-            lr: 0.0001
+            lr: 0.0005
             alpha: 0.9
-            weight_decay: 0.00001
+            weight_decay: 0.00005
           SGD:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
           Adam:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
         scheduler_params:
           CyclicLR:
-            base_lr: 0.000001
-            max_lr: 0.0001
+            base_lr: 0.00005
+            max_lr: 0.0005
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.000001
+            min_lr: 0.00005
             patience: 4
         SWA_params:
           swa_start: 10
           swa_freq: 5
-          swa_lr: 0.0001
+          swa_lr: 0.0005
         callback_params:
           earlystopping:
-            patience: 5
+            patience: 3
         regularization:
           l2_norm: False
           reg_param:
@@ -435,33 +430,33 @@ training:
           lstm_layers: 2
         optimizer_params:
           RMSprop:
-            lr: 0.0001
+            lr: 0.0005
             alpha: 0.9
-            weight_decay: 0.00001
+            weight_decay: 0.00005
           SGD:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
           Adam:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
         scheduler_params:
           CyclicLR:
-            base_lr: 0.000001
-            max_lr: 0.0001
+            base_lr: 0.00005
+            max_lr: 0.0005
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.000001
+            min_lr: 0.00005
             patience: 4
         SWA_params:
           swa_start: 10
           swa_freq: 5
-          swa_lr: 0.0001
+          swa_lr: 0.0005
         callback_params:
           earlystopping:
-            patience: 5
+            patience: 3
         regularization:
           l2_norm: False
           reg_param:
@@ -531,7 +526,7 @@ training:
         scheduler: ReduceLROnPlateau
       params:
         network_params:
-          epochs: 250
+          epochs: 2
           compression_factor: 4
           max_embedding: 256
         dataloader_params:
@@ -539,37 +534,37 @@ training:
           shuffle: True
           num_workers: 16
         convnet_params:
-          kernel_size: 1
-          dilations: 2
+          kernel_size: 2
+          dilations: 3
         optimizer_params:
           RMSprop:
-            lr: 0.0001
+            lr: 0.0005
             alpha: 0.9
-            weight_decay: 0.00001
+            weight_decay: 0.00005
           SGD:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
           Adam:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
         scheduler_params:
           CyclicLR:
-            base_lr: 0.000001
-            max_lr: 0.0001
+            base_lr: 0.00005
+            max_lr: 0.0005
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.000001
+            min_lr: 0.00005
             patience: 4
         SWA_params:
           swa_start: 10
           swa_freq: 5
-          swa_lr: 0.0001
+          swa_lr: 0.0005
         callback_params:
           earlystopping:
-            patience: 5
+            patience: 3
         regularization:
           l2_norm: False
           reg_param:
@@ -649,37 +644,37 @@ training:
         LSTM_params:
           lstm_layers: 2
         convnet_params:
-          kernel_size: 1
-          dilations: 2
+          kernel_size: 2
+          dilations: 3
         optimizer_params:
           RMSprop:
-            lr: 0.0001
+            lr: 0.0005
             alpha: 0.9
-            weight_decay: 0.00001
+            weight_decay: 0.00005
           SGD:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
           Adam:
-            lr: 0.0001
-            weight_decay: 0.00001
+            lr: 0.0005
+            weight_decay: 0.00005
         scheduler_params:
           CyclicLR:
-            base_lr: 0.000001
-            max_lr: 0.0001
+            base_lr: 0.00005
+            max_lr: 0.0005
             step_size_up: 1
             cycle_momentum: True
           ReduceLROnPlateau:
             mode: min
             factor: 0.2
-            min_lr: 0.000001
+            min_lr: 0.00005
             patience: 4
         SWA_params:
           swa_start: 10
           swa_freq: 5
-          swa_lr: 0.0001
+          swa_lr: 0.0005
         callback_params:
           earlystopping:
-            patience: 5
+            patience: 3
         regularization:
           l2_norm: False
           reg_param:
@@ -700,7 +695,7 @@ stacking:
   round_penalty: False
   candidate_weight: True
   n_candidates: 50
-  k_best_candidates: 25
+  k_best_candidates: 3
   n_groups:
   model_names:
     - K_best

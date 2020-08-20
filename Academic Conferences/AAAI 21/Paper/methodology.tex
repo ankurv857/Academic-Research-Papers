@@ -27,7 +27,7 @@ is represented by
     \label{eqn:fx}
   \end{equation}
 
-where y\textsubscript{cit} is sales for consumer 'c' item ’i’ at time ’t’. 
+where y\textsubscript{cit} is purchase prediction for consumer 'c' item ’i’ at time ’t’. 
 i\textsubscript{t} is attribute of the item ’i’ like category, department, brand, color, size, etc. 
 c\textsubscript{t} is attribute of the consumer 'c' like age, sex and transactional attributes. 
 ic\textsubscript{t} is transactional attributes of the consumer 'c'  towards item 'i'. 
@@ -44,10 +44,10 @@ Finally, n is the number of time lags.
 \hline
 {\bf Data Split} & {\bf Specifications} & {\bf Consumer-Item combinations} & {\bf Max Time-Series length} \\  
 \hline\hline
-Train  		&  Model training &  2,279 &  52 weeks \\ \hline
-Validation	  		&  Hyper-Parameter Optimization &  2,359 &  4 weeks \\ \hline
-Test1  		&  Stacked Generalization, F\textsubscript{1}-Maximization & 2,394 &  4 weeks\\ \hline
-Test2	  		&  Reporting Accuracy Metrics & 2,421 &  4 weeks\\
+Train  		&  Model training &  5,872 &  46 weeks \\ \hline
+Validation	  		&  Hyper-Parameter Optimization &  5,888 &  2 weeks \\ \hline
+Test1  		&  Stacked Generalization, F\textsubscript{1}-Maximization & 5,899 &  2 weeks\\ \hline
+Test2	  		&  Reporting Accuracy Metrics & 5,910 &  2 weeks\\
 \hline
 \end{tabular}
 }
@@ -74,7 +74,21 @@ Hence, we work with machine learning tree based models like Random Forest Gradie
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
 Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCN-LSTM 
 models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:TCN}
-and Figure~\ref{fig:TCN-LSTM}.
+and Figure~\ref{fig:TCN-LSTM}. As described in architecture diagrams, data was classified into following groups:
+
+\begin{itemize}
+\item {\bf Static Categorical:} These are categorical features which donot vary with time. This includes the consumer
+attributes like sex, marital status and location, different item attributes like category, department and brand.
+\item {\bf Temporal Categorical:} These are categorical features which vary with time. It includes all the datetime 
+related features like week, month of year, etc.
+\item {\bf Static Continuous:} These features are static but Continuous. This includes certain consumer attributes like
+age and weight, item attributes like size and certain derived features like target encoded features.
+\item {\bf Temporal Continuous:} These are time varying Continuous features. All consumer and item related
+traditional attributes like number of orders, add to cart order, etc. falls under this class.
+\end{itemize}
+In all the above neural network architectures, we learn the embeddings of the categorical features during training phase.
+We embed these attributes in order to both compress their representations while preserving
+salient features, as well as capture mutual similarities and differences.
 
   \begin{figure}[t]
     \centering 
@@ -137,7 +151,16 @@ was performed over Validation dataset. We list some of the params along with the
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] was used as loss 
-function for all the models. Deep learning models are built using deep learning framework
+function for all the models. 
+We used Bayesian Optimization Technique for hyper configuration tuning with 100 trials.
+Some of the hyperparameters we used for Machine learning models are :
+  \begin{itemize}
+    \item {\bf Learning Rate:} LR range was set to vary between 1e-3 to 0.5. 
+    \item {\bf Max Depth:} Depth range was set between 2 to 12 at the step of 1.
+  \end{itemize}
+Apart from these, Regularization parameters like Reg Lambda, Min Sample Leaf was also tuned from Bayesian framework.
+
+Deep learning models are built using deep learning framework
 PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
 based models like RandomForest and Xgboost. We built a total of 60 models, 12 different param configurations for each of 4 
 Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in table 1.
@@ -155,8 +178,8 @@ MLP	  		&  12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, 
 LSTM  		& 12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers & BCELoss \\ \hline
 TCN			& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  & BCELoss\\ \hline
 TCN-LSTM 		& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  & BCELoss\\ \hline
-Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  & Logloss\\ \hline
-RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &  Entropy, Gini\\
+Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  & BCELoss\\ \hline
+RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &  BCELoss\\
    \hline
 \end{tabular}}
 \end{table*} 
