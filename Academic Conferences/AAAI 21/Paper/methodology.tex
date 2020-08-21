@@ -60,7 +60,7 @@ for training all our models.
       \end{array}
     \label{eqn:logloss}
   \end{equation}
-where y is the label and p(y) is the predicted probability.
+where H\textsubscript{p} is total loss and y\textsubscript{i} is the label and p(y\textsubscript{i}) is the predicted probability.
 \subsection{Model Architectures}
 As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
 Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
@@ -140,6 +140,8 @@ was performed over Validation dataset. We list some of the params along with the
     \item {\bf SWA:} Stochastic Weight Averaging (SWA) is used to improve generalization across Deep Learning
     models. SWA performs an equal average of the weights traversed by SGD with a modified learning rate schedule. We used 
     1e-3 as SWA learning rate.
+    \item {\bf Parameter Average:} This applies weighted average over the parameter weights of n best performing epochs 
+    (local minimas) from state dictionary post completion of training.
   \end{itemize}
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)

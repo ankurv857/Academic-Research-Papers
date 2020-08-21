@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  21 AUG 2020 12:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  21 AUG 2020 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -116,7 +116,7 @@ See the natbib package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.48 ...mand\NAT@force@numbers{}\NAT@force@numbers
+l.46 ...mand\NAT@force@numbers{}\NAT@force@numbers
                                                   
 ? 
 )
@@ -184,8 +184,8 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
 2.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) (./abstract.tex) (./intro.tex) (./methodology.tex [1{/usr/local/texlive/2020/
-texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+) (./abstract.tex) (./intro.tex) (./relatedwork.tex) (./methodology.tex [1{/usr
+/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
@@ -218,20 +218,19 @@ File: img/TCNLSTM.png Graphic file (type png)
 <use img/TCNLSTM.png>
 Package pdftex.def Info: img/TCNLSTM.png  used on input line 111.
 (pdftex.def)             Requested size: 238.49121pt x 151.88945pt.
-[2 <./img/dnndata.png> <./img/MLP.png>]
-Underfull \hbox (badness 2318) in paragraph at lines 154--155
+[2 <./img/dnndata.png>] [3 <./img/MLP.png> <./img/LSTM.png> <./img/TCN.png> <./
+img/TCNLSTM.png>]
+Underfull \hbox (badness 2318) in paragraph at lines 156--157
 \OT1/ptm/m/n/10 Apart from these, Reg-u-lar-iza-tion pa-ram-e-ters like Reg
  []
 
-[3 <./img/LSTM.png> <./img/TCN.png> <./img/TCNLSTM.png>]
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
-95.
-
+97.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 195.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
 ) (./eval.tex
 <img/sampledata.png, id=31, 944.52875pt x 199.74625pt>
 File: img/sampledata.png Graphic file (type png)
@@ -259,12 +258,14 @@ File: img/density.png Graphic file (type png)
 Package pdftex.def Info: img/density.png  used on input line 132.
 (pdftex.def)             Requested size: 216.81pt x 257.72568pt.
 
-[4]
-Underfull \vbox (badness 6842) has occurred while \output is active []
+[4] [5 <./img/sampledata.png>]
+Underfull \hbox (badness 2035) in paragraph at lines 183--185
+[]\OT1/ptm/b/n/10 Personalized Mar-ket-ing: \OT1/ptm/m/n/10 Item Rec-om-men-da-
+tions at
+ []
 
- [5 <./img/sampledata.png> <./img/items.png> <./img/basket.png>]) (./conclusion
-.tex)
-[6 <./img/addtocart.png> <./img/density.png>] (./paper.bbl
+) (./conclusion.tex) (./paper.bbl [6 <./img/items.png> <./img/basket.png> <./im
+g/addtocart.png>]
 Underfull \hbox (badness 2894) in paragraph at lines 46--52
 []\OT1/ptm/m/n/10 O. N. Foun-da-tion.  Open-flow switch spec-i-fi-ca-
  []
@@ -290,9 +291,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--52
 
 Package natbib Warning: There were multiply defined citations.
 
-[7
-
-] (./paper.aux
+[7 <./img/density.png>] (./paper.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -306,10 +305,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2946 strings out of 480608
- 46631 string characters out of 5903631
- 317967 words of memory out of 5000000
- 18813 multiletter control sequences out of 15000+600000
+ 2949 strings out of 480608
+ 46674 string characters out of 5903631
+ 320967 words of memory out of 5000000
+ 18814 multiletter control sequences out of 15000+600000
  550641 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,18n,42p,232b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -324,7 +323,7 @@ ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 1502918 bytes).
+Output written on paper.pdf (7 pages, 1504258 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream
