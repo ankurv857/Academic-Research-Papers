@@ -22,15 +22,17 @@ We use the above data to generate consumer-item purchase predictions for forward
   \begin{figure}[t]
     \centering 
     \caption{Density of consumers Vs. Basket Size} 
-    \includegraphics[width=2.5in]{img/basket.png} 
+    \includegraphics[width=3in]{img/basket.png} 
+    {\bf Maximum number of consumers have their basket size between 5-7}
     \label{fig:basket} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
-    \caption{Order probability Vs. Add to cart order} 
-    \includegraphics[width=2.5in]{img/addtocart.png} 
+    \caption{Reorder probability Vs. Add to cart order} 
+    \includegraphics[width=3in]{img/addtocart.png} 
     \label{fig:addtocart} 
+    {\bf Probability of reordering decreases as we go higher up in add to cart order}
   \end{figure}
 
 \begin{center}
@@ -127,12 +129,10 @@ Weighted K Best	  		&  25  &  0.0394 &  0.0316 &  0.0287  \\ \hline
   \begin{figure}[t]
     \centering 
     \caption{Probability Distributions} 
-    \includegraphics[width=3.3in]{img/density.png} 
+    \includegraphics[width=3in]{img/density.png} 
     {\bf Probability Distributions for the non purchased cases tends towards 0 and tapers as the 
     probability moves towards 0.5, whereas for purchased cases the distribution witnesses a peak 
-    between 0.2 and 0.3
-
-    purchased cases  0.5} 
+    between 0.2 and 0.3 purchased cases  0.5} 
     \label{fig:density} 
   \end{figure}
 
