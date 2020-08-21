@@ -62,12 +62,13 @@ for training all our models.
   \end{equation}
 where H\textsubscript{p} is total loss and y\textsubscript{i} is the label and p(y\textsubscript{i}) is the predicted probability.
 \subsection{Model Architectures}
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation~\ref{eqn:fx}. 
+As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation \ref{eqn:fx}. 
 Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
 Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCN-LSTM 
-models are shown in Figure~\ref{fig:MLP}, Figure~\ref{fig:LSTM}, Figure~\ref{fig:TCN}
-and Figure~\ref{fig:TCN-LSTM}. As described in architecture diagrams, data was classified into following groups:
+models are shown in Figure \ref{fig:MLP}, Figure \ref{fig:LSTM}, Figure \ref{fig:TCN}
+and Figure \ref{fig:TCN-LSTM}. As described in architecture diagrams Figure \ref{fig:dnndata}, data was classified 
+into following groups:
 \begin{itemize}
 \item {\bf Static Categorical:} These are categorical features which donot vary with time. This includes the consumer
 attributes like sex, marital status and location, different item attributes like category, department and brand.
@@ -109,7 +110,7 @@ salient features, as well as capture mutual similarities and differences.
     \centering 
     \caption{TCN-LSTM} 
     \includegraphics[width=3.3in]{img/TCNLSTM.png} 
-    \label{fig:TCNLSTM} 
+    \label{fig:TCN-LSTM} 
   \end{figure}
 The consumer purchase pattern has huge variation in terms of time of purchase (weekday/weekends), 
 cadence of purchase (days to months), purchased item types (dairy/meat/grocery/apparels/etc.)
@@ -145,7 +146,7 @@ was performed over Validation dataset. We list some of the params along with the
   \end{itemize}
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
-and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss [~\ref{eqn:logloss}] was used as loss 
+and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss \ref{eqn:logloss} was used as loss 
 function for all the models. 
 We used Bayesian Optimization Technique for hyper configuration tuning with 100 trials.
 Some of the hyperparameters we used for Machine learning models are :
@@ -183,7 +184,7 @@ We used Weighted K-Best and K-Best as Stacked Generalization Ensemble model for 
 Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We set k to 5, 10 and 25 and selected 
 these top candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
 the probabilities for Train, Validation, Test1 and Test2 time steps for each consumer-item combination.
-\subsection{F1-Maximization}
+\subsection{F\textsubscript{1}-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
 probability distribution of test1 at consumer level. For instance, lets say we generated purchase probabilities for 
 n\textsubscript{i} items of b\textsubscript{i} actually purchased items for consumer c\textsubscript{i}.
@@ -213,7 +214,11 @@ As mentioned above n\textsubscript{i} is the total items model generated purchas
     \begin{array}{l}
       D(Pr\textsubscript{c\textsubscript{i}}) : P\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
       \to P\textsuperscript{'}\textsubscript{c\textsubscript{i}}\textsuperscript{1 x n\textsubscript{i}}
-      \;\;  p\textsuperscript{'}\textsubscript{j} = $\{1 if p\textsubscript{j} $\geq$ Pr\textsubscript{c\textsubscript{i}}\}$
+      \;\; : p\textsuperscript{'}\textsubscript{j} = 
+        \begin{cases}
+          1 & p\textsubscript{j} \geq Pr\textsubscript{c\textsubscript{i}} \\
+          0 & p\textsubscript{j} < Pr\textsubscript{c\textsubscript{i}} 
+        \end{cases}
     \end{array}
     \label{eqn:Decision}
   \end{equation}

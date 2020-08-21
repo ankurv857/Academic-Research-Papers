@@ -1,0 +1,12 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related Work}{}% 2
+\BOOKMARK [1][-]{section.3}{Methodology}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Loss Function}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Model Architectures}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Stacked Generalization}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{F1-Maximization}{section.3}% 7
+\BOOKMARK [1][-]{section.4}{Experiments and Results}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{Experiment Setups}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Results and Observations}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Industrial Applications}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 12

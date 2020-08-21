@@ -1,6 +1,6 @@
 \section{Experiments and Results}
 We use transactional data from instacart kaggle challenge to train all our models. As can 
-be seen in Figure~\ref{fig:sampledata} data has transactional details including consumer id, item id, 
+be seen in Figure \ref{fig:sampledata} data has transactional details including consumer id, item id, 
 order id, add to cart order, date of transaction, aisle id and department id.
 Also, from Table 1, we can see that we utilize 1 year data which gets split into train, validation,
 test1 and test2. We generate consumer-item-week level data with purchase/ non purchase being the target.
@@ -58,6 +58,7 @@ We use the above data to generate consumer-item purchase predictions for forward
 12 & Adam  & ReduceLROnPlateau & True & True&  0.0321 & 0.0306 & 0.0547 & 0.0305 \\ [1ex] 
    \hline
 \end{tabular}}
+\label{tab:dlmodels}
 \end{table*} 
 \end{center}
 
@@ -154,31 +155,31 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
 \label{tab:Fscore}
 \end{table}
 
-\subsection{Experimental setup}
+\subsection{Experiment Setups}
 We started with exploratary data analysis, looking at the data from various cuts and 
 trying to study the variations of the features with target. Some of them include looking at the 
 density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
-across departments Figure~\ref{fig:items}, variation of order probability with add to cart order Figure~\ref{fig:addtocart},
+across departments Figure \ref{fig:items}, variation of order probability with add to cart order Figure \ref{fig:addtocart},
 order probability variations at different temporal cuts like week, month and quarter, transactional metrics at both
 consumer and item levels like total orders, total reorders, recency, gap between orders, etc.
 We then performed multiple experiments with above features and different hyper-configurations.
 
 \subsection{Results and Observations}
-Tables 3 and 4 shows the experimental results obtained with different hyper-configurations over multiple models.
-From Table 3, we can infer that RMSprop and CyclicLR emerged as the clear winners as 
+Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} shows the experimental results obtained with different hyper-configurations over multiple models.
+From Table \ref{tab:dlmodels}, we can infer that RMSprop and CyclicLR emerged as the clear winners as 
 Optimizer and Scheduler respectively. TCN showed the best Accuracy score at test2, with most of the other Deep
 Learning models have comparable results. Also, we observe that all the Deep Learning models out perform Machine Learning 
 models including Xgboost and RandomForest both in terms of Accuracy and Generalization. This insight can be drawn from 
-table 5 which has the average of BCELoss across 3 best trials. Range of scores across val , test1 and test2 states 
+Table \ref{tab:training} which has the average of BCELoss across 3 best trials. Range of scores across val , test1 and test2 states 
 that Deep Learning models are showing more stable results in terms of model fit. 
-We present the effectiveness of combining predictions in the form of stacking. From Table 6, we can see the 
+We present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
 results of stacking at different values of K, both for Weighted K-Best as well as K-Best model setups. Finally we 
 apply F\textsubscript{1}-Maximization so as to be able to strike a balance between Precision and Recall.
 After F\textsubscript{1}-Maximization we see that all Precision, Recall and F\textsubscript{1}-Score 
-are close enough for all data splits as can be seen from Table 7.
+are close enough for all data splits as can be seen from Table \ref{tab:Fscore}.
 \subsection{Industrial Applications}
 The Next Logical Purchase framework has multiple applications in retail industry. Some of its applications 
-include:
+include
 \begin{itemize}
 \item {\bf Personalized Marketing:} Item Recommendations at consumer level can be derived from the 
 solution of this problem, which will enhance consumer shopping experience.

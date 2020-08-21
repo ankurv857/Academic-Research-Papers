@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  21 AUG 2020 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  22 AUG 2020 01:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -88,10 +88,186 @@ Package caption Info: Standard document class detected.
 \c@caption@flags=\count176
 \c@continuedfloat=\count177
 )
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip52
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks16
+\ex@=\dimen144
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen145
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count178
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count179
+\leftroot@=\count180
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count181
+\DOTSCASE@=\count182
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen146
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count183
+\c@MaxMatrixCols=\count184
+\dotsspace@=\muskip17
+\c@parentequation=\count185
+\dspbrk@lvl=\count186
+\tag@help=\toks17
+\row@=\count187
+\column@=\count188
+\maxfields@=\count189
+\andhelp@=\toks18
+\eqnshift@=\dimen147
+\alignsep@=\dimen148
+\tagshift@=\dimen149
+\tagwidth@=\dimen150
+\totwidth@=\dimen151
+\lineht@=\dimen152
+\@envbody=\toks19
+\multlinegap=\skip53
+\multlinetaggap=\skip54
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+)
+\@linkdim=\dimen153
+\Hy@linkcounter=\count190
+\Hy@pagecounter=\count191
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count192
+Package hyperref Info: Hyper figures OFF on input line 4547.
+Package hyperref Info: Link nesting OFF on input line 4552.
+Package hyperref Info: Hyper index ON on input line 4555.
+Package hyperref Info: Plain pages OFF on input line 4562.
+Package hyperref Info: Backreferencing OFF on input line 4567.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4800.
+\c@Hy@tempcnt=\count193
+LaTeX Info: Redefining \url on input line 5159.
+\XeTeXLinkMargin=\dimen154
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count194
+\Field@Width=\dimen155
+\Fld@charsize=\dimen156
+Package hyperref Info: Hyper figures OFF on input line 6430.
+Package hyperref Info: Link nesting OFF on input line 6435.
+Package hyperref Info: Hyper index ON on input line 6438.
+Package hyperref Info: backreferencing OFF on input line 6445.
+Package hyperref Info: Link coloring OFF on input line 6450.
+Package hyperref Info: Link coloring with OCG OFF on input line 6455.
+Package hyperref Info: PDF/A mode OFF on input line 6460.
+LaTeX Info: Redefining \ref on input line 6500.
+LaTeX Info: Redefining \pageref on input line 6504.
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
+\Hy@abspage=\count195
+\c@Item=\count196
+\c@Hfootnote=\count197
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+)
+\Fld@listcount=\count198
+\c@bookmark@seq@number=\count199
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip55
+)
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count178
-\l__pdf_internal_box=\box45
+\l__kernel_color_stack_int=\count266
+\l__pdf_internal_box=\box47
 )
 (./paper.aux
 
@@ -101,59 +277,93 @@ LaTeX Warning: Label `eqn:Pdash' multiply defined.
 LaTeX Warning: Label `tab:mlmodels' multiply defined.
 
 
-Package natbib Warning: Citation `shaikh2008network' multiply defined.
+Package natbib Warning: Citation `Xgboost' multiply defined.
 
 
-Package natbib Warning: Citation `Shin13Avant' multiply defined.
+Package natbib Warning: Citation `Xgboost' multiply defined.
 
 
-! Package natbib Error: Bibliography not compatible with author-year citations.
-
-(natbib)                Press <return> to continue in numerical citation style.
+Package natbib Warning: Citation `Xgboost' multiply defined.
 
 
-See the natbib package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.46 ...mand\NAT@force@numbers{}\NAT@force@numbers
-                                                  
-? 
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
+
+Package natbib Warning: Citation `Xgboost' multiply defined.
+
 )
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 4
-0.
+3.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count179
-\scratchdimen=\dimen144
-\scratchbox=\box46
-\nofMPsegments=\count180
-\nofMParguments=\count181
-\everyMPshowfont=\toks16
-\MPscratchCnt=\count182
-\MPscratchDim=\dimen145
-\MPnumerator=\count183
-\makeMPintoPDFobject=\count184
-\everyMPtoPDFconversion=\toks17
+\scratchcounter=\count267
+\scratchdimen=\dimen157
+\scratchbox=\box48
+\nofMPsegments=\count268
+\nofMParguments=\count269
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count270
+\MPscratchDim=\dimen158
+\MPnumerator=\count271
+\makeMPintoPDFobject=\count272
+\everyMPtoPDFconversion=\toks22
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -164,24 +374,43 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\titlearea=\box47
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 42.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 42.
-\actualheight=\skip52
+\AtBeginShipoutBox=\box49
+Package hyperref Info: Link coloring OFF on input line 43.
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 42--42
+(/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count273
+)
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
+ (./paper.out) (./paper.out)
+\@outlinefile=\write3
+\openout3 = `paper.out'.
+
+\titlearea=\box50
+\actualheight=\skip56
+
+Overfull \hbox (2.5pt too wide) in paragraph at lines 46--46
 [][] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 42
+Underfull \vbox (badness 10000) detected at line 46
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4
-2.
+6.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) (./abstract.tex) (./intro.tex) (./relatedwork.tex) (./methodology.tex [1{/usr
@@ -190,128 +419,213 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 
 ]
-
-LaTeX Warning: Reference `fig:TCN-LSTM' on page 2 undefined on input line 70.
-
-<img/dnndata.png, id=8, 773.89125pt x 190.7125pt>
+<img/dnndata.png, id=67, 773.89125pt x 190.7125pt>
 File: img/dnndata.png Graphic file (type png)
 <use img/dnndata.png>
-Package pdftex.def Info: img/dnndata.png  used on input line 87.
+Package pdftex.def Info: img/dnndata.png  used on input line 88.
 (pdftex.def)             Requested size: 238.49121pt x 58.77104pt.
-<img/MLP.png, id=10, 611.28375pt x 265.99374pt>
+<img/MLP.png, id=69, 611.28375pt x 265.99374pt>
 File: img/MLP.png Graphic file (type png)
 <use img/MLP.png>
-Package pdftex.def Info: img/MLP.png  used on input line 93.
+Package pdftex.def Info: img/MLP.png  used on input line 94.
 (pdftex.def)             Requested size: 238.49121pt x 103.77367pt.
-<img/LSTM.png, id=11, 613.29124pt x 359.3425pt>
+<img/LSTM.png, id=70, 613.29124pt x 359.3425pt>
 File: img/LSTM.png Graphic file (type png)
 <use img/LSTM.png>
-Package pdftex.def Info: img/LSTM.png  used on input line 99.
+Package pdftex.def Info: img/LSTM.png  used on input line 100.
 (pdftex.def)             Requested size: 238.49121pt x 139.73726pt.
-<img/TCN.png, id=12, 612.2875pt x 447.6725pt>
+<img/TCN.png, id=71, 612.2875pt x 447.6725pt>
 File: img/TCN.png Graphic file (type png)
 <use img/TCN.png>
-Package pdftex.def Info: img/TCN.png  used on input line 105.
+Package pdftex.def Info: img/TCN.png  used on input line 106.
 (pdftex.def)             Requested size: 238.49121pt x 174.37297pt.
-<img/TCNLSTM.png, id=13, 707.64375pt x 450.68375pt>
+<img/TCNLSTM.png, id=72, 707.64375pt x 450.68375pt>
 File: img/TCNLSTM.png Graphic file (type png)
 <use img/TCNLSTM.png>
-Package pdftex.def Info: img/TCNLSTM.png  used on input line 111.
+Package pdftex.def Info: img/TCNLSTM.png  used on input line 112.
 (pdftex.def)             Requested size: 238.49121pt x 151.88945pt.
-[2 <./img/dnndata.png>] [3 <./img/MLP.png> <./img/LSTM.png> <./img/TCN.png> <./
-img/TCNLSTM.png>]
-Underfull \hbox (badness 2318) in paragraph at lines 156--157
+ [2 <./img/dnndata.png>]
+[3 <./img/MLP.png> <./img/LSTM.png> <./img/TCN.png> <./img/TCNLSTM.png>]
+Underfull \hbox (badness 2318) in paragraph at lines 157--158
 \OT1/ptm/m/n/10 Apart from these, Reg-u-lar-iza-tion pa-ram-e-ters like Reg
  []
 
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\mathsurround' on input line 187.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\z@' on input line 187.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 187.
+
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
-97.
+98.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 197.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 198.
 ) (./eval.tex
-<img/sampledata.png, id=31, 944.52875pt x 199.74625pt>
+<img/sampledata.png, id=102, 944.52875pt x 199.74625pt>
 File: img/sampledata.png Graphic file (type png)
 <use img/sampledata.png>
 Package pdftex.def Info: img/sampledata.png  used on input line 11.
 (pdftex.def)             Requested size: 476.98244pt x 100.87257pt.
-<img/items.png, id=32, 517.935pt x 541.02126pt>
+<img/items.png, id=103, 517.935pt x 541.02126pt>
 File: img/items.png Graphic file (type png)
 <use img/items.png>
 Package pdftex.def Info: img/items.png  used on input line 18.
 (pdftex.def)             Requested size: 180.67499pt x 188.72461pt.
-<img/basket.png, id=33, 481.8pt x 389.455pt>
+<img/basket.png, id=104, 481.8pt x 389.455pt>
 File: img/basket.png Graphic file (type png)
 <use img/basket.png>
 Package pdftex.def Info: img/basket.png  used on input line 25.
 (pdftex.def)             Requested size: 216.81pt x 175.25313pt.
-<img/addtocart.png, id=34, 475.7775pt x 384.43625pt>
+<img/addtocart.png, id=105, 475.7775pt x 384.43625pt>
 File: img/addtocart.png Graphic file (type png)
 <use img/addtocart.png>
 Package pdftex.def Info: img/addtocart.png  used on input line 33.
 (pdftex.def)             Requested size: 216.81pt x 175.1886pt.
-<img/density.png, id=35, 356.33125pt x 423.5825pt>
+<img/density.png, id=106, 356.33125pt x 423.5825pt>
 File: img/density.png Graphic file (type png)
 <use img/density.png>
-Package pdftex.def Info: img/density.png  used on input line 132.
+Package pdftex.def Info: img/density.png  used on input line 133.
 (pdftex.def)             Requested size: 216.81pt x 257.72568pt.
 
 [4] [5 <./img/sampledata.png>]
-Underfull \hbox (badness 2035) in paragraph at lines 183--185
+Underfull \hbox (badness 2035) in paragraph at lines 184--186
 []\OT1/ptm/b/n/10 Personalized Mar-ket-ing: \OT1/ptm/m/n/10 Item Rec-om-men-da-
 tions at
  []
 
-) (./conclusion.tex) (./paper.bbl [6 <./img/items.png> <./img/basket.png> <./im
-g/addtocart.png>]
-Underfull \hbox (badness 2894) in paragraph at lines 46--52
-[]\OT1/ptm/m/n/10 O. N. Foun-da-tion.  Open-flow switch spec-i-fi-ca-
- []
+) (./conclusion.tex) (./paper.bbl [6pdfTeX warning (ext4): destination with the
+ same identifier (name{cite.Xgboost}) has been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.51 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
 
-Underfull \hbox (badness 1838) in paragraph at lines 46--52
-\OT1/ptm/m/n/10 tion, ver-sion 1.5.1.  $https : / / www . opennetworking .
- []
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.51 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.51 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--52
-\OT1/ptm/m/n/10 org / images / stories / downloads / sdn -[] resources / onf -[
-]
- []
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.51 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.51 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--52
-\OT1/ptm/m/n/10 speci^^Lcations / open^^Mow / open^^Mow -[] switch -[] v1 . 5 .
- 1 . pdf$,
- []
-
-)
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.51 \bibitem{Xgboost}
+                       <./img/items.png> <./img/basket.png> <./img/addtocart.pn
+g>]pdfTeX warning (ext4): destination with the same identifier (name{cite.Xgboo
+st}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.51 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.57 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.63 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.69 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.75 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.81 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.87 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.93 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.99 \bibitem{Xgboost}
+                      pdfTeX warning (ext4): destination with the same identifi
+er (name{cite.Xgboost}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.105 \bibitem{Xgboost}
+                       )
 
 Package natbib Warning: There were multiply defined citations.
 
-[7 <./img/density.png>] (./paper.aux
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 56.
+[7pdfTeX warning (ext4): destination with the same identifier (name{cite.Xgboos
+t}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.56 \end{document}
+                    <./img/density.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 56.
+ (./paper.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
 
 )
-
-LaTeX Warning: There were undefined references.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 56.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 56.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 7A2ECD9A24CBCBD389814D044CE47469;722.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 56.
  ) 
 Here is how much of TeX's memory you used:
- 2949 strings out of 480608
- 46674 string characters out of 5903631
- 320967 words of memory out of 5000000
- 18814 multiletter control sequences out of 15000+600000
- 550641 words of font info for 49 fonts, out of 8000000 for 9000
+ 7476 strings out of 480608
+ 115483 string characters out of 5903631
+ 417628 words of memory out of 5000000
+ 23168 multiletter control sequences out of 15000+600000
+ 554450 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,42p,232b,336s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,42p,232b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -321,12 +635,11 @@ ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
 0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 1504258 bytes).
+/fonts/type1/urw/times/utmr8a.pfb>
+Output written on paper.pdf (7 pages, 1490558 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 183 compressed objects within 2 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 147 words of extra memory for PDF output out of 10000 (max. 10000000)
 
