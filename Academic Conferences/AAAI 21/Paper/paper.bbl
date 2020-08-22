@@ -1,111 +1,112 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Bengio and CA(2015)}]{bengio2015rmsprop}
+Bengio, Y.; and CA, M. 2015.
+\newblock Rmsprop and equilibrated adaptive learning rates for nonconvex
+  optimization.
+\newblock \emph{corr abs/1502.04390} .
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Bergstra, Yamins, and Cox(2013)}]{bergstra2013hyperopt}
+Bergstra, J.; Yamins, D.; and Cox, D.~D. 2013.
+\newblock Hyperopt: A python library for optimizing the hyperparameters of
+  machine learning algorithms.
+\newblock In \emph{Proceedings of the 12th Python in science conference},
+  volume~13, 20. Citeseer.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Chen and Guestrin(2016)}]{chen2016xgboost}
+Chen, T.; and Guestrin, C. 2016.
+\newblock Xgboost: A scalable tree boosting system.
+\newblock In \emph{Proceedings of the 22nd acm sigkdd international conference
+  on knowledge discovery and data mining}, 785--794.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Fader and Hardie(2009)}]{fader2009probability}
+Fader, P.~S.; and Hardie, B.~G. 2009.
+\newblock Probability models for customer-base analysis.
+\newblock \emph{Journal of interactive marketing} 23(1): 61--69.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Guo and Berkhahn(2016)}]{guo2016entity}
+Guo, C.; and Berkhahn, F. 2016.
+\newblock Entity embeddings of categorical variables.
+\newblock \emph{arXiv preprint arXiv:1604.06737} .
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Hinton et~al.(2012)Hinton, Srivastava, Krizhevsky, Sutskever, and
+  Salakhutdinov}]{hinton2012improving}
+Hinton, G.~E.; Srivastava, N.; Krizhevsky, A.; Sutskever, I.; and
+  Salakhutdinov, R.~R. 2012.
+\newblock Improving neural networks by preventing co-adaptation of feature
+  detectors.
+\newblock \emph{arXiv preprint arXiv:1207.0580} .
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Izmailov et~al.(2018)Izmailov, Podoprikhin, Garipov, Vetrov, and
+  Wilson}]{izmailov2018averaging}
+Izmailov, P.; Podoprikhin, D.; Garipov, T.; Vetrov, D.; and Wilson, A.~G. 2018.
+\newblock Averaging weights leads to wider optima and better generalization.
+\newblock \emph{arXiv preprint arXiv:1803.05407} .
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Lipton, Elkan, and Naryanaswamy(2014)}]{lipton2014optimal}
+Lipton, Z.~C.; Elkan, C.; and Naryanaswamy, B. 2014.
+\newblock Optimal thresholding of classifiers to maximize F1 measure.
+\newblock In \emph{Joint European Conference on Machine Learning and Knowledge
+  Discovery in Databases}, 225--239. Springer.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Mart{\'\i}nez et~al.(2020)Mart{\'\i}nez, Schmuck, Pereverzyev~Jr,
+  Pirker, and Haltmeier}]{martinez2020machine}
+Mart{\'\i}nez, A.; Schmuck, C.; Pereverzyev~Jr, S.; Pirker, C.; and Haltmeier,
+  M. 2020.
+\newblock A machine learning framework for customer purchase prediction in the
+  non-contractual setting.
+\newblock \emph{European Journal of Operational Research} 281(3): 588--596.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Paszke et~al.(2017)Paszke, Gross, Chintala, Chanan, Yang, DeVito,
+  Lin, Desmaison, Antiga, and Lerer}]{paszke2017automatic}
+Paszke, A.; Gross, S.; Chintala, S.; Chanan, G.; Yang, E.; DeVito, Z.; Lin, Z.;
+  Desmaison, A.; Antiga, L.; and Lerer, A. 2017.
+\newblock Automatic differentiation in pytorch .
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel,
+  Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg
+  et~al.}]{pedregosa2011scikit}
+Pedregosa, F.; Varoquaux, G.; Gramfort, A.; Michel, V.; Thirion, B.; Grisel,
+  O.; Blondel, M.; Prettenhofer, P.; Weiss, R.; Dubourg, V.; et~al. 2011.
+\newblock Scikit-learn: Machine learning in Python.
+\newblock \emph{the Journal of machine Learning research} 12: 2825--2830.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Santurkar et~al.(2018)Santurkar, Tsipras, Ilyas, and
+  Madry}]{santurkar2018does}
+Santurkar, S.; Tsipras, D.; Ilyas, A.; and Madry, A. 2018.
+\newblock How does batch normalization help optimization?
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  2483--2493.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Smith(2017)}]{smith2017cyclical}
+Smith, L.~N. 2017.
+\newblock Cyclical learning rates for training neural networks.
+\newblock In \emph{2017 IEEE Winter Conference on Applications of Computer
+  Vision (WACV)}, 464--472. IEEE.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Sutskever, Vinyals, and Le(2014)}]{sutskever2014sequence}
+Sutskever, I.; Vinyals, O.; and Le, Q.~V. 2014.
+\newblock Sequence to sequence learning with neural networks.
+\newblock In \emph{Advances in neural information processing systems},
+  3104--3112.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Wolpert(1992)}]{wolpert1992stacked}
+Wolpert, D.~H. 1992.
+\newblock Stacked generalization.
+\newblock \emph{Neural networks} 5(2): 241--259.
 
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
-
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
-
-\bibitem{Xgboost}
-Tianqi Chen
-\newblock XGBoost: A Scalable Tree Boosting System
-\newblock
-  \url{https://dl.acm.org/doi/10.1145/2939672.2939785}.
+\bibitem[{Zaheer et~al.(2018)Zaheer, Reddi, Sachan, Kale, and
+  Kumar}]{zaheer2018adaptive}
+Zaheer, M.; Reddi, S.; Sachan, D.; Kale, S.; and Kumar, S. 2018.
+\newblock Adaptive methods for nonconvex optimization.
+\newblock In \emph{Advances in neural information processing systems},
+  9793--9803.
 
 \end{thebibliography}

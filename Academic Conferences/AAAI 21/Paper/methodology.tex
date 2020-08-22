@@ -41,10 +41,10 @@ Finally, n is the number of time lags.
 \hline
 {\bf Data Split} & {\bf Specifications} & {\bf Consumer-Item combinations} & {\bf Max Time-Series length} \\  
 \hline\hline
-Train  		&  Model training &  5,872 &  46 weeks \\ \hline
-Validation	  		&  Hyper-Parameter Optimization &  5,888 &  2 weeks \\ \hline
-Test1  		&  Stacked Generalization, F\textsubscript{1}-Maximization & 5,899 &  2 weeks\\ \hline
-Test2	  		&  Reporting Accuracy Metrics & 5,910 &  2 weeks\\
+Train  		&  Model training &  50,872 &  46 weeks \\ \hline
+Validation	  		&  Hyper-Parameter Optimization &  50,888 &  2 weeks \\ \hline
+Test1  		&  Stacked Generalization, F\textsubscript{1}-Maximization & 50,899 &  2 weeks\\ \hline
+Test2	  		&  Reporting Accuracy Metrics & 50,910 &  2 weeks\\
 \hline
 \end{tabular}
 }
@@ -63,7 +63,7 @@ for training all our models.
 where H\textsubscript{p} is total loss and y\textsubscript{i} is the label and p(y\textsubscript{i}) is the predicted probability.
 \subsection{Model Architectures}
 As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation \ref{eqn:fx}. 
-Hence, we work with machine learning tree based models like Random Forest Gradient Boosted Trees 
+Hence, we work with machine learning tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
 Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCN-LSTM 
 models are shown in Figure \ref{fig:MLP}, Figure \ref{fig:LSTM}, Figure \ref{fig:TCN}
@@ -79,7 +79,7 @@ age and weight, item attributes like size and certain derived features like targ
 \item {\bf Temporal Continuous:} These are time varying Continuous features. All consumer and item related
 traditional attributes like number of orders, add to cart order, etc. falls under this class.
 \end{itemize}
-In all the above neural network architectures, we learn the embeddings of the categorical features during training phase.
+In all the above neural network architectures, we learn the embeddings \cite{guo2016entity} of the categorical features during training phase.
 We embed these attributes in order to both compress their representations while preserving
 salient features, as well as capture mutual similarities and differences.
   \begin{figure}[t]
@@ -127,18 +127,19 @@ to capture temporal dependencies. We use lagged values of temporal features up t
 Multiple Lagged values as well as Statistical rolling operations like mean, median, quantiles, variance, kurtosis and 
 skewness over varying lag periods are used for feature generation. Details around datasets and derived features are explained 
 in the following section. This was decided after some preliminary experiments. Hyper-parameters of tree based models are optimized
-using Bayesian Hyper-parameter Optimization Technique. LSTM, TCN and TCN-LSTM models were trained in sequence to sequence 
-fashion using entire life-cycle data of a time series (Consumer-Item).
+using Bayesian Hyper-parameter Optimization Technique \cite{bergstra2013hyperopt}. LSTM, TCN and TCN-LSTM models were trained in sequence to sequence 
+fashion \cite{sutskever2014sequence} using entire life-cycle data of a time series (Consumer-Item).
 
 We applied empirical approach to tune the hyperparameters for Deep learning models. All hyperparameter Optimization
 was performed over Validation dataset. We list some of the params along with the values we used for Deep learning models.
   \begin{itemize}
-    \item {\bf Optimizer Parameters:} RMSProp and Adam were used as different trial configurations. The learning rate 
+    \item {\bf Optimizer Parameters:} RMSProp \cite{bengio2015rmsprop} and Adam were used as different trial configurations. The learning rate 
     was experimentally tuned to 1e-3. We also did weight decay of 1e-5 which helped a bit in model Regularization.
-    \item {\bf Scheduler Parameters:} Cyclic and ReduceLROnPlateau Learning rates were used as different trial configurations.
+    \item {\bf Scheduler Parameters:} Cyclic \cite{smith2017cyclical} and ReduceLROnPlateau \cite{zaheer2018adaptive} 
+    Learning rates were used as different trial configurations.
     we used 1e-3 as max lr and 1e-6 as base lr for Cyclical learning rate along with the step size being the function of
     length of train loader. ReduceLROnPlateau was tuned for 1e-6 as min lr.
-    \item {\bf SWA:} Stochastic Weight Averaging (SWA) is used to improve generalization across Deep Learning
+    \item {\bf SWA:} Stochastic Weight Averaging (SWA) \cite{izmailov2018averaging} is used to improve generalization across Deep Learning
     models. SWA performs an equal average of the weights traversed by SGD with a modified learning rate schedule. We used 
     1e-3 as SWA learning rate.
     \item {\bf Parameter Average:} This applies weighted average over the parameter weights of n best performing epochs 
@@ -147,8 +148,10 @@ was performed over Validation dataset. We list some of the params along with the
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss \ref{eqn:logloss} was used as loss 
-function for all the models. 
-We used Bayesian Optimization Technique for hyper configuration tuning with 100 trials.
+function for all the models. We have observed an improved performance of the sequence model \cite{sutskever2014sequence} 
+when Dropout \cite{hinton2012improving}  and BatchNorm \cite{santurkar2018does}  are used
+
+We used Bayesian Hyper-parameter Optimization \cite{bergstra2013hyperopt} for hyper configuration tuning with 100 trials.
 Some of the hyperparameters we used for Machine learning models are :
   \begin{itemize}
     \item {\bf Learning Rate:} LR range was set to vary between 1e-3 to 0.5. 
@@ -157,8 +160,10 @@ Some of the hyperparameters we used for Machine learning models are :
 Apart from these, Regularization parameters like Reg Lambda, Min Sample Leaf was also tuned from Bayesian framework.
 
 Deep learning models are built using deep learning framework
-PyTorch, and are trained on GCP instance containing 6 CPUs and a single GPU. scikit-learn is used for Tree
-based models like RandomForest and Xgboost. We built a total of 60 models, 12 different param configurations for each of 4 
+PyTorch \cite{paszke2017automatic}, and are trained on GCP instance containing 6 CPUs and a single GPU. 
+scikit-learn \cite{pedregosa2011scikit} is used for Tree
+based models like RandomForest and Xgboost \cite{chen2016xgboost}. 
+We built a total of 60 models, 12 different param configurations for each of 4 
 Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in table 1.
 \begin{center}
 \begin{table*}[!t]
@@ -179,14 +184,16 @@ RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &
 \end{table*} 
 \end{center}
 \subsection{Stacked Generalization}
-For simplicity and better generalization we adopted non-parameteric approach for stacking.
+For simplicity and better generalization we adopted non-parameteric approach for Stacked Generalization \cite{wolpert1992stacked} .
 We used Weighted K-Best and K-Best as Stacked Generalization Ensemble model for combining the 60 models (candidates) from Table 1. 
 Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We set k to 5, 10 and 25 and selected 
 these top candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
 the probabilities for Train, Validation, Test1 and Test2 time steps for each consumer-item combination.
+
 \subsection{F\textsubscript{1}-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
-probability distribution of test1 at consumer level. For instance, lets say we generated purchase probabilities for 
+probability distribution of test1 at consumer level using F\textsubscript{1}-Measure \cite{lipton2014optimal}. 
+For instance, lets say we generated purchase probabilities for 
 n\textsubscript{i} items of b\textsubscript{i} actually purchased items for consumer c\textsubscript{i}.
 Let Actual items purchased by consumer c\textsubscript{i} at test1 time step be [Ia\textsubscript{1}, Ia\textsubscript{2}
 ,.., Ia\textsubscript{b\textsubscript{i}}] whereas items for which the model generated probabilities for the 
