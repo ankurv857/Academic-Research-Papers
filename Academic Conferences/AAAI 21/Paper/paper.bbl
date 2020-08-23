@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -31,6 +31,13 @@ Fader, P.~S.; and Hardie, B.~G. 2009.
 \newblock Probability models for customer-base analysis.
 \newblock \emph{Journal of interactive marketing} 23(1): 61--69.
 
+\bibitem[{Fawaz et~al.(2019)Fawaz, Forestier, Weber, Idoumghar, and
+  Muller}]{fawaz2019deep}
+Fawaz, H.~I.; Forestier, G.; Weber, J.; Idoumghar, L.; and Muller, P.-A. 2019.
+\newblock Deep neural network ensembles for time series classification.
+\newblock In \emph{2019 International Joint Conference on Neural Networks
+  (IJCNN)}, 1--6. IEEE.
+
 \bibitem[{Guo and Berkhahn(2016)}]{guo2016entity}
 Guo, C.; and Berkhahn, F. 2016.
 \newblock Entity embeddings of categorical variables.
@@ -49,6 +56,17 @@ Hinton, G.~E.; Srivastava, N.; Krizhevsky, A.; Sutskever, I.; and
 Izmailov, P.; Podoprikhin, D.; Garipov, T.; Vetrov, D.; and Wilson, A.~G. 2018.
 \newblock Averaging weights leads to wider optima and better generalization.
 \newblock \emph{arXiv preprint arXiv:1803.05407} .
+
+\bibitem[{Karim et~al.(2017)Karim, Majumdar, Darabi, and Chen}]{karim2017lstm}
+Karim, F.; Majumdar, S.; Darabi, H.; and Chen, S. 2017.
+\newblock LSTM fully convolutional networks for time series classification.
+\newblock \emph{IEEE access} 6: 1662--1669.
+
+\bibitem[{Lea et~al.(2016)Lea, Vidal, Reiter, and Hager}]{lea2016temporal}
+Lea, C.; Vidal, R.; Reiter, A.; and Hager, G.~D. 2016.
+\newblock Temporal convolutional networks: A unified approach to action
+  segmentation.
+\newblock In \emph{European Conference on Computer Vision}, 47--54. Springer.
 
 \bibitem[{Lipton, Elkan, and Naryanaswamy(2014)}]{lipton2014optimal}
 Lipton, Z.~C.; Elkan, C.; and Naryanaswamy, B. 2014.

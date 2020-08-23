@@ -189,6 +189,17 @@ We used Weighted K-Best and K-Best as Stacked Generalization Ensemble model for 
 Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We set k to 5, 10 and 25 and selected 
 these top candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
 the probabilities for Train, Validation, Test1 and Test2 time steps for each consumer-item combination.
+A row post stacking is represented as 
+  \begin{equation}
+    \begin{array}{l}
+      y\textsubscript{cit} =\sum_{j=1}^{k}w\textsubscript{j} \times p\textsubscript{cit\textsubscript{j}}
+    \end{array}
+    \label{eqn:stack}
+  \end{equation}
+where y\textsubscript{cit} is the stacked probability for consumer 'c' item ’i’ at time ’t’.
+w\textsubscript{k} is the candidate weight of k\textsuperscript{th} model.
+k represents the number of candidates shortlisted for stacking and p\textsubscript{cit\textsubscript{k}}
+represents the prediction probability for consumer 'c' item ’i’ at time ’t’ by k\textsuperscript{th} model.
 
 \subsection{F\textsubscript{1}-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 

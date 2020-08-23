@@ -17,19 +17,23 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{lea2016temporal}
+\citation{karim2017lstm}
 \citation{chen2016xgboost}
+\citation{wolpert1992stacked}
 \citation{fader2009probability}
 \citation{martinez2020machine}
+\citation{fawaz2019deep}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{1}{section.2}\protected@file@percent }
 \citation{chen2016xgboost}
 \citation{guo2016entity}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Modelling data splits\relax }}{2}{table.caption.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:mlmodels}{{1}{2}{Modelling data splits\relax }{table.caption.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
 \newlabel{eqn:fx}{{1}{2}{Methodology}{equation.3.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Loss Function}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Modelling data splits\relax }}{2}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:mlmodels}{{1}{2}{Modelling data splits\relax }{table.caption.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Data classification for DNN Architectures\relax }}{2}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:dnndata}{{1}{2}{Data classification for DNN Architectures\relax }{figure.caption.2}{}}
 \newlabel{eqn:logloss}{{2}{2}{Loss Function}{equation.3.2}{}}
@@ -40,9 +44,6 @@
 \citation{smith2017cyclical}
 \citation{zaheer2018adaptive}
 \citation{izmailov2018averaging}
-\citation{sutskever2014sequence}
-\citation{hinton2012improving}
-\citation{santurkar2018does}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Multi Layer Perceptron (MLP)\relax }}{3}{figure.caption.3}\protected@file@percent }
 \newlabel{fig:MLP}{{2}{3}{Multi Layer Perceptron (MLP)\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Long Short Term Memory (LSTM)\relax }}{3}{figure.caption.4}\protected@file@percent }
@@ -51,6 +52,9 @@
 \newlabel{fig:TCN}{{4}{3}{Temporal Convolutional Network (TCN)\relax }{figure.caption.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces TCN-LSTM\relax }}{3}{figure.caption.6}\protected@file@percent }
 \newlabel{fig:TCN-LSTM}{{5}{3}{TCN-LSTM\relax }{figure.caption.6}{}}
+\citation{sutskever2014sequence}
+\citation{hinton2012improving}
+\citation{santurkar2018does}
 \citation{bergstra2013hyperopt}
 \citation{paszke2017automatic}
 \citation{pedregosa2011scikit}
@@ -58,55 +62,59 @@
 \citation{wolpert1992stacked}
 \citation{lipton2014optimal}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Stacked Generalization}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{eqn:stack}{{3}{4}{Stacked Generalization}{equation.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}F\textsubscript  {1}-Maximization}{4}{subsection.3.4}\protected@file@percent }
-\newlabel{eqn:A}{{3}{4}{F\textsubscript {1}-Maximization}{equation.3.3}{}}
-\newlabel{eqn:P}{{4}{4}{F\textsubscript {1}-Maximization}{equation.3.4}{}}
-\newlabel{eqn:Decision}{{5}{4}{F\textsubscript {1}-Maximization}{equation.3.5}{}}
-\newlabel{eqn:Pdash}{{6}{4}{F\textsubscript {1}-Maximization}{equation.3.6}{}}
+\newlabel{eqn:A}{{4}{4}{F\textsubscript {1}-Maximization}{equation.3.4}{}}
+\newlabel{eqn:P}{{5}{4}{F\textsubscript {1}-Maximization}{equation.3.5}{}}
+\newlabel{eqn:Decision}{{6}{4}{F\textsubscript {1}-Maximization}{equation.3.6}{}}
 \newlabel{eqn:Pdash}{{7}{4}{F\textsubscript {1}-Maximization}{equation.3.7}{}}
-\newlabel{eqn:probability}{{8}{4}{F\textsubscript {1}-Maximization}{equation.3.8}{}}
-\newlabel{eqn:F1}{{9}{4}{F\textsubscript {1}-Maximization}{equation.3.9}{}}
-\newlabel{eqn:Optimizer}{{10}{4}{F\textsubscript {1}-Maximization}{equation.3.10}{}}
+\newlabel{eqn:Pdash}{{8}{4}{F\textsubscript {1}-Maximization}{equation.3.8}{}}
+\newlabel{eqn:probability}{{9}{4}{F\textsubscript {1}-Maximization}{equation.3.9}{}}
+\newlabel{eqn:F1}{{10}{4}{F\textsubscript {1}-Maximization}{equation.3.10}{}}
+\newlabel{eqn:Optimizer}{{11}{4}{F\textsubscript {1}-Maximization}{equation.3.11}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{4}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment Setups}{4}{subsection.4.1}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Model Specifications\relax }}{5}{table.caption.7}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Sample Dataset\relax }}{5}{figure.caption.8}\protected@file@percent }
 \newlabel{fig:sampledata}{{6}{5}{Sample Dataset\relax }{figure.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces BCELoss of Test2 for 12 Trials of Deep Learning Models\relax }}{5}{table.caption.12}\protected@file@percent }
-\newlabel{tab:dlmodels}{{3}{5}{BCELoss of Test2 for 12 Trials of Deep Learning Models\relax }{table.caption.12}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces BCELoss of Test2 for 6 best Trials of ML Models\relax }}{5}{table.caption.13}\protected@file@percent }
-\newlabel{tab:mlmodels}{{4}{5}{BCELoss of Test2 for 6 best Trials of ML Models\relax }{table.caption.13}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  BCELoss mean of top 3 trials across data splits\relax }}{5}{table.caption.14}\protected@file@percent }
-\newlabel{tab:training}{{5}{5}{BCELoss mean of top 3 trials across data splits\relax }{table.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Most ordered Items across Departments\relax }}{5}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:items}{{7}{5}{Most ordered Items across Departments\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experiment Setups}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Density of consumers Vs. Basket Size\relax }}{5}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:basket}{{8}{5}{Density of consumers Vs. Basket Size\relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Results and Observations}{5}{subsection.4.2}\protected@file@percent }
 \bibdata{paper}
 \bibcite{bengio2015rmsprop}{{1}{2015}{{Bengio and CA}}{{}}}
-\bibcite{bergstra2013hyperopt}{{2}{2013}{{Bergstra, Yamins, and Cox}}{{}}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Most ordered Items across Departments\relax }}{6}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:items}{{7}{6}{Most ordered Items across Departments\relax }{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Density of consumers Vs. Basket Size\relax }}{6}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:basket}{{8}{6}{Density of consumers Vs. Basket Size\relax }{figure.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces BCELoss of Test2 for 12 Trials of Deep Learning Models\relax }}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:dlmodels}{{3}{6}{BCELoss of Test2 for 12 Trials of Deep Learning Models\relax }{table.caption.12}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Reorder probability Vs. Add to cart order\relax }}{6}{figure.caption.11}\protected@file@percent }
 \newlabel{fig:addtocart}{{9}{6}{Reorder probability Vs. Add to cart order\relax }{figure.caption.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces  Stacked Generalization Results\relax }}{6}{table.caption.15}\protected@file@percent }
-\newlabel{tab:stacking}{{6}{6}{Stacked Generalization Results\relax }{table.caption.15}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Industrial Applications}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces BCELoss of Test2 for 6 best Trials of ML Models\relax }}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:mlmodels}{{4}{6}{BCELoss of Test2 for 6 best Trials of ML Models\relax }{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  BCELoss mean of top 3 trials across data splits\relax }}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:training}{{5}{6}{BCELoss mean of top 3 trials across data splits\relax }{table.caption.14}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}{section.5}\protected@file@percent }
+\bibcite{bergstra2013hyperopt}{{2}{2013}{{Bergstra, Yamins, and Cox}}{{}}}
 \bibcite{chen2016xgboost}{{3}{2016}{{Chen and Guestrin}}{{}}}
 \bibcite{fader2009probability}{{4}{2009}{{Fader and Hardie}}{{}}}
-\bibcite{guo2016entity}{{5}{2016}{{Guo and Berkhahn}}{{}}}
-\bibcite{hinton2012improving}{{6}{2012}{{Hinton et~al.}}{{Hinton, Srivastava, Krizhevsky, Sutskever, and Salakhutdinov}}}
-\bibcite{izmailov2018averaging}{{7}{2018}{{Izmailov et~al.}}{{Izmailov, Podoprikhin, Garipov, Vetrov, and Wilson}}}
-\bibcite{lipton2014optimal}{{8}{2014}{{Lipton, Elkan, and Naryanaswamy}}{{}}}
-\bibcite{martinez2020machine}{{9}{2020}{{Mart{\'\i }nez et~al.}}{{Mart{\'\i }nez, Schmuck, Pereverzyev~Jr, Pirker, and Haltmeier}}}
-\bibcite{paszke2017automatic}{{10}{2017}{{Paszke et~al.}}{{Paszke, Gross, Chintala, Chanan, Yang, DeVito, Lin, Desmaison, Antiga, and Lerer}}}
-\bibcite{pedregosa2011scikit}{{11}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg et~al.}}}
-\bibcite{santurkar2018does}{{12}{2018}{{Santurkar et~al.}}{{Santurkar, Tsipras, Ilyas, and Madry}}}
-\bibcite{smith2017cyclical}{{13}{2017}{{Smith}}{{}}}
-\bibcite{sutskever2014sequence}{{14}{2014}{{Sutskever, Vinyals, and Le}}{{}}}
-\bibcite{wolpert1992stacked}{{15}{1992}{{Wolpert}}{{}}}
-\bibcite{zaheer2018adaptive}{{16}{2018}{{Zaheer et~al.}}{{Zaheer, Reddi, Sachan, Kale, and Kumar}}}
+\bibcite{fawaz2019deep}{{5}{2019}{{Fawaz et~al.}}{{Fawaz, Forestier, Weber, Idoumghar, and Muller}}}
+\bibcite{guo2016entity}{{6}{2016}{{Guo and Berkhahn}}{{}}}
+\bibcite{hinton2012improving}{{7}{2012}{{Hinton et~al.}}{{Hinton, Srivastava, Krizhevsky, Sutskever, and Salakhutdinov}}}
+\bibcite{izmailov2018averaging}{{8}{2018}{{Izmailov et~al.}}{{Izmailov, Podoprikhin, Garipov, Vetrov, and Wilson}}}
+\bibcite{karim2017lstm}{{9}{2017}{{Karim et~al.}}{{Karim, Majumdar, Darabi, and Chen}}}
+\bibcite{lea2016temporal}{{10}{2016}{{Lea et~al.}}{{Lea, Vidal, Reiter, and Hager}}}
+\bibcite{lipton2014optimal}{{11}{2014}{{Lipton, Elkan, and Naryanaswamy}}{{}}}
+\bibcite{martinez2020machine}{{12}{2020}{{Mart{\'\i }nez et~al.}}{{Mart{\'\i }nez, Schmuck, Pereverzyev~Jr, Pirker, and Haltmeier}}}
+\bibcite{paszke2017automatic}{{13}{2017}{{Paszke et~al.}}{{Paszke, Gross, Chintala, Chanan, Yang, DeVito, Lin, Desmaison, Antiga, and Lerer}}}
+\bibcite{pedregosa2011scikit}{{14}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg et~al.}}}
+\bibcite{santurkar2018does}{{15}{2018}{{Santurkar et~al.}}{{Santurkar, Tsipras, Ilyas, and Madry}}}
+\bibcite{smith2017cyclical}{{16}{2017}{{Smith}}{{}}}
+\bibcite{sutskever2014sequence}{{17}{2014}{{Sutskever, Vinyals, and Le}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces  Stacked Generalization Results\relax }}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:stacking}{{6}{7}{Stacked Generalization Results\relax }{table.caption.15}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Probability Distributions\relax }}{7}{figure.caption.16}\protected@file@percent }
 \newlabel{fig:density}{{10}{7}{Probability Distributions\relax }{figure.caption.16}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Final Accuracy post F\textsubscript  {1}-Maximization\relax }}{7}{table.caption.17}\protected@file@percent }
 \newlabel{tab:Fscore}{{7}{7}{Final Accuracy post F\textsubscript {1}-Maximization\relax }{table.caption.17}{}}
+\bibcite{wolpert1992stacked}{{18}{1992}{{Wolpert}}{{}}}
+\bibcite{zaheer2018adaptive}{{19}{2018}{{Zaheer et~al.}}{{Zaheer, Reddi, Sachan, Kale, and Kumar}}}
