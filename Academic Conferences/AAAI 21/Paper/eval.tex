@@ -16,14 +16,14 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
   \begin{figure}[t]
     \centering 
     \caption{Most reordered Items across Departments} 
-    \includegraphics[width=2.5in]{img/items.png} 
+    \includegraphics[width=3in]{img/items.png} 
     \label{fig:items} 
   \end{figure}
 
   \begin{figure}[t]
     \centering 
     \caption{Density of consumers Vs. Basket Size} 
-    \includegraphics[width=3in]{img/basket.png} 
+    \includegraphics[width=3in, height = 2in]{img/basket.png} 
     {\bf Maximum number of consumers have their basket size between 5-7}
     \label{fig:basket} 
   \end{figure}
@@ -31,7 +31,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
   \begin{figure}[t]
     \centering 
     \caption{Reorder probability Vs. Add to cart order} 
-    \includegraphics[width=3in]{img/addtocart.png} 
+    \includegraphics[width=3in , height = 2in]{img/addtocart.png} 
     \label{fig:addtocart} 
     {\bf Probability of reordering decreases as the order of add to cart increases}
   \end{figure}
@@ -128,21 +128,11 @@ Weighted K Best	  		&  25  &  0.0394 &  0.0316 &  0.0287  \\ \hline
 \label{tab:stacking}
 \end{table}
 
-  \begin{figure}[t]
-    \centering 
-    \caption{Probability Distributions} 
-    \includegraphics[width=3in]{img/density.png} 
-    {\bf Probability Distributions for the non purchased cases tends towards 0 and tapers as the 
-    probability moves towards 0.5, whereas for purchased cases the distribution witnesses a peak 
-    between 0.2 and 0.3 purchased cases  0.5} 
-    \label{fig:density} 
-  \end{figure}
-
 \begin{table}[t]
 \caption{Final Accuracy post F\textsubscript{1}-Maximization}
 \vspace{0.1 in}
 \centering
-\resizebox{3.3in}{!}
+\resizebox{2.5in}{!}
 {%
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -155,6 +145,15 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
 }
 \label{tab:Fscore}
 \end{table}
+
+  \begin{figure}[t]
+    \centering 
+    \caption{Probability Distributions} 
+    \includegraphics[width=2.5in]{img/density.png} 
+    {\bf High-density-probability zone for the non purchased cases lies between 0 and 
+    0.1, whereas for the purchased cases it lies between 0.25 and 0.35}
+    \label{fig:density} 
+  \end{figure}
 
 \subsection{Experiment Setups}
 We started with exploratary data analysis, looking at the data from various cuts and 
@@ -181,18 +180,21 @@ found this combination (out of 3 possible combinations) generating the best resu
 We also present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
 results of stacking at different values of K, for Weighted K-Best model setups. We realised the best outcome at 
 K = 3, which led to a better score compared to any individual model.
-Finally we apply F\textsubscript{1}-Maximization so as to be able to strike a balance between Precision and Recall 
-\cite{buckland1994relationship}.
-After F\textsubscript{1}-Maximization we see that Precision, Recall and F\textsubscript{1}-Score 
-are close enough for all data splits as can be seen from Table \ref{tab:Fscore}.
+Finally we apply F\textsubscript{1}-Maximization over stacked probability values so as to generate 
+binary predictions(1/0 referring to Purchase/Non Purchase). F\textsubscript{1}-Score Optimizer helps strike a 
+balance between Precision and Recall \cite{buckland1994relationship}. Post F\textsubscript{1}-Maximization we 
+observe that Precision, Recall and F\textsubscript{1}-Score are close enough for all data splits, as can be seen 
+in Table \ref{tab:Fscore}.
 \subsection{Industrial Applications}
-The Next Logical Purchase framework has multiple applications in retail industry. Some of its applications 
+The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of its applications 
 include
 \begin{itemize}
-\item {\bf Personalized Marketing:} Item Recommendations at consumer level can be derived from the 
-solution of this problem, which will enhance consumer shopping experience.
-\item {\bf Inventory Planning:} This can help in Planning inventory well, as it provides the 
-consumer choice at a point time.
-\item {\bf Assortment Planning:} In retail stores, this can be used for placing items in MOD based on the 
-consumer preference model at a given time frame.
+\item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations can be 
+made at consumer level to provide a seamless and delightful consumer experience.
+\item {\bf Offer Personalization:} Having a prior knowledge of consumer choice can enable 
+business in designing optimal offers for its consumers.
+\item {\bf Inventory Planning:} Short Term Inventory Planning (2-4 weeks) is largely dependant over 
+consumer preference in near future. Solution of the current problem can assist planners in better inventory planning.
+\item {\bf Assortment Planning:} In retail stores, consumer choice study can be used to optimize the store 
+layout with right product placement over right shelf.
 \end{itemize}
