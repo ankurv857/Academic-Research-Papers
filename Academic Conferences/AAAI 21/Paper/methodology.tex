@@ -1,4 +1,5 @@
 \section{Methodology}
+\label{sec:methodology}
 We treat each consumer-item as an individual object and generate weekly time series based on historical transaction for 
 each object. The target value at each time step (week) takes a binary input, 1/0 (purchased/not purchased).
 We adopted walk forward Validation strategy for model testing and generalization. We split the data into 4 parts
@@ -65,9 +66,28 @@ where H\textsubscript{p} is total loss and y\textsubscript{i} is the label and p
 As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation \ref{eqn:fx}. 
 Hence, we work with machine learning tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN and TCN-LSTM 
-models are shown in Figure \ref{fig:MLP}, Figure \ref{fig:LSTM}, Figure \ref{fig:TCN}
-and Figure \ref{fig:TCN-LSTM}. As described in architecture diagrams Figure \ref{fig:dnndata}, data was classified 
+Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN \cite{lea2016temporal} 
+and TCN-LSTM \cite{karim2017lstm} models are shown in Figure \ref{fig:MLP}, Figure \ref{fig:LSTM}, Figure \ref{fig:TCN}
+and Figure \ref{fig:TCN-LSTM}.
+\begin{itemize}
+\item {\bf Entity Embeddings + Multi Layer Perceptron:} : (MLP) Figure \ref{fig:MLP} is the simplest form of deep neural networks and was 
+proposed in \cite{wang2017time} as a baseline architecture for Time Series classification. The architecture contains 
+three hidden layers fully connected to the output of its previous layer. The final layer 
+is the sigmoid layer to generate probabilities. One disadvantage is that since the input time 
+series is fully connected to the first hidden layer, the temporal information in a time series is lost \cite{fawaz2019deep}.
+\item {\bf Entity Embeddings + Long Short Term Memory:} (LSTM) Figure \ref{fig:LSTM} is a sequence to sequence \cite{sutskever2014sequence} 
+architecture comprising of 2 LSTM layers combined with entity embeddings. This combination flows into 
+3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
+\item {\bf Entity Embeddings + Temporal Convolutional Network:} (TCN) Figure \ref{fig:TCN}, originally
+proposed in \cite{lea2016temporal} , is considered a competitive architecture yielding the best results when evaluated over 
+our experimental dataset. This network is comprised of 3 dilated Convolutional network combined with entity embeddings.
+Similar to LSTM, it is also a sequence to sequence architecture which, after convolving and concatenation flows into 
+3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
+\item {\bf Entity Embeddings + Long Short Term Memory-Temporal Convolutional Network:} (TCN-LSTM) Figure \ref{fig:TCN-LSTM} 
+is again sequence to sequence architecture which inherits the properties of LSTM and TCN in a fully 
+connected network.
+\end{itemize}
+As described in architecture diagrams Figure \ref{fig:dnndata}, data was classified 
 into following groups:
 \begin{itemize}
 \item {\bf Static Categorical:} These are categorical features which donot vary with time. This includes the consumer

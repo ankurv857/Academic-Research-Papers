@@ -3,46 +3,50 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: paper.aux
 The style file: aaai.bst
 Database file #1: paper.bib
+Repeated entry---line 222 of file paper.bib
+ : @article{fawaz2019deep
+ :                       ,
+I'm skipping whatever remains of this entry
 Warning--empty journal in paszke2017automatic
-You've used 19 entries,
+You've used 25 entries,
             2951 wiz_defined-function locations,
-            705 strings with 8610 characters,
-and the built_in function-call counts, 14812 in all, are:
-= -- 1168
-> -- 795
+            739 strings with 9876 characters,
+and the built_in function-call counts, 19741 in all, are:
+= -- 1584
+> -- 1021
 < -- 1
-+ -- 291
-- -- 271
-* -- 1021
-:= -- 2304
-add.period$ -- 80
-call.type$ -- 19
-change.case$ -- 171
-chr.to.int$ -- 20
-cite$ -- 20
-duplicate$ -- 1053
-empty$ -- 1036
-format.name$ -- 321
-if$ -- 2949
++ -- 375
+- -- 345
+* -- 1352
+:= -- 3029
+add.period$ -- 107
+call.type$ -- 25
+change.case$ -- 223
+chr.to.int$ -- 26
+cite$ -- 26
+duplicate$ -- 1409
+empty$ -- 1404
+format.name$ -- 413
+if$ -- 3966
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 226
-newline$ -- 103
-num.names$ -- 76
-pop$ -- 583
+missing$ -- 297
+newline$ -- 133
+num.names$ -- 100
+pop$ -- 770
 preamble$ -- 1
-purify$ -- 153
+purify$ -- 197
 quote$ -- 0
-skip$ -- 486
+skip$ -- 656
 stack$ -- 0
-substring$ -- 602
-swap$ -- 522
+substring$ -- 858
+swap$ -- 708
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 171
+type$ -- 225
 warning$ -- 1
-while$ -- 111
+while$ -- 151
 width$ -- 0
-write$ -- 254
-(There was 1 warning)
+write$ -- 335
+(There was 1 error message)

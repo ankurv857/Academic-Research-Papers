@@ -1,4 +1,5 @@
 \section{Experiments and Results}
+\label{sec:eval}
 We use transactional data from instacart kaggle challenge to train all our models. As can 
 be seen in Figure \ref{fig:sampledata} data has transactional details including consumer id, item id, 
 order id, add to cart order, date of transaction, aisle id and department id.
@@ -14,7 +15,7 @@ We use the above data to generate consumer-item purchase predictions for forward
 
   \begin{figure}[t]
     \centering 
-    \caption{Most ordered Items across Departments} 
+    \caption{Most reordered Items across Departments} 
     \includegraphics[width=2.5in]{img/items.png} 
     \label{fig:items} 
   \end{figure}
@@ -32,7 +33,7 @@ We use the above data to generate consumer-item purchase predictions for forward
     \caption{Reorder probability Vs. Add to cart order} 
     \includegraphics[width=3in]{img/addtocart.png} 
     \label{fig:addtocart} 
-    {\bf Probability of reordering decreases as we go higher up in add to cart order}
+    {\bf Probability of reordering decreases as the order of add to cart increases}
   \end{figure}
 
 \begin{center}

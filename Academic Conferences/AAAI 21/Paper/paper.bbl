@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -25,6 +25,13 @@ Chen, T.; and Guestrin, C. 2016.
 \newblock Xgboost: A scalable tree boosting system.
 \newblock In \emph{Proceedings of the 22nd acm sigkdd international conference
   on knowledge discovery and data mining}, 785--794.
+
+\bibitem[{Choudhury and Nur(2019)}]{choudhury2019machine}
+Choudhury, A.~M.; and Nur, K. 2019.
+\newblock A Machine Learning Approach to Identify Potential Customer Based on
+  Purchase Behavior.
+\newblock In \emph{2019 International Conference on Robotics, Electrical and
+  Signal Processing Techniques (ICREST)}, 242--247. IEEE.
 
 \bibitem[{Fader and Hardie(2009)}]{fader2009probability}
 Fader, P.~S.; and Hardie, B.~G. 2009.
@@ -103,6 +110,18 @@ Santurkar, S.; Tsipras, D.; Ilyas, A.; and Madry, A. 2018.
 \newblock In \emph{Advances in Neural Information Processing Systems},
   2483--2493.
 
+\bibitem[{Serr{\`a}, Pascual, and Karatzoglou(2018)}]{serra2018towards}
+Serr{\`a}, J.; Pascual, S.; and Karatzoglou, A. 2018.
+\newblock Towards a Universal Neural Network Encoder for Time Series.
+\newblock In \emph{CCIA}, 120--129.
+
+\bibitem[{Shah and Avittathur(2007)}]{shah2007retailer}
+Shah, J.; and Avittathur, B. 2007.
+\newblock The retailer multi-item inventory problem with demand cannibalization
+  and substitution.
+\newblock \emph{International journal of production economics} 106(1):
+  104--114.
+
 \bibitem[{Smith(2017)}]{smith2017cyclical}
 Smith, L.~N. 2017.
 \newblock Cyclical learning rates for training neural networks.
@@ -115,6 +134,13 @@ Sutskever, I.; Vinyals, O.; and Le, Q.~V. 2014.
 \newblock In \emph{Advances in neural information processing systems},
   3104--3112.
 
+\bibitem[{Wang, Yan, and Oates(2017)}]{wang2017time}
+Wang, Z.; Yan, W.; and Oates, T. 2017.
+\newblock Time series classification from scratch with deep neural networks: A
+  strong baseline.
+\newblock In \emph{2017 International joint conference on neural networks
+  (IJCNN)}, 1578--1585. IEEE.
+
 \bibitem[{Wolpert(1992)}]{wolpert1992stacked}
 Wolpert, D.~H. 1992.
 \newblock Stacked generalization.
@@ -126,5 +152,18 @@ Zaheer, M.; Reddi, S.; Sachan, D.; Kale, S.; and Kumar, S. 2018.
 \newblock Adaptive methods for nonconvex optimization.
 \newblock In \emph{Advances in neural information processing systems},
   9793--9803.
+
+\bibitem[{Zhao et~al.(2017)Zhao, Lu, Chen, Liu, and Wu}]{zhao2017convolutional}
+Zhao, B.; Lu, H.; Chen, S.; Liu, J.; and Wu, D. 2017.
+\newblock Convolutional neural networks for time series classification.
+\newblock \emph{Journal of Systems Engineering and Electronics} 28(1):
+  162--169.
+
+\bibitem[{Zheng et~al.(2014)Zheng, Liu, Chen, Ge, and Zhao}]{zheng2014time}
+Zheng, Y.; Liu, Q.; Chen, E.; Ge, Y.; and Zhao, J.~L. 2014.
+\newblock Time series classification using multi-channels deep convolutional
+  neural networks.
+\newblock In \emph{International Conference on Web-Age Information Management},
+  298--310. Springer.
 
 \end{thebibliography}
