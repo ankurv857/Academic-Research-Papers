@@ -1,0 +1,188 @@
+\begin{thebibliography}{28}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Bengio and CA(2015)}]{bengio2015rmsprop}
+Bengio, Y.; and CA, M. 2015.
+\newblock Rmsprop and equilibrated adaptive learning rates for nonconvex
+  optimization.
+\newblock \emph{corr abs/1502.04390} .
+
+\bibitem[{Bergstra, Yamins, and Cox(2013)}]{bergstra2013hyperopt}
+Bergstra, J.; Yamins, D.; and Cox, D.~D. 2013.
+\newblock Hyperopt: A python library for optimizing the hyperparameters of
+  machine learning algorithms.
+\newblock In \emph{Proceedings of the 12th Python in science conference},
+  volume~13, 20. Citeseer.
+
+\bibitem[{Buckland and Gey(1994)}]{buckland1994relationship}
+Buckland, M.; and Gey, F. 1994.
+\newblock The relationship between recall and precision.
+\newblock \emph{Journal of the American society for information science} 45(1):
+  12--19.
+
+\bibitem[{Chen and Guestrin(2016)}]{chen2016xgboost}
+Chen, T.; and Guestrin, C. 2016.
+\newblock Xgboost: A scalable tree boosting system.
+\newblock In \emph{Proceedings of the 22nd acm sigkdd international conference
+  on knowledge discovery and data mining}, 785--794.
+
+\bibitem[{Choudhury and Nur(2019)}]{choudhury2019machine}
+Choudhury, A.~M.; and Nur, K. 2019.
+\newblock A Machine Learning Approach to Identify Potential Customer Based on
+  Purchase Behavior.
+\newblock In \emph{2019 International Conference on Robotics, Electrical and
+  Signal Processing Techniques (ICREST)}, 242--247. IEEE.
+
+\bibitem[{Fader and Hardie(2009)}]{fader2009probability}
+Fader, P.~S.; and Hardie, B.~G. 2009.
+\newblock Probability models for customer-base analysis.
+\newblock \emph{Journal of interactive marketing} 23(1): 61--69.
+
+\bibitem[{Fawaz et~al.(2019{\natexlab{a}})Fawaz, Forestier, Weber, Idoumghar,
+  and Muller}]{fawaz2019deep1}
+Fawaz, H.~I.; Forestier, G.; Weber, J.; Idoumghar, L.; and Muller, P.-A.
+  2019{\natexlab{a}}.
+\newblock Deep learning for time series classification: a review.
+\newblock \emph{Data Mining and Knowledge Discovery} 33(4): 917--963.
+
+\bibitem[{Fawaz et~al.(2019{\natexlab{b}})Fawaz, Forestier, Weber, Idoumghar,
+  and Muller}]{fawaz2019deep}
+Fawaz, H.~I.; Forestier, G.; Weber, J.; Idoumghar, L.; and Muller, P.-A.
+  2019{\natexlab{b}}.
+\newblock Deep neural network ensembles for time series classification.
+\newblock In \emph{2019 International Joint Conference on Neural Networks
+  (IJCNN)}, 1--6. IEEE.
+
+\bibitem[{Guo and Berkhahn(2016)}]{guo2016entity}
+Guo, C.; and Berkhahn, F. 2016.
+\newblock Entity embeddings of categorical variables.
+\newblock \emph{arXiv preprint arXiv:1604.06737} .
+
+\bibitem[{Hinton et~al.(2012)Hinton, Srivastava, Krizhevsky, Sutskever, and
+  Salakhutdinov}]{hinton2012improving}
+Hinton, G.~E.; Srivastava, N.; Krizhevsky, A.; Sutskever, I.; and
+  Salakhutdinov, R.~R. 2012.
+\newblock Improving neural networks by preventing co-adaptation of feature
+  detectors.
+\newblock \emph{arXiv preprint arXiv:1207.0580} .
+
+\bibitem[{Izmailov et~al.(2018)Izmailov, Podoprikhin, Garipov, Vetrov, and
+  Wilson}]{izmailov2018averaging}
+Izmailov, P.; Podoprikhin, D.; Garipov, T.; Vetrov, D.; and Wilson, A.~G. 2018.
+\newblock Averaging weights leads to wider optima and better generalization.
+\newblock \emph{arXiv preprint arXiv:1803.05407} .
+
+\bibitem[{Kaggle(2017)}]{data}
+Kaggle. 2017.
+\newblock Instacart Market Basket Analysis.
+\newblock \url{https://www.kaggle.com/c/instacart-market-basket-analysis/data}.
+
+\bibitem[{Karim et~al.(2017)Karim, Majumdar, Darabi, and Chen}]{karim2017lstm}
+Karim, F.; Majumdar, S.; Darabi, H.; and Chen, S. 2017.
+\newblock LSTM fully convolutional networks for time series classification.
+\newblock \emph{IEEE access} 6: 1662--1669.
+
+\bibitem[{Lea et~al.(2016)Lea, Vidal, Reiter, and Hager}]{lea2016temporal}
+Lea, C.; Vidal, R.; Reiter, A.; and Hager, G.~D. 2016.
+\newblock Temporal convolutional networks: A unified approach to action
+  segmentation.
+\newblock In \emph{European Conference on Computer Vision}, 47--54. Springer.
+
+\bibitem[{Lipton, Elkan, and Naryanaswamy(2014)}]{lipton2014optimal}
+Lipton, Z.~C.; Elkan, C.; and Naryanaswamy, B. 2014.
+\newblock Optimal thresholding of classifiers to maximize F1 measure.
+\newblock In \emph{Joint European Conference on Machine Learning and Knowledge
+  Discovery in Databases}, 225--239. Springer.
+
+\bibitem[{Mart{\'\i}nez et~al.(2020)Mart{\'\i}nez, Schmuck, Pereverzyev~Jr,
+  Pirker, and Haltmeier}]{martinez2020machine}
+Mart{\'\i}nez, A.; Schmuck, C.; Pereverzyev~Jr, S.; Pirker, C.; and Haltmeier,
+  M. 2020.
+\newblock A machine learning framework for customer purchase prediction in the
+  non-contractual setting.
+\newblock \emph{European Journal of Operational Research} 281(3): 588--596.
+
+\bibitem[{Paszke et~al.(2017)Paszke, Gross, Chintala, Chanan, Yang, DeVito,
+  Lin, Desmaison, Antiga, and Lerer}]{paszke2017automatic}
+Paszke, A.; Gross, S.; Chintala, S.; Chanan, G.; Yang, E.; DeVito, Z.; Lin, Z.;
+  Desmaison, A.; Antiga, L.; and Lerer, A. 2017.
+\newblock Automatic differentiation in pytorch .
+
+\bibitem[{Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel,
+  Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg
+  et~al.}]{pedregosa2011scikit}
+Pedregosa, F.; Varoquaux, G.; Gramfort, A.; Michel, V.; Thirion, B.; Grisel,
+  O.; Blondel, M.; Prettenhofer, P.; Weiss, R.; Dubourg, V.; et~al. 2011.
+\newblock Scikit-learn: Machine learning in Python.
+\newblock \emph{the Journal of machine Learning research} 12: 2825--2830.
+
+\bibitem[{Santurkar et~al.(2018)Santurkar, Tsipras, Ilyas, and
+  Madry}]{santurkar2018does}
+Santurkar, S.; Tsipras, D.; Ilyas, A.; and Madry, A. 2018.
+\newblock How does batch normalization help optimization?
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  2483--2493.
+
+\bibitem[{Serr{\`a}, Pascual, and Karatzoglou(2018)}]{serra2018towards}
+Serr{\`a}, J.; Pascual, S.; and Karatzoglou, A. 2018.
+\newblock Towards a Universal Neural Network Encoder for Time Series.
+\newblock In \emph{CCIA}, 120--129.
+
+\bibitem[{Shah and Avittathur(2007)}]{shah2007retailer}
+Shah, J.; and Avittathur, B. 2007.
+\newblock The retailer multi-item inventory problem with demand cannibalization
+  and substitution.
+\newblock \emph{International journal of production economics} 106(1):
+  104--114.
+
+\bibitem[{Smith(2017)}]{smith2017cyclical}
+Smith, L.~N. 2017.
+\newblock Cyclical learning rates for training neural networks.
+\newblock In \emph{2017 IEEE Winter Conference on Applications of Computer
+  Vision (WACV)}, 464--472. IEEE.
+
+\bibitem[{Sutskever, Vinyals, and Le(2014)}]{sutskever2014sequence}
+Sutskever, I.; Vinyals, O.; and Le, Q.~V. 2014.
+\newblock Sequence to sequence learning with neural networks.
+\newblock In \emph{Advances in neural information processing systems},
+  3104--3112.
+
+\bibitem[{Wang, Yan, and Oates(2017)}]{wang2017time}
+Wang, Z.; Yan, W.; and Oates, T. 2017.
+\newblock Time series classification from scratch with deep neural networks: A
+  strong baseline.
+\newblock In \emph{2017 International joint conference on neural networks
+  (IJCNN)}, 1578--1585. IEEE.
+
+\bibitem[{Wolpert(1992)}]{wolpert1992stacked}
+Wolpert, D.~H. 1992.
+\newblock Stacked generalization.
+\newblock \emph{Neural networks} 5(2): 241--259.
+
+\bibitem[{Zaheer et~al.(2018)Zaheer, Reddi, Sachan, Kale, and
+  Kumar}]{zaheer2018adaptive}
+Zaheer, M.; Reddi, S.; Sachan, D.; Kale, S.; and Kumar, S. 2018.
+\newblock Adaptive methods for nonconvex optimization.
+\newblock In \emph{Advances in neural information processing systems},
+  9793--9803.
+
+\bibitem[{Zhao et~al.(2017)Zhao, Lu, Chen, Liu, and Wu}]{zhao2017convolutional}
+Zhao, B.; Lu, H.; Chen, S.; Liu, J.; and Wu, D. 2017.
+\newblock Convolutional neural networks for time series classification.
+\newblock \emph{Journal of Systems Engineering and Electronics} 28(1):
+  162--169.
+
+\bibitem[{Zheng et~al.(2014)Zheng, Liu, Chen, Ge, and Zhao}]{zheng2014time}
+Zheng, Y.; Liu, Q.; Chen, E.; Ge, Y.; and Zhao, J.~L. 2014.
+\newblock Time series classification using multi-channels deep convolutional
+  neural networks.
+\newblock In \emph{International Conference on Web-Age Information Management},
+  298--310. Springer.
+
+\end{thebibliography}

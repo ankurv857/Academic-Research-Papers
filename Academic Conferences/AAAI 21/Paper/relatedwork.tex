@@ -1,0 +1,24 @@
+\section{Related Work}
+\label{sec:relatedwork}
+In the past few years, various machine learning methods for predicting consumer purchase pattern have been analyzed in
+the academia field and few of them are often used by ML practitioners. In most cases those approaches are based on extracting 
+consumer's latent characteristics from its past purchase behavior and applying statistical and  
+ML based formulations \cite{fader2009probability, choudhury2019machine}. 
+Some of previous studies have analyzed the use of random forest and Xgboost techniques in order to predict 
+consumer retention, where past consumer behavior was used as potential explanatory variable 
+for modelling such patterns. In one such study \cite{martinez2020machine}, the authors develop a model for predicting wether a 
+consumer performs a purchase in prescribed future time frame based on historical purchase information such as the number
+of transactions, time of the last transaction, and the relative change in total spending of a consumer. 
+They found gradient boosting to perform best over test data. We propose neural network architectures with entity embeddings
+\cite{guo2016entity} which outperforms the gradient boosting type of models like Xgboost \cite{chen2016xgboost}. 
+
+Over Time Series Classification part of our problem,
+close to our work is Deep Neural Network Ensembles for Time Series Classification \cite{fawaz2019deep}. 
+In this paper, authors show how an ensemble of multiple Convolutional Neural Networks can improve upon the 
+state-of-the-art performance of individual neural networks. They use 6 deep learning classifiers 
+including Multi Layer Perceptron, Fully Convolutional Neural Network, Residual Network, 
+Encoder \cite{serra2018towards}, Multi-Channels Deep Convolutional Neural Networks \cite{zheng2014time} and 
+Time Convolutional Neural Network \cite{zhao2017convolutional}. The first three were originally proposed in \cite{wang2017time}. 
+We apply the concept of entity embeddings \cite{guo2016entity} along with neural network architectures
+like Multi Layer Perceptron, Long Short Term Memory (LSTM), Temporal Convolutional Networks (TCN) \cite{lea2016temporal} and 
+TCN-LSTM \cite{karim2017lstm}, and prove their application in modelling consumer-item time series data.

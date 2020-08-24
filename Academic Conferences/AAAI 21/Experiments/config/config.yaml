@@ -1,0 +1,701 @@
+data:
+  timestamp_column: date
+  frequency: W
+  ts_id_columns:
+    - user_id
+    - product_id
+  target_column: is_ordered
+  regressor_columns:
+    numeric:
+      - add_to_cart_order
+    categorical: []
+  temporal_columns:
+    - add_to_cart_order
+  relative_columns:
+    - add_to_cart_order
+  temporal_counter: []
+  forecast_horizon: 2
+  aggregation_method:
+    is_ordered: max
+    add_to_cart_order: mean
+  fillna_method:
+    value:
+      is_ordered: 0
+
+data_cleaning:
+  raw_data_path: raw_data
+  cleaned_data_path: data_cleaning
+  dataframe_attribues:
+    orders.csv:
+      - type: date_format
+        date_format: "%Y-%m-%d" 
+      - type: subset_data
+        column_name: date
+        condition: '>'
+        value: '2017-12-31'
+      - type: subset_data
+        column_name: date
+        condition: '<'
+        value: '2019-01-01'
+
+data_preparation:
+  data_prep_path: data_prepared
+  serial_ops:
+    - input:
+        name: orders_products
+        file_read_kwargs: {}
+      output: prepared_data
+      operations:
+        - operation: join_data
+          args:
+            - orders
+          kwargs:
+            file1_col: 
+              - order_id
+            file2_col: 
+              - order_id
+            join_type: inner
+            drop_col: []
+        - operation: join_data
+          args:
+            - products
+          kwargs:
+            file1_col: 
+              - product_id
+            file2_col: 
+              - product_id
+            join_type: inner
+            drop_col: []
+        - operation: join_data
+          args:
+            - aisles
+          kwargs:
+            file1_col: 
+              - aisle_id
+            file2_col: 
+              - aisle_id
+            join_type: inner
+            drop_col: []
+        - operation: join_data
+          args:
+            - departments
+          kwargs:
+            file1_col: 
+              - department_id
+            file2_col: 
+              - department_id
+            join_type: inner
+            drop_col: []
+        - operation: new_columns
+          kwargs:
+            column_name: is_ordered
+            value: 1
+  dump_data:
+    input_data: prepared_data
+    future_data: 
+
+feature_engg:
+  valround: False
+  groups:
+    - group_id_columns: []
+  feature_types:
+    - regressor
+    - datetime
+    - sinusoidal
+    - lagged
+    - offset
+    - relative
+    - counter
+    - target_encoded
+    - label_encoded
+  lag_params:
+    range:
+      - 2
+      - 12
+      - 1
+    values:
+      - 13
+  offset_params:
+    period_types:
+      - 1
+      - 2
+      - 4
+      - 6
+      - 12
+    function_types:
+      - mean
+      - sum
+  relative_params:
+    relative_periods:
+      - 2
+      - 4
+  sinusoidal_freq_max_count: 12
+  max_val_rounds: 1
+  stride: 1
+
+training:
+  GPU: False
+  Metric: BCELoss
+  future_types:
+    - virtual_future
+  static_cols:
+    - user_id_label_encoded
+    - product_id_label_encoded
+    - map_label_encoded
+    - aisle_id_label_encoded
+    - department_id_label_encoded
+    - user_id_target_encoded
+    - product_id_target_encoded
+    - map_target_encoded
+    - aisle_id_target_encoded
+    - department_id_target_encoded
+  n_groups:
+  groups:
+    all:
+      group_id_columns: []
+      model_names:
+        - MLP
+        - LSTM
+        - WAVENET
+        - CNN_LSTM
+        - Xgboost
+        - RandomForest
+  val_rounds: 1
+  models:
+    Xgboost:
+      min_obj_size: False
+      best_trials: 6
+      multiprocessing: True
+      feature_groups:
+        - regressor
+        - datetime
+        - sinusoidal
+        - lagged
+        - offset
+        - relative
+        - counter
+        - target_encoded
+        - label_encoded
+      exclude_cols: []
+      scale: False
+      max_evals: 100
+      early_stopping_rounds: 25
+      hyperparams:
+        objective:
+          type: choice
+          params:
+            - binary:logistic
+        booster:
+          type: choice
+          params:
+            - gbtree
+        learning_rate:
+          type: loguniform
+          params:
+            - 0.01
+            - 0.5
+        max_depth:
+          type: quniform
+          params:
+            - 4
+            - 12
+            - 2
+        reg_lambda:
+          type: loguniform
+          params:
+            - .01
+            - 100
+        n_estimators:
+          type: quniform
+          params:
+            - 250
+            - 400
+            - 50
+    RandomForest:
+      min_obj_size: False
+      best_trials: 6
+      multiprocessing: True
+      feature_groups:
+        - regressor
+        - datetime
+        - sinusoidal
+        - lagged
+        - offset
+        - relative
+        - counter
+        - target_encoded
+        - label_encoded
+      exclude_cols: []
+      scale: False
+      max_evals: 100
+      hyperparams:
+        criterion:
+          type: choice
+          params:
+            - gini
+            - entropy
+        max_depth:
+          type: quniform
+          params:
+            - 2
+            - 10
+            - 1
+        min_samples_leaf:
+          type: quniform
+          params:
+            - 2
+            - 10
+            - 2
+        n_estimators:
+          type: quniform
+          params:
+            - 200
+            - 250
+            - 10
+    MLP:
+      min_obj_size: False
+      multiprocessing: False
+      feature_groups:
+        - regressor
+        - datetime
+        - sinusoidal
+        - lagged
+        - offset
+        - relative
+        - counter
+        - target_encoded
+        - label_encoded
+      exclude_cols: []
+      feature_group_type:
+        feature_group_type1: []
+      scale: True
+      trials: 12
+      hyperparam_trials: True
+      random_sample: False
+      trial_params:
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau 
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
+      default_params:
+        optimizer: Adam
+        scheduler: ReduceLROnPlateau
+      params:
+        network_params:
+          epochs: 250
+          compression_factor: 4
+          max_embedding: 256
+        dataloader_params:
+          batch_size: 64
+          shuffle: True
+          num_workers: 16
+        optimizer_params:
+          RMSprop:
+            lr: 0.0005
+            alpha: 0.9
+            weight_decay: 0.00005
+          SGD:
+            lr: 0.0005
+            weight_decay: 0.00005
+          Adam:
+            lr: 0.0005
+            weight_decay: 0.00005
+        scheduler_params:
+          CyclicLR:
+            base_lr: 0.00005
+            max_lr: 0.0005
+            step_size_up: 1
+            cycle_momentum: True
+          ReduceLROnPlateau:
+            mode: min
+            factor: 0.2
+            min_lr: 0.00005
+            patience: 4
+        SWA_params:
+          swa_start: 10
+          swa_freq: 5
+          swa_lr: 0.0005
+        callback_params:
+          earlystopping:
+            patience: 3
+        regularization:
+          l2_norm: False
+          reg_param:
+            reg_loss:
+            lmbda: 0.1
+        parameter_averaging:
+          window: 2
+    LSTM:
+      min_obj_size: True
+      multiprocessing: False
+      feature_groups:
+        - regressor
+        - datetime
+        - sinusoidal
+        - lagged
+        - offset
+        - relative
+        - counter
+        - target_encoded
+        - label_encoded
+      exclude_cols: []
+      feature_group_type:
+        feature_group_type1: []
+      scale: True
+      trials: 12
+      hyperparam_trials: True
+      random_sample: False
+      trial_params:
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau 
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
+      default_params:
+        optimizer: Adam
+        scheduler: ReduceLROnPlateau
+      params:
+        network_params:
+          epochs: 250
+          compression_factor: 4
+          max_embedding: 256
+        dataloader_params:
+          batch_size: 64
+          shuffle: True
+          num_workers: 16
+        LSTM_params:
+          lstm_layers: 2
+        optimizer_params:
+          RMSprop:
+            lr: 0.0005
+            alpha: 0.9
+            weight_decay: 0.00005
+          SGD:
+            lr: 0.0005
+            weight_decay: 0.00005
+          Adam:
+            lr: 0.0005
+            weight_decay: 0.00005
+        scheduler_params:
+          CyclicLR:
+            base_lr: 0.00005
+            max_lr: 0.0005
+            step_size_up: 1
+            cycle_momentum: True
+          ReduceLROnPlateau:
+            mode: min
+            factor: 0.2
+            min_lr: 0.00005
+            patience: 4
+        SWA_params:
+          swa_start: 10
+          swa_freq: 5
+          swa_lr: 0.0005
+        callback_params:
+          earlystopping:
+            patience: 3
+        regularization:
+          l2_norm: False
+          reg_param:
+            reg_loss:
+            lmbda: 0.1
+        parameter_averaging:
+          window: 2
+    WAVENET:
+      min_obj_size: True
+      multiprocessing: False
+      feature_groups:
+        - regressor
+        - datetime
+        - sinusoidal
+        - lagged
+        - offset
+        - relative
+        - counter
+        - target_encoded
+        - label_encoded
+      exclude_cols: []
+      feature_group_type:
+        feature_group_type1: []
+      scale: True
+      trials: 12
+      hyperparam_trials: True
+      random_sample: False
+      trial_params:
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau 
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
+      default_params:
+        optimizer: Adam
+        scheduler: ReduceLROnPlateau
+      params:
+        network_params:
+          epochs: 2
+          compression_factor: 4
+          max_embedding: 256
+        dataloader_params:
+          batch_size: 64
+          shuffle: True
+          num_workers: 16
+        convnet_params:
+          kernel_size: 2
+          dilations: 3
+        optimizer_params:
+          RMSprop:
+            lr: 0.0005
+            alpha: 0.9
+            weight_decay: 0.00005
+          SGD:
+            lr: 0.0005
+            weight_decay: 0.00005
+          Adam:
+            lr: 0.0005
+            weight_decay: 0.00005
+        scheduler_params:
+          CyclicLR:
+            base_lr: 0.00005
+            max_lr: 0.0005
+            step_size_up: 1
+            cycle_momentum: True
+          ReduceLROnPlateau:
+            mode: min
+            factor: 0.2
+            min_lr: 0.00005
+            patience: 4
+        SWA_params:
+          swa_start: 10
+          swa_freq: 5
+          swa_lr: 0.0005
+        callback_params:
+          earlystopping:
+            patience: 3
+        regularization:
+          l2_norm: False
+          reg_param:
+            reg_loss:
+            lmbda: 0.1
+        parameter_averaging:
+          window: 2
+    CNN_LSTM:
+      min_obj_size: True
+      multiprocessing: False
+      feature_groups:
+        - regressor
+        - datetime
+        - sinusoidal
+        - lagged
+        - offset
+        - relative
+        - counter
+        - target_encoded
+        - label_encoded
+      exclude_cols: []
+      feature_group_type:
+        feature_group_type1: []
+      scale: True
+      trials: 12
+      hyperparam_trials: True
+      random_sample: False
+      trial_params:
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau 
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+        - optimizer: RMSprop
+          scheduler: ReduceLROnPlateau
+          parameter_average: True
+          SWA: True
+        - optimizer: RMSprop
+          scheduler: CyclicLR
+          parameter_average: True
+          SWA: True
+        - optimizer: Adam
+          scheduler: ReduceLROnPlateau  
+          parameter_average: True
+          SWA: True
+      default_params:
+        optimizer: Adam
+        scheduler: ReduceLROnPlateau
+      params:
+        network_params:
+          epochs: 250
+          compression_factor: 4
+          max_embedding: 256
+        dataloader_params:
+          batch_size: 64
+          shuffle: True
+          num_workers: 16
+        LSTM_params:
+          lstm_layers: 2
+        convnet_params:
+          kernel_size: 2
+          dilations: 3
+        optimizer_params:
+          RMSprop:
+            lr: 0.0005
+            alpha: 0.9
+            weight_decay: 0.00005
+          SGD:
+            lr: 0.0005
+            weight_decay: 0.00005
+          Adam:
+            lr: 0.0005
+            weight_decay: 0.00005
+        scheduler_params:
+          CyclicLR:
+            base_lr: 0.00005
+            max_lr: 0.0005
+            step_size_up: 1
+            cycle_momentum: True
+          ReduceLROnPlateau:
+            mode: min
+            factor: 0.2
+            min_lr: 0.00005
+            patience: 4
+        SWA_params:
+          swa_start: 10
+          swa_freq: 5
+          swa_lr: 0.0005
+        callback_params:
+          earlystopping:
+            patience: 3
+        regularization:
+          l2_norm: False
+          reg_param:
+            reg_loss:
+            lmbda: 0.1
+        parameter_averaging:
+          window: 2
+stacking:
+  future_types:
+    - virtual_future
+  NewProduct: False
+  model_exclude:
+  model_include:
+    - all_MLP
+    - all_LSTM
+    - all_WAVENET
+    - all_CNN_LSTM
+  round_penalty: False
+  candidate_weight: True
+  n_candidates: 50
+  k_best_candidates: 3
+  n_groups:
+  model_names:
+    - K_best

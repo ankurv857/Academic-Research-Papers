@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper.aux
+The style file: aaai.bst
+Database file #1: paper.bib
+Warning--empty journal in paszke2017automatic
+You've used 28 entries,
+            2951 wiz_defined-function locations,
+            756 strings with 10289 characters,
+and the built_in function-call counts, 21562 in all, are:
+= -- 1733
+> -- 1110
+< -- 1
++ -- 410
+- -- 374
+* -- 1479
+:= -- 3332
+add.period$ -- 119
+call.type$ -- 28
+change.case$ -- 243
+chr.to.int$ -- 29
+cite$ -- 29
+duplicate$ -- 1537
+empty$ -- 1532
+format.name$ -- 448
+if$ -- 4314
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 324
+newline$ -- 148
+num.names$ -- 112
+pop$ -- 831
+preamble$ -- 1
+purify$ -- 217
+quote$ -- 0
+skip$ -- 702
+stack$ -- 0
+substring$ -- 937
+swap$ -- 775
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 252
+warning$ -- 1
+while$ -- 167
+width$ -- 0
+write$ -- 373
+(There was 1 warning)
