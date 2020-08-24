@@ -66,7 +66,8 @@ for training the models. Below is the formula to calculate Binary Cross-Entropy:
     \label{eqn:logloss}
   \end{equation}
 here H\textsubscript{p} represents computed loss, y\textsubscript{i} is the target value (label), and p(y\textsubscript{i}) 
-is the predicted probability against the target.
+is the predicted probability against the target. The value of BCELoss lies between 0 to 1. We can infer 
+from Equation \ref{eqn:logloss} that Lower the BCELoss, better the Accuracy.
 \subsection{Model Architectures}
 As mentioned above, traditional machine learning models are not really a suitable choice for modelling \emph{f} 
 Equation \ref{eqn:fx}. Hence, we work with machine learning tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{28}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -19,6 +19,12 @@ Bergstra, J.; Yamins, D.; and Cox, D.~D. 2013.
   machine learning algorithms.
 \newblock In \emph{Proceedings of the 12th Python in science conference},
   volume~13, 20. Citeseer.
+
+\bibitem[{Buckland and Gey(1994)}]{buckland1994relationship}
+Buckland, M.; and Gey, F. 1994.
+\newblock The relationship between recall and precision.
+\newblock \emph{Journal of the American society for information science} 45(1):
+  12--19.
 
 \bibitem[{Chen and Guestrin(2016)}]{chen2016xgboost}
 Chen, T.; and Guestrin, C. 2016.

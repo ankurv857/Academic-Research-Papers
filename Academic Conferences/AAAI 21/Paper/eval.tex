@@ -160,23 +160,30 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
 We started with exploratary data analysis, looking at the data from various cuts and 
 trying to study the variations of the features with target. Some of them include looking at the 
 density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
-across departments Figure \ref{fig:items}, variation of order probability with add to cart order Figure \ref{fig:addtocart},
-order probability variations at different temporal cuts like week, month and quarter, transactional metrics at both
-consumer and item levels like total orders, total reorders, recency, gap between orders, etc.
-We then performed multiple experiments with above features and different hyper-configurations.
+across departments Figure \ref{fig:items}, variation of reorder probability with add to cart order Figure \ref{fig:addtocart},
+order probability variations at different temporal cuts like week, month and quarter, transactional metrics 
+like total orders, total reorders, recency, gap between orders, at both consumer and item levels.
+We then performed multiple experiments with above features and different hyper-configurations to land at reasonable 
+parameters to perform our experiments and present results.
 
 \subsection{Results and Observations}
-Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} shows the experimental results obtained with different hyper-configurations over multiple models.
-From Table \ref{tab:dlmodels}, we can infer that RMSprop and CyclicLR emerged as the clear winners as 
-Optimizer and Scheduler respectively. TCN showed the best Accuracy score at test2, with most of the other Deep
-Learning models have comparable results. Also, we observe that all the Deep Learning models out perform Machine Learning 
-models including Xgboost and RandomForest both in terms of Accuracy and Generalization. This insight can be drawn from 
-Table \ref{tab:training} which has the average of BCELoss across 3 best trials. Range of scores across val , test1 and test2 states 
-that Deep Learning models are showing more stable results in terms of model fit. 
-We present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
-results of stacking at different values of K, both for Weighted K-Best as well as K-Best model setups. Finally we 
-apply F\textsubscript{1}-Maximization so as to be able to strike a balance between Precision and Recall.
-After F\textsubscript{1}-Maximization we see that all Precision, Recall and F\textsubscript{1}-Score 
+Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} show the experimental results obtained across models with different 
+hyper-configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
+and Table \ref{tab:mlmodels} has Machine Learning model results. From model performance perspective, it is observed that 
+TCN showed the best Accuracy score at test2, with most of the other Deep Learning models having comparable scores.
+Also, from Table \ref{tab:training} we see that all the Deep Learning models out perform Machine Learning models 
+including Xgboost and RandomForest both in terms of Accuracy and Generalization. This table has the average of 
+BCELoss across 3 best trials, and it can be observed that TCN has the lowest BCELoss, which translates into
+best Accuracy. From hyper-parameter configuration perspective we observe that RMSprop and CyclicLR emerged as the 
+clear winners as Optimizer and Scheduler respectively from Table \ref{tab:dlmodels}. 7 out of 12 times, we 
+found this combination (out of 3 possible combinations) generating the best result.
+
+We also present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
+results of stacking at different values of K, for Weighted K-Best model setups. We realised the best outcome at 
+K = 3, which led to a better score compared to any individual model.
+Finally we apply F\textsubscript{1}-Maximization so as to be able to strike a balance between Precision and Recall 
+\cite{buckland1994relationship}.
+After F\textsubscript{1}-Maximization we see that Precision, Recall and F\textsubscript{1}-Score 
 are close enough for all data splits as can be seen from Table \ref{tab:Fscore}.
 \subsection{Industrial Applications}
 The Next Logical Purchase framework has multiple applications in retail industry. Some of its applications 
