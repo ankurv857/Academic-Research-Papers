@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  24 AUG 2020 12:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  24 AUG 2020 18:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -365,86 +365,96 @@ texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]) (./methodology.tex
-Underfull \hbox (badness 1033) in paragraph at lines 78--81
+Underfull \hbox (badness 1033) in paragraph at lines 83--86
 []\OT1/ptm/b/n/10 Entity Em-bed-dings + Long Short Term Mem-ory:
  []
 
 [2]
-Underfull \hbox (badness 1033) in paragraph at lines 86--89
+Underfull \hbox (badness 1033) in paragraph at lines 91--94
 []\OT1/ptm/b/n/10 Entity Em-bed-dings + Long Short Term Memory-
  []
 
-<img/dnndata.png, id=133, 773.89125pt x 190.7125pt>
+<img/dnndata.png, id=139, 773.89125pt x 190.7125pt>
 File: img/dnndata.png Graphic file (type png)
 <use img/dnndata.png>
-Package pdftex.def Info: img/dnndata.png  used on input line 108.
+Package pdftex.def Info: img/dnndata.png  used on input line 112.
 (pdftex.def)             Requested size: 238.49121pt x 58.77104pt.
-<img/MLP.png, id=135, 611.28375pt x 265.99374pt>
+<img/MLP.png, id=141, 611.28375pt x 265.99374pt>
 File: img/MLP.png Graphic file (type png)
 <use img/MLP.png>
-Package pdftex.def Info: img/MLP.png  used on input line 114.
+Package pdftex.def Info: img/MLP.png  used on input line 118.
 (pdftex.def)             Requested size: 238.49121pt x 103.77367pt.
-<img/LSTM.png, id=136, 613.29124pt x 359.3425pt>
+<img/LSTM.png, id=142, 613.29124pt x 359.3425pt>
 File: img/LSTM.png Graphic file (type png)
 <use img/LSTM.png>
-Package pdftex.def Info: img/LSTM.png  used on input line 120.
+Package pdftex.def Info: img/LSTM.png  used on input line 124.
 (pdftex.def)             Requested size: 238.49121pt x 139.73726pt.
-<img/TCN.png, id=137, 612.2875pt x 447.6725pt>
+<img/TCN.png, id=143, 612.2875pt x 447.6725pt>
 File: img/TCN.png Graphic file (type png)
 <use img/TCN.png>
-Package pdftex.def Info: img/TCN.png  used on input line 126.
+Package pdftex.def Info: img/TCN.png  used on input line 130.
 (pdftex.def)             Requested size: 238.49121pt x 174.37297pt.
-<img/TCNLSTM.png, id=138, 707.64375pt x 450.68375pt>
+<img/TCNLSTM.png, id=144, 707.64375pt x 450.68375pt>
 File: img/TCNLSTM.png Graphic file (type png)
 <use img/TCNLSTM.png>
-Package pdftex.def Info: img/TCNLSTM.png  used on input line 132.
+Package pdftex.def Info: img/TCNLSTM.png  used on input line 136.
 (pdftex.def)             Requested size: 238.49121pt x 151.88945pt.
+
+Underfull \hbox (badness 3199) in paragraph at lines 140--149
+[]\OT1/ptm/m/n/10 The con-sumer pur-chase pat-tern has huge vari-a-tion
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 140--149
+\OT1/ptm/m/n/10 in terms of time of pur-chase (week-day/weekends), ca-
+ []
+
 [3 <./img/dnndata.png> <./img/MLP.png> <./img/LSTM.png>]
-Underfull \hbox (badness 2318) in paragraph at lines 180--181
+Underfull \hbox (badness 2318) in paragraph at lines 189--190
 \OT1/ptm/m/n/10 Apart from these, Reg-u-lar-iza-tion pa-ram-e-ters like Reg
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 225.
+(hyperref)                removing `\mathsurround' on input line 216.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 225.
+(hyperref)                removing `\z@' on input line 216.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 225.
+(hyperref)                removing `subscript' on input line 216.
 
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 2
-37.
+28.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 237.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 228.
  [4 <./img/TCN.png> <./img/TCNLSTM.png>]) (./eval.tex
-<img/sampledata.png, id=187, 944.52875pt x 199.74625pt>
+<img/sampledata.png, id=193, 944.52875pt x 199.74625pt>
 File: img/sampledata.png Graphic file (type png)
 <use img/sampledata.png>
 Package pdftex.def Info: img/sampledata.png  used on input line 12.
 (pdftex.def)             Requested size: 476.98244pt x 100.87257pt.
-<img/items.png, id=188, 517.935pt x 541.02126pt>
+<img/items.png, id=194, 517.935pt x 541.02126pt>
 File: img/items.png Graphic file (type png)
 <use img/items.png>
 Package pdftex.def Info: img/items.png  used on input line 19.
 (pdftex.def)             Requested size: 180.67499pt x 188.72461pt.
-<img/basket.png, id=189, 481.8pt x 389.455pt>
+<img/basket.png, id=195, 481.8pt x 389.455pt>
 File: img/basket.png Graphic file (type png)
 <use img/basket.png>
 Package pdftex.def Info: img/basket.png  used on input line 26.
 (pdftex.def)             Requested size: 216.81pt x 175.25313pt.
-<img/addtocart.png, id=190, 475.7775pt x 384.43625pt>
+<img/addtocart.png, id=196, 475.7775pt x 384.43625pt>
 File: img/addtocart.png Graphic file (type png)
 <use img/addtocart.png>
 Package pdftex.def Info: img/addtocart.png  used on input line 34.
 (pdftex.def)             Requested size: 216.81pt x 175.1886pt.
-<img/density.png, id=191, 356.33125pt x 423.5825pt>
+<img/density.png, id=197, 356.33125pt x 423.5825pt>
 File: img/density.png Graphic file (type png)
 <use img/density.png>
 Package pdftex.def Info: img/density.png  used on input line 134.
@@ -455,21 +465,29 @@ Underfull \hbox (badness 2035) in paragraph at lines 185--187
 tions at
  []
 
-[5]) (./conclusion.tex) (./paper.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6 <./img/sampledata.png> <./img/items.png> <./img/basket.png>]
-Underfull \hbox (badness 2790) in paragraph at lines 49--52
+) (./conclusion.tex) (./paper.bbl [5] [6 <./img/sampledata.png>]
+Underfull \hbox (badness 2790) in paragraph at lines 57--60
 []\OT1/ptm/m/n/10 Guo, C.; and Berkhahn, F. 2016.  En-tity em-
  []
 
 
-Underfull \hbox (badness 6173) in paragraph at lines 55--60
+Underfull \hbox (badness 6173) in paragraph at lines 63--68
 []\OT1/ptm/m/n/10 Hinton, G. E.; Sri-vas-tava, N.; Krizhevsky, A.;
  []
 
-[7 <./img/addtocart.png>]
-Underfull \hbox (badness 1009) in paragraph at lines 163--168
+
+Underfull \hbox (badness 4060) in paragraph at lines 76--79
+[]\OT1/ptm/m/n/10 Kaggle. 2017.  In-stacart Mar-ket Bas-ket Anal-
+ []
+
+
+Underfull \hbox (badness 6380) in paragraph at lines 76--79
+\OT1/ptm/m/n/10 y-sis.  []$https : / / www . kaggle . com / c / instacart -[] m
+arket -[]
+ []
+
+[7 <./img/items.png> <./img/basket.png> <./img/addtocart.png>]
+Underfull \hbox (badness 1009) in paragraph at lines 176--181
 []\OT1/ptm/m/n/10 Zheng, Y.; Liu, Q.; Chen, E.; Ge, Y.; and Zhao,
  []
 
@@ -481,7 +499,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 56.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 56.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 56.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 7A2ECD9A24CBCBD389814D044CE47469;722.
+(rerunfilecheck)             Checksum: 30B9A07A14E1536B0FC3A58E8497622A;802.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -489,13 +507,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 56.
  ) 
 Here is how much of TeX's memory you used:
- 7598 strings out of 480608
- 118140 string characters out of 5903631
- 418346 words of memory out of 5000000
- 23257 multiletter control sequences out of 15000+600000
+ 7608 strings out of 480608
+ 118300 string characters out of 5903631
+ 421463 words of memory out of 5000000
+ 23264 multiletter control sequences out of 15000+600000
  558856 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,18n,42p,228b,448s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,42p,228b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -507,10 +525,10 @@ ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (8 pages, 1518249 bytes).
+Output written on paper.pdf (8 pages, 1518897 bytes).
 PDF statistics:
- 296 PDF objects out of 1000 (max. 8388607)
- 253 compressed objects within 3 object streams
- 75 named destinations out of 1000 (max. 500000)
- 147 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 263 compressed objects within 3 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 155 words of extra memory for PDF output out of 10000 (max. 10000000)
 

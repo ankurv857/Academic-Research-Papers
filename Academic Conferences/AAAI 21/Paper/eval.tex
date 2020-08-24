@@ -1,11 +1,11 @@
 \section{Experiments and Results}
 \label{sec:eval}
-We use transactional data from instacart kaggle challenge to train all our models. As can 
+We use transactional data from instacart kaggle challenge \cite{data} to train all our models. As can 
 be seen in Figure \ref{fig:sampledata} data has transactional details including consumer id, item id, 
 order id, add to cart order, date of transaction, aisle id and department id.
 Also, from Table 1, we can see that we utilize 1 year data which gets split into train, validation,
 test1 and test2. We generate consumer-item-week level data with purchase/ non purchase being the target.
-We use the above data to generate consumer-item purchase predictions for forwards 2 time steps (2 weeks for our case).
+We use the above data to generate consumer-item purchase predictions for 2 time steps in the future (2 weeks in our case).
  \begin{figure*}[!t]
     \centering 
     \caption{Sample Dataset} 

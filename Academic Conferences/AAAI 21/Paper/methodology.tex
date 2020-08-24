@@ -1,11 +1,15 @@
 \section{Methodology}
 \label{sec:methodology}
-We treat each consumer-item as an individual object and generate weekly time series based on historical transaction for 
-each object. The target value at each time step (week) takes a binary input, 1/0 (purchased/not purchased).
-We adopted walk forward Validation strategy for model testing and generalization. We split the data into 4 parts
-based on the time series as shown in Table \ref{tab:datasplit}.
-We then generate various types of features including datetime related, label encoded and target encoded 
-within and across objects. Below are the feature groups we experimented with explicitly or unexplicitly:
+In our framework, we treat each consumer-item as an individual object and shape them into weekly time series data
+based on historical transactions, where the target value at each time step (week) takes a binary input, 1/0 
+(purchased/not purchased).
+We apply sliding windows testing routine which is commonly referred to as walk-forward testing in order to generate 
+out of time results. The time series is split into 4 parts - train, validation, 
+test1, and test2 as shown in Table \ref{tab:datasplit}. All our models are built in a multi-object 
+fashion, which allows the gradient movement to happen across all time series samples together. This also enables 
+cross-learning to happen across time series and increases the number of training samples for model 
+robustness. We then perform Feature Engineering over time series data to generate multiple types of features. 
+Below are some of the feature groups we experimented with explicitly or unexplicitly:
 \begin{itemize}
 \item {\bf Datetime:} Transactional metrics at various temporal cuts including week, month and quarter. 
 Datetime related features capturing seasonality and trend.
@@ -17,8 +21,8 @@ Streak - user purchased the item in a row, Average position in the cart, Total n
 Interactions capturing consumer behaviour towards items for the given time period.
 \end{itemize}
 The model we needed to build, thus, should learn to identify similarly behaving time series across latent
-parameters, and take into account consumer and item variations in comparing the time series. A row in time series 
-is represented by
+parameters, and take into account consumer and item variations in comparing the time series. In our framework, a row 
+in time series is represented by
   \begin{equation}
     \begin{array}{l}
       y\textsubscript{cit}  = f(i\textsubscript{t}, c\textsubscript{t},..,c\textsubscript{t-n}, ic\textsubscript{t}
@@ -53,7 +57,7 @@ Test2	  		&  Reporting Accuracy Metrics & 50,910 &  2 weeks\\
 \end{table}
 \subsection{Loss Function}
 Since we are solving Binary classification problem, Binary Cross-Entropy/Log Loss seemed most logical loss function 
-for training all our models.
+for training the models. Below is the formula to calculate Binary Cross-Entropy:
   \begin{equation}
       \begin{array}{l}
         H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y\textsubscript{i}.log(p(y\textsubscript{i}))+
@@ -61,20 +65,21 @@ for training all our models.
       \end{array}
     \label{eqn:logloss}
   \end{equation}
-where H\textsubscript{p} is total loss and y\textsubscript{i} is the label and p(y\textsubscript{i}) is the predicted probability.
+here H\textsubscript{p} represents computed loss, y\textsubscript{i} is the target value (label), and p(y\textsubscript{i}) 
+is the predicted probability against the target.
 \subsection{Model Architectures}
-As mentioned in previous section, traditional machine learning models are not suitable choice for solving Equation \ref{eqn:fx}. 
-Hence, we work with machine learning tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
+As mentioned above, traditional machine learning models are not really a suitable choice for modelling \emph{f} 
+Equation \ref{eqn:fx}. Hence, we work with machine learning tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
-Term Memory (LSTM) and Temporal Convolutional Network (TCN). Architectures of MLP, LSTM, TCN \cite{lea2016temporal} 
+Term Memory (LSTM) and Temporal Convolutional Networks (TCN). Architectures of MLP, LSTM, TCN \cite{lea2016temporal} 
 and TCN-LSTM \cite{karim2017lstm} models are shown in Figure \ref{fig:MLP}, Figure \ref{fig:LSTM}, Figure \ref{fig:TCN}
-and Figure \ref{fig:TCN-LSTM}.
+and Figure \ref{fig:TCN-LSTM}, and have been explained below.
 \begin{itemize}
 \item {\bf Entity Embeddings + Multi Layer Perceptron:} : (MLP) Figure \ref{fig:MLP} is the simplest form of deep neural networks and was 
 proposed in \cite{wang2017time} as a baseline architecture for Time Series classification. The architecture contains 
 three hidden layers fully connected to the output of its previous layer. The final layer 
 is the sigmoid layer to generate probabilities. One disadvantage is that since the input time 
-series is fully connected to the first hidden layer, the temporal information in a time series is lost \cite{fawaz2019deep}.
+series is fully connected to the first hidden layer, the temporal information in a time series is lost \cite{fawaz2019deep1}.
 \item {\bf Entity Embeddings + Long Short Term Memory:} (LSTM) Figure \ref{fig:LSTM} is a sequence to sequence \cite{sutskever2014sequence} 
 architecture comprising of 2 LSTM layers combined with entity embeddings. This combination flows into 
 3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
@@ -87,21 +92,20 @@ Similar to LSTM, it is also a sequence to sequence architecture which, after con
 is again sequence to sequence architecture which inherits the properties of LSTM and TCN in a fully 
 connected network.
 \end{itemize}
-As described in architecture diagrams Figure \ref{fig:dnndata}, data was classified 
-into following groups:
+As described in data classification Figure \ref{fig:dnndata}, the data was divided into following groups:
 \begin{itemize}
 \item {\bf Static Categorical:} These are categorical features which donot vary with time. This includes the consumer
 attributes like sex, marital status and location, different item attributes like category, department and brand.
 \item {\bf Temporal Categorical:} These are categorical features which vary with time. It includes all the datetime 
 related features like week, month of year, etc.
 \item {\bf Static Continuous:} These features are static but Continuous. This includes certain consumer attributes like
-age and weight, item attributes like size and certain derived features like target encoded features.
+age and weight, item attributes like size, and certain derived features like target encoded features.
 \item {\bf Temporal Continuous:} These are time varying Continuous features. All consumer and item related
-traditional attributes like number of orders, add to cart order, etc. falls under this class.
+traditional attributes like number of orders, add to cart order, etc. falls under this bucket.
 \end{itemize}
-In all the above neural network architectures, we learn the embeddings \cite{guo2016entity} of the categorical features during training phase.
-We embed these attributes in order to both compress their representations while preserving
-salient features, as well as capture mutual similarities and differences.
+As mentioned, in all the above described neural network architectures, we learn the embeddings \cite{guo2016entity} of the 
+categorical features during training phase. We embed these attributes in order to both compress their representations 
+while preserving salient features, and capture mutual similarities and differences.
   \begin{figure}[t]
     \centering 
     \caption{Data classification for DNN Architectures} 
@@ -132,6 +136,7 @@ salient features, as well as capture mutual similarities and differences.
     \includegraphics[width=3.3in]{img/TCNLSTM.png} 
     \label{fig:TCN-LSTM} 
   \end{figure}
+
 The consumer purchase pattern has huge variation in terms of time of purchase (weekday/weekends), 
 cadence of purchase (days to months), purchased item types (dairy/meat/grocery/apparels/etc.)
 and brand loyalty (tendency to substitute items). Given such huge variance it becomes imperative 
@@ -143,15 +148,19 @@ so that they capture non-linearity well. Utility of traditional machine learning
 (Millions of customers with thousands of products). Such models do not scale well for large sets of data and hyperparameters.
 
 Tree based models and MLP are trained in such a way where lagged values of time varying features are used
-to capture temporal dependencies. We use lagged values of temporal features up to last n time steps (n goes till 52 weeks).
-Multiple Lagged values as well as Statistical rolling operations like mean, median, quantiles, variance, kurtosis and 
-skewness over varying lag periods are used for feature generation. Details around datasets and derived features are explained 
-in the following section. This was decided after some preliminary experiments. Hyper-parameters of tree based models are optimized
-using Bayesian Hyper-parameter Optimization Technique \cite{bergstra2013hyperopt}. LSTM, TCN and TCN-LSTM models were trained in sequence to sequence 
+to capture temporal dependencies. LSTM, TCN and TCN-LSTM models are trained in sequence to sequence 
 fashion \cite{sutskever2014sequence} using entire life-cycle data of a time series (Consumer-Item).
+We use lagged values of temporal features for multiple time steps, lagged values combined with offsets in the form 
+of statistical rolling operations like mean, median, quantiles, variance, 
+kurtosis and skewness over varying lag periods are used for feature generation. More details around dataset and features 
+are explained in section \ref{sec:eval}. 
 
-We applied empirical approach to tune the hyperparameters for Deep learning models. All hyperparameter Optimization
-was performed over Validation dataset. We list some of the params along with the values we used for Deep learning models.
+\subsection{Hyperparameter Tuning}
+Hyper-parameters of tree based models are optimized
+using Bayesian Hyper-parameter Optimization Technique \cite{bergstra2013hyperopt}. We use documented best practices in deep 
+learning along with some experiments and domain understanding to choose model hyperparameters like learning rate.
+All hyperparameter Optimization was performed over Validation dataset. 
+We list some of the params along with the values we used for Deep learning models.
   \begin{itemize}
     \item {\bf Optimizer Parameters:} RMSProp \cite{bengio2015rmsprop} and Adam were used as different trial configurations. The learning rate 
     was experimentally tuned to 1e-3. We also did weight decay of 1e-5 which helped a bit in model Regularization.
@@ -168,16 +177,16 @@ was performed over Validation dataset. We list some of the params along with the
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss \ref{eqn:logloss} was used as loss 
-function for all the models. We have observed an improved performance of the sequence model \cite{sutskever2014sequence} 
-when Dropout \cite{hinton2012improving}  and BatchNorm \cite{santurkar2018does}  are used
+function for all the models. For the the sequence model \cite{sutskever2014sequence}, we also incorporated 
+Dropout \cite{hinton2012improving} and BatchNorm \cite{santurkar2018does} as regularization parameters.
 
-We used Bayesian Hyper-parameter Optimization \cite{bergstra2013hyperopt} for hyper configuration tuning with 100 trials.
-Some of the hyperparameters we used for Machine learning models are :
+As mentioned above, we used Bayesian Hyper-parameter Optimization (Hyperopt) \cite{bergstra2013hyperopt} for hyper configuration 
+tuning with 100 trials. Some of the hyperparameters we used for Machine learning models are :
   \begin{itemize}
-    \item {\bf Learning Rate:} LR range was set to vary between 1e-3 to 0.5. 
-    \item {\bf Max Depth:} Depth range was set between 2 to 12 at the step of 1.
+    \item {\bf Learning Rate:} Range set to vary between 1e-2 to 5e-1. 
+    \item {\bf Max Depth:} Range set from 2 to 12 at step of 1.
   \end{itemize}
-Apart from these, Regularization parameters like Reg Lambda, Min Sample Leaf was also tuned from Bayesian framework.
+Apart from these, Regularization parameters like Reg Lambda, Min Sample Leaf was also optimized for using Hyperopt.
 
 Deep learning models are built using deep learning framework
 PyTorch \cite{paszke2017automatic}, and are trained on GCP instance containing 6 CPUs and a single GPU. 
@@ -185,32 +194,14 @@ scikit-learn \cite{pedregosa2011scikit} is used for Tree
 based models like RandomForest and Xgboost \cite{chen2016xgboost}. 
 We built a total of 60 models, 12 different param configurations for each of 4 
 Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in Table \ref{tab:modelparams}.
-\begin{center}
-\begin{table*}[!t]
-\caption{Model Specifications}
-\centering
-\resizebox{\textwidth}{!}{\begin{tabular}{|r|l|r|r|}
-  \hline
- {\bf Model Type} & {\bf Trials} & {\bf Model Hyper-Parameters} & {\bf Loss Functions}\\ 
- \hline\hline
-MLP	  		&  12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers & BCELoss\\ \hline
-LSTM  		& 12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers & BCELoss \\ \hline
-TCN			& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  & BCELoss\\ \hline
-TCN-LSTM 		& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  & BCELoss\\ \hline
-Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  & BCELoss\\ \hline
-RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &  BCELoss\\
-   \hline
-\end{tabular}}
-\label{tab:modelparams}
-\end{table*} 
-\end{center}
-\subsection{Stacked Generalization}
-For simplicity and better generalization we adopted non-parameteric approach for Stacked Generalization \cite{wolpert1992stacked} .
-We used Weighted K-Best and K-Best as Stacked Generalization Ensemble model for combining the 60 models (candidates) from Table \ref{tab:modelparams}. 
-Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We set k to 5, 10 and 25 and selected 
-these top candidates based upon the experiments performed over test1 metrics. Finally, we took Weighted Average of 
-the probabilities for Train, Validation, Test1 and Test2 time steps for each consumer-item combination.
-A row post stacking is represented as 
+\subsection{Stacked Generalization Ensemble}
+Stacked Generalization Ensemble or Stacking \cite{wolpert1992stacked} is a method used to combine predictions from 
+different models algorithmically.
+We used Weighted K-Best as Stacker model for combining k models (candidates) out of total 60 from Table \ref{tab:modelparams}. 
+Test1 BCELoss was used as metric to compute weight for each of the 60 candidates. We iterated with different 
+values of k ranging from 3 to 25. For Stacking, we computed Weighted Average of prediction
+probabilities from k individual models for Train, Validation, Test1 and Test2 for each time steps.
+Above phenomenon of stacking can be represented as:
   \begin{equation}
     \begin{array}{l}
       y\textsubscript{cit} =\sum_{j=1}^{k}w\textsubscript{j} \times p\textsubscript{cit\textsubscript{j}}
@@ -218,18 +209,18 @@ A row post stacking is represented as
     \label{eqn:stack}
   \end{equation}
 where y\textsubscript{cit} is the stacked probability for consumer 'c' item ’i’ at time ’t’.
-w\textsubscript{k} is the candidate weight of k\textsuperscript{th} model.
 k represents the number of candidates shortlisted for stacking and p\textsubscript{cit\textsubscript{k}}
 represents the prediction probability for consumer 'c' item ’i’ at time ’t’ by k\textsuperscript{th} model.
+w\textsubscript{k} is the candidate weight of k\textsuperscript{th} model.
 
 \subsection{F\textsubscript{1}-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
-probability distribution of test1 at consumer level using F\textsubscript{1}-Measure \cite{lipton2014optimal}. 
-For instance, lets say we generated purchase probabilities for 
+probability distribution of a time step at consumer level using F\textsubscript{1}-Measure \cite{lipton2014optimal}. 
+To illustrate above, for instance, lets say we generated purchase probabilities for 
 n\textsubscript{i} items of b\textsubscript{i} actually purchased items for consumer c\textsubscript{i}.
-Let Actual items purchased by consumer c\textsubscript{i} at test1 time step be [Ia\textsubscript{1}, Ia\textsubscript{2}
+Let Actual items purchased by consumer c\textsubscript{i} at a time step be [Ia\textsubscript{1}, Ia\textsubscript{2}
 ,.., Ia\textsubscript{b\textsubscript{i}}] whereas items for which the model generated probabilities for the 
-consumer c\textsubscript{i} at test1 time step be [Ip\textsubscript{1}, Ip\textsubscript{2} ,.., 
+consumer c\textsubscript{i} at that time step be [Ip\textsubscript{1}, Ip\textsubscript{2} ,.., 
 Ip\textsubscript{n\textsubscript{i}}]. 
   \begin{equation}
     \begin{array}{l}
@@ -335,3 +326,22 @@ by finding optimal Pr\textsubscript{c\textsubscript{i}} for consumer c\textsubsc
 We apply the above Optimization function over test1 probability distribution 
 at a consumer level to find optimal cut-off. Final purchase predictions happens 
 based on the cut-off value.
+\begin{center}
+\begin{table*}[!t]
+\caption{Model Specifications}
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|r|l|r|r|}
+  \hline
+ {\bf Model Type} & {\bf Trials} & {\bf Model Hyper-Parameters} & {\bf Loss Functions}\\ 
+ \hline\hline
+MLP	  		&  12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers & BCELoss\\ \hline
+LSTM  		& 12 & Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM Layers & BCELoss \\ \hline
+TCN			& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, Convolution Parameters  & BCELoss\\ \hline
+TCN-LSTM 		& 12	& Optimizer, Scheduler, SWA, Parameter Averaging, Feature Groups, FC Layers, LSTM, Convolution Parameters  & BCELoss\\ \hline
+Xgboost 		& 6	& Learning rate, Tree Depth, Regularization parameters  & BCELoss\\ \hline
+RandomForest 		& 6	& Tree Depth, Evaluation Metrics, Regularization parameters &  BCELoss\\
+   \hline
+\end{tabular}}
+\label{tab:modelparams}
+\end{table*} 
+\end{center}

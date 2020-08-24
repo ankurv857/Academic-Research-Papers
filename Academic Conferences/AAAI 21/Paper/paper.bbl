@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -38,9 +38,17 @@ Fader, P.~S.; and Hardie, B.~G. 2009.
 \newblock Probability models for customer-base analysis.
 \newblock \emph{Journal of interactive marketing} 23(1): 61--69.
 
-\bibitem[{Fawaz et~al.(2019)Fawaz, Forestier, Weber, Idoumghar, and
-  Muller}]{fawaz2019deep}
-Fawaz, H.~I.; Forestier, G.; Weber, J.; Idoumghar, L.; and Muller, P.-A. 2019.
+\bibitem[{Fawaz et~al.(2019{\natexlab{a}})Fawaz, Forestier, Weber, Idoumghar,
+  and Muller}]{fawaz2019deep1}
+Fawaz, H.~I.; Forestier, G.; Weber, J.; Idoumghar, L.; and Muller, P.-A.
+  2019{\natexlab{a}}.
+\newblock Deep learning for time series classification: a review.
+\newblock \emph{Data Mining and Knowledge Discovery} 33(4): 917--963.
+
+\bibitem[{Fawaz et~al.(2019{\natexlab{b}})Fawaz, Forestier, Weber, Idoumghar,
+  and Muller}]{fawaz2019deep}
+Fawaz, H.~I.; Forestier, G.; Weber, J.; Idoumghar, L.; and Muller, P.-A.
+  2019{\natexlab{b}}.
 \newblock Deep neural network ensembles for time series classification.
 \newblock In \emph{2019 International Joint Conference on Neural Networks
   (IJCNN)}, 1--6. IEEE.
@@ -63,6 +71,11 @@ Hinton, G.~E.; Srivastava, N.; Krizhevsky, A.; Sutskever, I.; and
 Izmailov, P.; Podoprikhin, D.; Garipov, T.; Vetrov, D.; and Wilson, A.~G. 2018.
 \newblock Averaging weights leads to wider optima and better generalization.
 \newblock \emph{arXiv preprint arXiv:1803.05407} .
+
+\bibitem[{Kaggle(2017)}]{data}
+Kaggle. 2017.
+\newblock Instacart Market Basket Analysis.
+\newblock \url{https://www.kaggle.com/c/instacart-market-basket-analysis/data}.
 
 \bibitem[{Karim et~al.(2017)Karim, Majumdar, Darabi, and Chen}]{karim2017lstm}
 Karim, F.; Majumdar, S.; Darabi, H.; and Chen, S. 2017.
