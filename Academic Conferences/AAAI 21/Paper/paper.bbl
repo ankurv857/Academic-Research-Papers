@@ -1,4 +1,4 @@
-\begin{thebibliography}{28}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -164,6 +164,13 @@ Wang, Z.; Yan, W.; and Oates, T. 2017.
 Wolpert, D.~H. 1992.
 \newblock Stacked generalization.
 \newblock \emph{Neural networks} 5(2): 241--259.
+
+\bibitem[{Yosinski et~al.(2014)Yosinski, Clune, Bengio, and
+  Lipson}]{yosinski2014transferable}
+Yosinski, J.; Clune, J.; Bengio, Y.; and Lipson, H. 2014.
+\newblock How transferable are features in deep neural networks?
+\newblock In \emph{Advances in neural information processing systems},
+  3320--3328.
 
 \bibitem[{Zaheer et~al.(2018)Zaheer, Reddi, Sachan, Kale, and
   Kumar}]{zaheer2018adaptive}
