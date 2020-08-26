@@ -217,7 +217,7 @@ w\textsubscript{k} is the candidate weight of k\textsuperscript{th} model.
 \subsection{F\textsubscript{1}-Maximization}
 Post generation of the consumer-item probabilities, we optimize for the purchase cut-off probability based on 
 probability distribution of a time step at consumer level using F\textsubscript{1}-Measure \cite{lipton2014optimal}. 
-To illustrate above, for instance, lets say we generated purchase probabilities for 
+To illustrate above, lets say we generated purchase probabilities for 
 n\textsubscript{i} items of b\textsubscript{i} actually purchased items for consumer c\textsubscript{i}.
 Let Actual items purchased by consumer c\textsubscript{i} at a time step be [Ia\textsubscript{1}, Ia\textsubscript{2}
 ,.., Ia\textsubscript{b\textsubscript{i}}] whereas items for which the model generated probabilities for the 
@@ -267,7 +267,7 @@ As mentioned above n\textsubscript{i} is the total items model generated purchas
     \end{array}
     \label{eqn:Pdash}
   \end{equation}
-Pr\textsubscript{c\textsubscript{i}} is the probability cut-off.
+Pr\textsubscript{c\textsubscript{i}} is the probability cut-off to be optimized for consumer c\textsubscript{i}.
 Decision rule D converts probabilities P\textsubscript{c\textsubscript{i}} to binary predictions 
 P\textsuperscript{'}\textsubscript{c\textsubscript{i}} such that if p\textsubscript{j} is less than 
 Pr\textsubscript{c\textsubscript{i}} then p\textsuperscript{'}\textsubscript{j} equals 0 else 1. 
@@ -295,8 +295,8 @@ number of predictions which model predicted as purchase.
     \label{eqn:probability}
   \end{equation}
 V\textsubscript{Pr\textsubscript{c\textsubscript{i}}} represents the number of items with purchase 
-probabilities greater than Pr\textsubscript{c\textsubscript{i}} which were actually purchased. Now using the below 
-formulae we calculate Precision, Recall and F\textsubscript{1}-score for consumer c\textsubscript{i}.
+probabilities greater than Pr\textsubscript{c\textsubscript{i}} which were actually purchased (True Positives). 
+Now using the below formulae we calculate Precision, Recall and F\textsubscript{1}-score for consumer c\textsubscript{i}.
   \begin{equation}
     \begin{array}{l}
       Precision\textsubscript{c\textsubscript{i}}= \frac{V\textsubscript{Pr\textsubscript{c\textsubscript{i}}}} {k\textsubscript{i}}
@@ -323,10 +323,10 @@ formulae we calculate Precision, Recall and F\textsubscript{1}-score for consume
     \label{eqn:Optimizer}
   \end{equation}
 F\textsubscript{1\textsubscript{c\textsubscript{i}}} becomes the value to be maximised
-by finding optimal Pr\textsubscript{c\textsubscript{i}} for consumer c\textsubscript{i}.
-We apply the above Optimization function over test1 probability distribution 
-at a consumer level to find optimal cut-off. Final purchase predictions happens 
-based on the cut-off value.
+at optimal Pr\textsubscript{c\textsubscript{i}} for consumer c\textsubscript{i}.
+We solve the above Optimization function over test1 probability distribution 
+at a consumer level to find optimal probability cut-off Pr\textsubscript{c\textsubscript{i}} . 
+Final purchase predictions are based on the cut-off value generated at consumer level.
 \begin{center}
 \begin{table*}[!t]
 \caption{Model Specifications}
