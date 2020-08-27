@@ -3,18 +3,18 @@
 In our framework, we treat each consumer-item as an individual object and shape them into weekly time series data
 based on historical transactions, where the target value at each time step (week) takes a binary input, 1/0 
 (purchased/not purchased).
-We apply sliding windows testing routine which is commonly referred to as walk-forward testing in order to generate 
+We apply sliding windows testing routine in order to generate 
 out of time results. The time series is split into 4 parts - train, validation, 
 test1, and test2 as shown in Table \ref{tab:datasplit}. All our models are built in a multi-object 
-fashion, which allows the gradient movement to happen across all time series samples together. This also enables 
-cross-learning to happen across time series and increases the number of training samples for model 
-robustness. We then perform Feature Engineering over time series data to generate multiple types of features. 
-Below are some of the feature groups we experimented with explicitly or unexplicitly:
+fashion, which allows the gradient movement to happen across all consumer-item combinations together. This enables 
+cross-learning to happen across consumers and increases the number of training samples for model 
+robustness. We then perform Feature Engineering over the data to generate multiple types of features. 
+Below are some of the feature groups we experimented with:
 \begin{itemize}
 \item {\bf Datetime:} Transactional metrics at various temporal cuts including week, month and quarter. 
 Datetime related features capturing seasonality and trend.
 \item {\bf Consumer-Item Profile:} Transactional metrics at different granularities including consumer, item,
-consumer-item, department, aisle, etc. The metrics includes some of likes Time since first order, 
+consumer-item, department, aisle, etc. The metrics include Time since first order, 
 Time since last order, time gap between orders, Reorder rates, Reorder frequency, 
 Streak - user purchased the item in a row, Average position in the cart, Total number of orders.
 \item {\bf Consumer-Item-Time Profile:} Transactional metrics at the intersection of consumer, item and time.
@@ -66,32 +66,32 @@ for training the models. Below is the formula to calculate Binary Cross-Entropy:
     \label{eqn:logloss}
   \end{equation}
 here H\textsubscript{p} represents computed loss, y\textsubscript{i} is the target value (label), and p(y\textsubscript{i}) 
-is the predicted probability against the target. The value of BCELoss lies between 0 to 1. We can infer 
+is the predicted probability against the target. The BCELoss takes non-negative values. We can infer 
 from Equation \ref{eqn:logloss} that Lower the BCELoss, better the Accuracy.
 \subsection{Model Architectures}
 As mentioned above, traditional machine learning models are not really a suitable choice for modelling \emph{f} 
-Equation \ref{eqn:fx}. Hence, we work with machine learning tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
+Equation \ref{eqn:fx} due to non-linear interaction of the features. Hence, we work with
+tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
 to Deep learning models ranging from Multi Layer Perceptron (MLP), Long Short 
 Term Memory (LSTM) and Temporal Convolutional Networks (TCN). Architectures of MLP, LSTM, TCN \cite{lea2016temporal} 
 and TCN-LSTM \cite{karim2017lstm} models are shown in Figure \ref{fig:MLP}, Figure \ref{fig:LSTM}, Figure \ref{fig:TCN}
 and Figure \ref{fig:TCN-LSTM}, and have been explained below.
 \begin{itemize}
-\item {\bf Entity Embeddings + Multi Layer Perceptron:} : (MLP) Figure \ref{fig:MLP} is the simplest form of deep neural networks and was 
+\item {\bf Entity Embeddings + Multi Layer Perceptron:} (MLP) Figure \ref{fig:MLP} is the simplest form of deep neural networks and was 
 proposed in \cite{wang2017time} as a baseline architecture for Time Series classification. The architecture contains 
 three hidden layers fully connected to the output of its previous layer. The final layer 
 is the sigmoid layer to generate probabilities. One disadvantage is that since the input time 
 series is fully connected to the first hidden layer, the temporal information in a time series is lost \cite{fawaz2019deep1}.
-\item {\bf Entity Embeddings + Long Short Term Memory:} (LSTM) Figure \ref{fig:LSTM} is a sequence to sequence \cite{sutskever2014sequence} 
+\item {\bf Entity Embeddings + Long Short Term Memory:} (LSTM) Figure \ref{fig:LSTM} is an
 architecture comprising of 2 LSTM layers combined with entity embeddings. This combination flows into 
 3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
 \item {\bf Entity Embeddings + Temporal Convolutional Network:} (TCN) Figure \ref{fig:TCN}, originally
 proposed in \cite{lea2016temporal} , is considered a competitive architecture yielding the best results when evaluated over 
 our experimental dataset. This network is comprised of 3 dilated Convolutional network combined with entity embeddings.
-Similar to LSTM, it is also a sequence to sequence architecture which, after convolving and concatenation flows into 
+Similar to LSTM, this architecture, after convolving and concatenation flows into 
 3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
 \item {\bf Entity Embeddings + Long Short Term Memory-Temporal Convolutional Network:} (TCN-LSTM) Figure \ref{fig:TCN-LSTM} 
-is again sequence to sequence architecture which inherits the properties of LSTM and TCN in a fully 
-connected network.
+inherits the properties of LSTM and TCN in a fully connected network.
 \end{itemize}
 As described in data classification Figure \ref{fig:dnndata}, the data was divided into following groups:
 \begin{itemize}
@@ -149,8 +149,8 @@ so that they capture non-linearity well. Utility of traditional machine learning
 (Millions of customers with thousands of products). Such models do not scale well for large sets of data and hyperparameters.
 
 Tree based models and MLP are trained in such a way where lagged values of time varying features are used
-to capture temporal dependencies. LSTM, TCN and TCN-LSTM models are trained in sequence to sequence 
-fashion \cite{sutskever2014sequence} using entire life-cycle data of a time series (Consumer-Item).
+to capture temporal dependencies. LSTM, TCN and TCN-LSTM models are trained using entire life-cycle data of a 
+time series (Consumer-Item) in sequential manner.
 We use lagged values of temporal features for multiple time steps, lagged values combined with offsets in the form 
 of statistical rolling operations like mean, median, quantiles, variance, 
 kurtosis and skewness over varying lag periods are used for feature generation. More details around dataset and features 
@@ -178,11 +178,11 @@ We list some of the params along with the values we used for Deep learning model
 Apart from the above parameters we also iterated enough to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features. Binary Cross-Entropy/Log Loss \ref{eqn:logloss} was used as loss 
-function for all the models. For the the sequence model \cite{sutskever2014sequence}, we also incorporated 
+function for all the models. For sequence model \cite{sutskever2014sequence}, we also incorporated 
 Dropout \cite{hinton2012improving} and BatchNorm \cite{santurkar2018does} as regularization parameters.
 
-As mentioned above, we used Bayesian Hyper-parameter Optimization (Hyperopt) \cite{bergstra2013hyperopt} for hyper configuration 
-tuning with 100 trials. Some of the hyperparameters we used for Machine learning models are :
+As mentioned above, we used Bayesian Hyper-parameter Optimization (Hyperopt) \cite{bergstra2013hyperopt} for hyper-parameter 
+tuning with 100 trials. Some of the hyper-parameters we used for Machine learning models are :
   \begin{itemize}
     \item {\bf Learning Rate:} Range set to vary between 1e-2 to 5e-1. 
     \item {\bf Max Depth:} Range set from 2 to 12 at step of 1.
