@@ -1,4 +1,4 @@
-\begin{thebibliography}{29}
+\begin{thebibliography}{28}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -77,11 +77,6 @@ Hinton, G.~E.; Srivastava, N.; Krizhevsky, A.; Sutskever, I.; and
 Izmailov, P.; Podoprikhin, D.; Garipov, T.; Vetrov, D.; and Wilson, A.~G. 2018.
 \newblock Averaging weights leads to wider optima and better generalization.
 \newblock \emph{arXiv preprint arXiv:1803.05407} .
-
-\bibitem[{Kaggle(2017)}]{data}
-Kaggle. 2017.
-\newblock Instacart Market Basket Analysis.
-\newblock \url{https://www.kaggle.com/c/instacart-market-basket-analysis/data}.
 
 \bibitem[{Karim et~al.(2017)Karim, Majumdar, Darabi, and Chen}]{karim2017lstm}
 Karim, F.; Majumdar, S.; Darabi, H.; and Chen, S. 2017.
