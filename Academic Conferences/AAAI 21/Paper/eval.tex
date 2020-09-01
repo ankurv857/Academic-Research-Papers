@@ -24,7 +24,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
     \centering 
     \caption{Density of consumers Vs. Basket Size} 
     \includegraphics[width=3in, height = 2in]{img/basket.png} 
-    {\bf Maximum number of consumers have their basket size between 5-7}
+    \\ {\scriptsize \bf Basket size between 5-8 has maximum consumer density}
     \label{fig:basket} 
   \end{figure}
 
@@ -33,7 +33,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
     \caption{Reorder probability Vs. Add to cart order} 
     \includegraphics[width=3in , height = 2in]{img/addtocart.png} 
     \label{fig:addtocart} 
-    {\bf Probability of reordering decreases as the order of add to cart increases}
+    \\ {\scriptsize \bf Probability of reordering decreases as the order of add to cart increases}
   \end{figure}
 
 \begin{center}
@@ -107,7 +107,6 @@ RandomForest & 0.0437 & 0.0389	& 0.0441	\\ \hline
 \label{tab:training}
 \end{table}
 
-
 \begin{table}[t]
 \caption{ Stacked Generalization Results}
 \vspace{0.1 in}
@@ -128,7 +127,7 @@ Weighted K Best	  		&  25  &  0.0394 &  0.0316 &  0.0287  \\ \hline
 \label{tab:stacking}
 \end{table}
 
-\begin{table}[t]
+\begin{table}[hbt!]
 \caption{Final Accuracy post F\textsubscript{1}-Maximization}
 \vspace{0.1 in}
 \centering
@@ -146,15 +145,14 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
 \label{tab:Fscore}
 \end{table}
 
-  \begin{figure}[t]
+  \begin{figure}[hbt!]
     \centering 
     \caption{Probability Distributions} 
-    \includegraphics[width=2.5in]{img/density.png} 
-    {\bf High-density-probability zone for the non purchased cases lies between 0 and 
+    \includegraphics[width=2in]{img/density.png} 
+    \\ {\scriptsize \bf High density probability zone for the non purchased cases lies between 0 and 
     0.1, whereas for the purchased cases it lies between 0.25 and 0.35}
     \label{fig:density} 
   \end{figure}
-
 \subsection{Experiment Setups}
 We started with exploratary data analysis, looking at the data from various cuts and 
 trying to study the variations of the features with target. Some of them include looking at the 

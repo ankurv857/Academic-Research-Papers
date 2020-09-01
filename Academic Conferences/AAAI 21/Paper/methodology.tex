@@ -1,12 +1,14 @@
 \section{Methodology}
 \label{sec:methodology}
-In our framework, we treat each consumer-item as an individual object and shape them into weekly time series data
+In our framework, we treat each relevant consumer-item as an individual object and shape them into weekly time series data
 based on historical transactions, where the target value at each time step (week) takes a binary input, 1/0 
-(purchased/not purchased).
+(purchased/non purchased). \emph{Relevancy} of the consumer-item refers to the items transacted by the consumer during training 
+time window. \emph{Postive samples} (purchased/1) are the weeks where consumer did transact respective item, whereas 
+\emph{Negative samples} (non purchased/0) are the weeks where the consumer didnot buy that item.
 We apply sliding windows testing routine in order to generate 
 out of time results. The time series is split into 4 parts - train, validation, 
 test1, and test2 as shown in Table \ref{tab:datasplit}. All our models are built in a multi-object 
-fashion, which allows the gradient movement to happen across all consumer-item combinations together. This enables 
+fashion, which allows the gradient movement to happen across all consumer-item combinations in batches. This enables 
 cross-learning to happen across consumers and increases the number of training samples for model 
 robustness. We then perform Feature Engineering over the data to generate multiple types of features. 
 Below are some of the feature groups we experimented with:
@@ -144,9 +146,7 @@ and brand loyalty (tendency to substitute items). Given such huge variance it be
 to cross learn consumer behaviour from like consumer groups. To learn such relationships its very 
 important to capture non-linear relationship between target and regressors at the most granular level.
 Tree based and Deep learning models are chosen for their ability to model feature interactions even if transient in time, 
-so that they capture non-linearity well. Utility of traditional machine learning algorithms like Logistic regression
-, SVM and recommender systems are limited given the scale of large retail firms 
-(Millions of customers with thousands of products). Such models do not scale well for large sets of data and hyperparameters.
+so that they capture non-linearity well.
 
 Tree based models and MLP are trained in such a way where lagged values of time varying features are used
 to capture temporal dependencies. LSTM, TCN and TCN-LSTM models are trained using entire life-cycle data of a 
@@ -192,7 +192,11 @@ Apart from these, Regularization parameters like Reg Lambda, Min Sample Leaf was
 Deep learning models are built using deep learning framework
 PyTorch \cite{paszke2017automatic}, and are trained on GCP instance containing 6 CPUs and a single GPU. 
 scikit-learn \cite{pedregosa2011scikit} is used for Tree
-based models like RandomForest and Xgboost \cite{chen2016xgboost}. 
+based models like RandomForest and Xgboost \cite{chen2016xgboost}. For Neural Network Architectures, 
+we save the state dictionary of the 
+best checkpoint which contains the learned weights of Entity Embeddings and all other network layers.
+This increases the efficiency of the model training time, as we don't need to retrain the model
+everytime a new consumer-item comes, and, learned embeddings and other state dictionary can enable inference over the same.
 We built a total of 60 models, 12 different param configurations for each of 4 
 Deep Learning models and 6 best trials for each of 2 Machine Learning models as shown in Table \ref{tab:modelparams}.
 \subsection{Stacked Generalization Ensemble}
