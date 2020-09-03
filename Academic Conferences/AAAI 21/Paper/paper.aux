@@ -44,7 +44,6 @@
 \citation{karim2017lstm}
 \citation{wang2017time}
 \citation{fawaz2019deep1}
-\citation{sutskever2014sequence}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
 \newlabel{sec:methodology}{{3}{2}{Methodology}{section.3}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Modelling data splits\relax }}{2}{table.caption.1}\protected@file@percent }
@@ -56,7 +55,6 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Model Architectures}{2}{subsection.3.2}\protected@file@percent }
 \citation{lea2016temporal}
 \citation{guo2016entity}
-\citation{sutskever2014sequence}
 \citation{bergstra2013hyperopt}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Data classification for DNN Architectures\relax }}{3}{figure.caption.2}\protected@file@percent }
 \newlabel{fig:dnndata}{{1}{3}{Data classification for DNN Architectures\relax }{figure.caption.2}{}}
@@ -64,6 +62,7 @@
 \newlabel{fig:MLP}{{2}{3}{Multi Layer Perceptron (MLP)\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Long Short Term Memory (LSTM)\relax }}{3}{figure.caption.4}\protected@file@percent }
 \newlabel{fig:LSTM}{{3}{3}{Long Short Term Memory (LSTM)\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Hyperparameter Tuning}{3}{subsection.3.3}\protected@file@percent }
 \citation{bengio2015rmsprop}
 \citation{smith2017cyclical}
 \citation{zaheer2018adaptive}
@@ -81,12 +80,10 @@
 \newlabel{fig:TCN}{{4}{4}{Temporal Convolutional Network (TCN)\relax }{figure.caption.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces TCN-LSTM\relax }}{4}{figure.caption.6}\protected@file@percent }
 \newlabel{fig:TCN-LSTM}{{5}{4}{TCN-LSTM\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Hyperparameter Tuning}{4}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Stacked Generalization Ensemble}{4}{subsection.3.4}\protected@file@percent }
 \newlabel{eqn:stack}{{3}{4}{Stacked Generalization Ensemble}{equation.3.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}F\textsubscript  {1}-Maximization}{4}{subsection.3.5}\protected@file@percent }
-\citation{data}
 \citation{buckland1994relationship}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}F\textsubscript  {1}-Maximization}{5}{subsection.3.5}\protected@file@percent }
 \newlabel{eqn:A}{{4}{5}{F\textsubscript {1}-Maximization}{equation.3.4}{}}
 \newlabel{eqn:P}{{5}{5}{F\textsubscript {1}-Maximization}{equation.3.5}{}}
 \newlabel{eqn:Decision}{{6}{5}{F\textsubscript {1}-Maximization}{equation.3.6}{}}
@@ -110,12 +107,15 @@
 \newlabel{tab:mlmodels}{{4}{6}{BCELoss of Test2 for 6 best Trials of ML Models\relax }{table.caption.13}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces  BCELoss mean of top 3 trials across data splits\relax }}{6}{table.caption.14}\protected@file@percent }
 \newlabel{tab:training}{{5}{6}{BCELoss mean of top 3 trials across data splits\relax }{table.caption.14}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{6}{section.5}\protected@file@percent }
-\newlabel{sec:conclusion}{{5}{6}{Conclusion}{section.5}{}}
+\citation{yosinski2014transferable}
+\bibdata{paper}
+\bibcite{bengio2015rmsprop}{{1}{2015}{{Bengio and CA}}{{}}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Most reordered Items across Departments\relax }}{7}{figure.caption.9}\protected@file@percent }
 \newlabel{fig:items}{{7}{7}{Most reordered Items across Departments\relax }{figure.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Density of consumers Vs. Basket Size\relax }}{7}{figure.caption.10}\protected@file@percent }
 \newlabel{fig:basket}{{8}{7}{Density of consumers Vs. Basket Size\relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{7}{Conclusion}{section.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Reorder probability Vs. Add to cart order\relax }}{7}{figure.caption.11}\protected@file@percent }
 \newlabel{fig:addtocart}{{9}{7}{Reorder probability Vs. Add to cart order\relax }{figure.caption.11}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces  Stacked Generalization Results\relax }}{7}{table.caption.15}\protected@file@percent }
@@ -124,8 +124,6 @@
 \newlabel{tab:Fscore}{{7}{7}{Final Accuracy post F\textsubscript {1}-Maximization\relax }{table.caption.16}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Probability Distributions\relax }}{7}{figure.caption.17}\protected@file@percent }
 \newlabel{fig:density}{{10}{7}{Probability Distributions\relax }{figure.caption.17}{}}
-\bibdata{paper}
-\bibcite{bengio2015rmsprop}{{1}{2015}{{Bengio and CA}}{{}}}
 \bibcite{bergstra2013hyperopt}{{2}{2013}{{Bergstra, Yamins, and Cox}}{{}}}
 \bibcite{buckland1994relationship}{{3}{1994}{{Buckland and Gey}}{{}}}
 \bibcite{chen2016xgboost}{{4}{2016}{{Chen and Guestrin}}{{}}}
@@ -136,20 +134,20 @@
 \bibcite{guo2016entity}{{9}{2016}{{Guo and Berkhahn}}{{}}}
 \bibcite{hinton2012improving}{{10}{2012}{{Hinton et~al.}}{{Hinton, Srivastava, Krizhevsky, Sutskever, and Salakhutdinov}}}
 \bibcite{izmailov2018averaging}{{11}{2018}{{Izmailov et~al.}}{{Izmailov, Podoprikhin, Garipov, Vetrov, and Wilson}}}
-\bibcite{data}{{12}{2017}{{Kaggle}}{{}}}
-\bibcite{karim2017lstm}{{13}{2017}{{Karim et~al.}}{{Karim, Majumdar, Darabi, and Chen}}}
-\bibcite{lea2016temporal}{{14}{2016}{{Lea et~al.}}{{Lea, Vidal, Reiter, and Hager}}}
-\bibcite{lipton2014optimal}{{15}{2014}{{Lipton, Elkan, and Naryanaswamy}}{{}}}
-\bibcite{martinez2020machine}{{16}{2020}{{Mart{\'\i }nez et~al.}}{{Mart{\'\i }nez, Schmuck, Pereverzyev~Jr, Pirker, and Haltmeier}}}
-\bibcite{paszke2017automatic}{{17}{2017}{{Paszke et~al.}}{{Paszke, Gross, Chintala, Chanan, Yang, DeVito, Lin, Desmaison, Antiga, and Lerer}}}
-\bibcite{pedregosa2011scikit}{{18}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg et~al.}}}
-\bibcite{santurkar2018does}{{19}{2018}{{Santurkar et~al.}}{{Santurkar, Tsipras, Ilyas, and Madry}}}
-\bibcite{serra2018towards}{{20}{2018}{{Serr{\`a}, Pascual, and Karatzoglou}}{{}}}
-\bibcite{shah2007retailer}{{21}{2007}{{Shah and Avittathur}}{{}}}
-\bibcite{smith2017cyclical}{{22}{2017}{{Smith}}{{}}}
-\bibcite{sutskever2014sequence}{{23}{2014}{{Sutskever, Vinyals, and Le}}{{}}}
-\bibcite{wang2017time}{{24}{2017}{{Wang, Yan, and Oates}}{{}}}
-\bibcite{wolpert1992stacked}{{25}{1992}{{Wolpert}}{{}}}
+\bibcite{karim2017lstm}{{12}{2017}{{Karim et~al.}}{{Karim, Majumdar, Darabi, and Chen}}}
+\bibcite{lea2016temporal}{{13}{2016}{{Lea et~al.}}{{Lea, Vidal, Reiter, and Hager}}}
+\bibcite{lipton2014optimal}{{14}{2014}{{Lipton, Elkan, and Naryanaswamy}}{{}}}
+\bibcite{martinez2020machine}{{15}{2020}{{Mart{\'\i }nez et~al.}}{{Mart{\'\i }nez, Schmuck, Pereverzyev~Jr, Pirker, and Haltmeier}}}
+\bibcite{paszke2017automatic}{{16}{2017}{{Paszke et~al.}}{{Paszke, Gross, Chintala, Chanan, Yang, DeVito, Lin, Desmaison, Antiga, and Lerer}}}
+\bibcite{pedregosa2011scikit}{{17}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg et~al.}}}
+\bibcite{santurkar2018does}{{18}{2018}{{Santurkar et~al.}}{{Santurkar, Tsipras, Ilyas, and Madry}}}
+\bibcite{serra2018towards}{{19}{2018}{{Serr{\`a}, Pascual, and Karatzoglou}}{{}}}
+\bibcite{shah2007retailer}{{20}{2007}{{Shah and Avittathur}}{{}}}
+\bibcite{smith2017cyclical}{{21}{2017}{{Smith}}{{}}}
+\bibcite{sutskever2014sequence}{{22}{2014}{{Sutskever, Vinyals, and Le}}{{}}}
+\bibcite{wang2017time}{{23}{2017}{{Wang, Yan, and Oates}}{{}}}
+\bibcite{wolpert1992stacked}{{24}{1992}{{Wolpert}}{{}}}
+\bibcite{yosinski2014transferable}{{25}{2014}{{Yosinski et~al.}}{{Yosinski, Clune, Bengio, and Lipson}}}
 \bibcite{zaheer2018adaptive}{{26}{2018}{{Zaheer et~al.}}{{Zaheer, Reddi, Sachan, Kale, and Kumar}}}
 \bibcite{zhao2017convolutional}{{27}{2017}{{Zhao et~al.}}{{Zhao, Lu, Chen, Liu, and Wu}}}
 \bibcite{zheng2014time}{{28}{2014}{{Zheng et~al.}}{{Zheng, Liu, Chen, Ge, and Zhao}}}

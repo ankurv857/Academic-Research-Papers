@@ -78,11 +78,6 @@ Izmailov, P.; Podoprikhin, D.; Garipov, T.; Vetrov, D.; and Wilson, A.~G. 2018.
 \newblock Averaging weights leads to wider optima and better generalization.
 \newblock \emph{arXiv preprint arXiv:1803.05407} .
 
-\bibitem[{Kaggle(2017)}]{data}
-Kaggle. 2017.
-\newblock Instacart Market Basket Analysis.
-\newblock \url{https://www.kaggle.com/c/instacart-market-basket-analysis/data}.
-
 \bibitem[{Karim et~al.(2017)Karim, Majumdar, Darabi, and Chen}]{karim2017lstm}
 Karim, F.; Majumdar, S.; Darabi, H.; and Chen, S. 2017.
 \newblock LSTM fully convolutional networks for time series classification.
@@ -164,6 +159,13 @@ Wang, Z.; Yan, W.; and Oates, T. 2017.
 Wolpert, D.~H. 1992.
 \newblock Stacked generalization.
 \newblock \emph{Neural networks} 5(2): 241--259.
+
+\bibitem[{Yosinski et~al.(2014)Yosinski, Clune, Bengio, and
+  Lipson}]{yosinski2014transferable}
+Yosinski, J.; Clune, J.; Bengio, Y.; and Lipson, H. 2014.
+\newblock How transferable are features in deep neural networks?
+\newblock In \emph{Advances in neural information processing systems},
+  3320--3328.
 
 \bibitem[{Zaheer et~al.(2018)Zaheer, Reddi, Sachan, Kale, and
   Kumar}]{zaheer2018adaptive}
