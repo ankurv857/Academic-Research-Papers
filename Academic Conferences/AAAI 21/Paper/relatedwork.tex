@@ -12,13 +12,14 @@ of transactions, time of the last transaction, and the relative change in total 
 They found gradient boosting to perform best over test data. We propose neural network architectures with entity embeddings
 \cite{guo2016entity} which outperforms the gradient boosting type of models like Xgboost \cite{chen2016xgboost}. 
 
-Over Time Series part of our problem,
+From Neural Network architectures perspective,
 close to our work is Deep Neural Network Ensembles for Time Series Classification \cite{fawaz2019deep}. 
 In this paper, authors show how an ensemble of multiple Convolutional Neural Networks can improve upon the 
 state-of-the-art performance of individual neural networks. They use 6 deep learning classifiers 
 including Multi Layer Perceptron, Fully Convolutional Neural Network, Residual Network, 
 Encoder \cite{serra2018towards}, Multi-Channels Deep Convolutional Neural Networks \cite{zheng2014time} and 
-Time Convolutional Neural Network \cite{zhao2017convolutional}. The first three were originally proposed in \cite{wang2017time}. 
-We apply the concept of entity embeddings \cite{guo2016entity} along with neural network architectures
+Time Convolutional Neural Network \cite{zhao2017convolutional}. The first three were originally proposed in \cite{wang2017time}.
+We propose the application of such architectures in the consumer choice world and apply the concept of entity embeddings 
+\cite{guo2016entity} along with neural network architectures
 like Multi Layer Perceptron, Long Short Term Memory (LSTM), Temporal Convolutional Networks (TCN) \cite{lea2016temporal} and 
-TCN-LSTM \cite{karim2017lstm}, and prove their application in modelling consumer-item time series data.
+TCN-LSTM \cite{karim2017lstm}.

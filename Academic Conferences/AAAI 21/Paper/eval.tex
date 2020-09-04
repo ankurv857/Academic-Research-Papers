@@ -151,7 +151,7 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
     \includegraphics[width=2in]{img/density.png} 
     \\ {\scriptsize \bf High density probability zone for the non purchased cases lies between 0 and 
     0.1, whereas for the purchased cases it lies between 0.25 and 0.35}
-    \label{fig:density} 
+    \label{fig:probdensity} 
   \end{figure}
 \subsection{Experiment Setups}
 We started with exploratary data analysis, looking at the data from various cuts and 
@@ -178,6 +178,7 @@ found this combination (out of 3 possible combinations) generating the best resu
 We also present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
 results of stacking at different values of K, for Weighted K-Best model setups. We realised the best outcome at 
 K = 3, which led to a better score compared to any individual model.
+In Figure \ref{fig:probdensity}, we can see the probability distributions post stacking for both labels of the target.
 Finally we apply F\textsubscript{1}-Maximization over stacked probability values so as to generate 
 binary predictions(1/0 referring to Purchase/Non Purchase). F\textsubscript{1}-Score Optimizer helps strike a 
 balance between Precision and Recall \cite{buckland1994relationship}. Post F\textsubscript{1}-Maximization we 
@@ -188,10 +189,8 @@ from Table \ref{tab:Fscore} as F\textsubscript{1}-Score with the described frame
 The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of its applications 
 include
 \begin{itemize}
-\item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations can be 
-made at consumer level to provide a seamless and delightful consumer experience.
-\item {\bf Offer Personalization:} Having a prior knowledge of consumer choice can enable 
-business in designing optimal offers for its consumers.
+\item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations and 
+optimal offer rollouts can be made at consumer level to provide a seamless and delightful consumer experience.
 \item {\bf Inventory Planning:} Short Term Inventory Planning (2-4 weeks) is largely dependant over 
 consumer preference in near future. Solution of the current problem can assist planners in better inventory planning.
 \item {\bf Assortment Planning:} In retail stores, consumer choice study can be used to optimize the store 
