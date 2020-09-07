@@ -1,7 +1,7 @@
 \section{Experiments and Results}
 \label{sec:eval}
-We use transactional data from instacart kaggle challenge to train all our models. As can 
-be seen in Figure \ref{fig:sampledata}, data contains transactional details including
+We use transactional data from instacart kaggle challenge to train all our models (sample data \ref{fig:sampledata}). From 
+sample data we can see that data contains transactional details including
 order id, add to cart order, date of transaction, aisle id and department id for each consumer-item transaction.
 As described in Table \ref{tab:datasplit}, we utilize 1 year data for each consumer-item combination, 
 which then gets split into train, validation, test1 and test2 as per our validation strategy. 
@@ -187,13 +187,14 @@ observe that Precision, Recall and F\textsubscript{1}-Score are close enough for
 in Table \ref{tab:Fscore}. We scored {\bf 0.4109} over unseen data (Test2)
 from Table \ref{tab:Fscore} as F\textsubscript{1}-Score with the described framework.
 \subsection{Industrial Applications}
-The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of its applications 
-include
+The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of them 
+include:
 \begin{itemize}
 \item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations and 
-optimal offer rollouts can be made at consumer level to provide a seamless and delightful consumer experience.
+optimal offer rollouts can be made at consumer level. This will enable a seamless and delightful consumer 
+shopping experience.
 \item {\bf Inventory Planning:} Short Term Inventory Planning (2-4 weeks) is largely dependant over 
-consumer preference in near future. Solution of the current problem can assist planners in better inventory planning.
+consumer preference in near future. Consumer preference model can be used in better short term inventory planning.
 \item {\bf Assortment Planning:} In retail stores, consumer choice study can be used to optimize the store 
 layout with right product placement over right shelf.
 \end{itemize}
