@@ -1,11 +1,12 @@
 \section{Experiments and Results}
 \label{sec:eval}
 We use transactional data from instacart kaggle challenge to train all our models. As can 
-be seen in Figure \ref{fig:sampledata} data has transactional details including consumer id, item id, 
-order id, add to cart order, date of transaction, aisle id and department id.
-Also, from Table 1, we can see that we utilize 1 year data which gets split into train, validation,
-test1 and test2. We generate consumer-item-week level data with purchase/ non purchase being the target.
-We use the above data to generate consumer-item purchase predictions for 2 time steps in the future (2 weeks in our case).
+be seen in Figure \ref{fig:sampledata}, data contains transactional details including
+order id, add to cart order, date of transaction, aisle id and department id for each consumer-item transaction.
+As described in Table \ref{tab:datasplit}, we utilize 1 year data for each consumer-item combination, 
+which then gets split into train, validation, test1 and test2 as per our validation strategy. 
+We generate consumer-item-week level data with purchase/ non purchase being the target,
+and use this data to train all our models and generate predictions.
  \begin{figure*}[!t]
     \centering 
     \caption{Sample Dataset} 
@@ -16,7 +17,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
   \begin{figure}[t]
     \centering 
     \caption{Most reordered Items across Departments} 
-    \includegraphics[width=2in]{img/items.png} 
+    \includegraphics[width=2.5in]{img/items.png} 
     \label{fig:items} 
   \end{figure}
 
@@ -71,7 +72,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
 {%
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-{\bf Trial} & {\bf Hyper-Parameter} & {\bf Xgboost} & {\bf RandomForest} \\  
+{\bf Trial} & {\bf HyperParameter} & {\bf Xgboost} & {\bf RandomForest} \\  
 \hline\hline
 1  		&  HyperOpt &  {\bf 0.0332} &  0.0526   \\ 
 2	  		&  HyperOpt &  0.0364 &  0.0479   \\ 
@@ -148,7 +149,7 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
   \begin{figure}[hbt!]
     \centering 
     \caption{Probability Distributions} 
-    \includegraphics[width=2in]{img/density.png} 
+    \includegraphics[width=2.5in]{img/density.png} 
     \\ {\scriptsize \bf High density probability zone for the non purchased cases lies between 0 and 
     0.1, whereas for the purchased cases it lies between 0.25 and 0.35}
     \label{fig:probdensity} 
@@ -156,23 +157,23 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
 \subsection{Experiment Setups}
 We started with exploratary data analysis, looking at the data from various cuts and 
 trying to study the variations of the features with target. Some of them include looking at the 
-density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
+density of consumers Vs. basket size Figure~\ref{fig:basket}, reorder visualization of items 
 across departments Figure \ref{fig:items}, variation of reorder probability with add to cart order Figure \ref{fig:addtocart},
 order probability variations at different temporal cuts like week, month and quarter, transactional metrics 
 like total orders, total reorders, recency, gap between orders, at both consumer and item levels.
-We then performed multiple experiments with above features and different hyper-configurations to land at reasonable 
-parameters to perform our experiments and present results.
+We then performed multiple experiments with the above mentioned features and different hyperparameter configurations to land at reasonable 
+hyperparameters to perform final experiments and present our results.
 
 \subsection{Results and Observations}
 Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} show the experimental results obtained across models with different 
-hyper-configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
+hyperparameter configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
 and Table \ref{tab:mlmodels} has Machine Learning model results. From model performance perspective, it is observed that 
-TCN showed the best Accuracy score at test2, with most of the other Deep Learning models having comparable scores.
+TCN showed the best Accuracy score at test2 (out of time), with most of the other Deep Learning models having comparable scores.
 Also, from Table \ref{tab:training} we see that all the Deep Learning models out perform Machine Learning models 
 including Xgboost and RandomForest both in terms of Accuracy and Generalization. This table has the average of 
 BCELoss across 3 best trials, and it can be observed that TCN has the lowest BCELoss, which translates into
-best Accuracy. From hyper-parameter configuration perspective we observe that RMSprop and CyclicLR emerged as the 
-clear winners as Optimizer and Scheduler respectively from Table \ref{tab:dlmodels}. 7 out of 12 times, we 
+best Accuracy. From hyperparameter configuration perspective we observe that RMSprop and CyclicLR emerged as the 
+clear winners as Optimizer and Scheduler respectively (from Table \ref{tab:dlmodels}). 7 out of 12 times, we 
 found this combination (out of 3 possible combinations) generating the best result.
 
 We also present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 

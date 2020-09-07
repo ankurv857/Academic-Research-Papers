@@ -1,4 +1,4 @@
-\begin{thebibliography}{28}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
@@ -116,6 +116,11 @@ Pedregosa, F.; Varoquaux, G.; Gramfort, A.; Michel, V.; Thirion, B.; Grisel,
   O.; Blondel, M.; Prettenhofer, P.; Weiss, R.; Dubourg, V.; et~al. 2011.
 \newblock Scikit-learn: Machine learning in Python.
 \newblock \emph{the Journal of machine Learning research} 12: 2825--2830.
+
+\bibitem[{Ruder(2016)}]{ruder2016overview}
+Ruder, S. 2016.
+\newblock An overview of gradient descent optimization algorithms.
+\newblock \emph{arXiv preprint arXiv:1609.04747} .
 
 \bibitem[{Santurkar et~al.(2018)Santurkar, Tsipras, Ilyas, and
   Madry}]{santurkar2018does}

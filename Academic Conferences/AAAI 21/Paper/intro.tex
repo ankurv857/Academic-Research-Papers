@@ -1,29 +1,30 @@
 \section{Introduction}
 Consumer behaviour insights have always been one of the key business drivers for retail, specially given
 fast changing consumer needs. Existing trend, competitor pricing, item reviews, sales and marketing are some of the 
-key factors driving todays consumer world in retail. While very little information is available
-on future variablities of the above factors, what retailers have is large volumes of transactional data.
-Retailers use conventional techniques with the available data to model consumer purchase \cite{choudhury2019machine}. 
+key factors driving today's consumer world in retail. While very little information is available
+on future variablities of the above factors, retailers do have large volumes of historical transactional data. Past study 
+\cite{choudhury2019machine} has shown that retailers use conventional techniques with available data to model consumer purchase. 
 While these help in estimating purchase pattern for loyal consumers and high selling items with reasonable accuracy, they 
 don't perform well for the long tail. Since multiple parameters interact non-linearly to define consumer purchase pattern,
 traditional models are not sufficient to achieve high accuracy across thousands to millions of consumers.
 
-In many of the retail/e-retail brands, short term (2-4 weeks ahead) inventory planning is done on the basis of consumer 
-purchase pattern. Also, certain sales and marketing strategies like Offer Personalization, personalized item
+Most retail/e-retail brands, plan their short term inventory (2-4 weeks ahead)  based on consumer 
+purchase pattern. Also, certain sales and marketing strategies like Offer Personalization and personalized item
 recommendations are made leveraging results of consumer purchase predictions for the near future.
-Given that every demand planner works on a narrow segment of item portfolio, there is high 
-variability in choices that different planners recommend. Also, given their busy schedule, they have very less interaction
-moments to discuss their views and insights over their recommendations. Hence, subtle effects like cannibalization
-\cite{shah2007retailer}, and item-affinity remains unaccounted. Such inefficiencies lead to gap between consumer needs 
-and item availablity, resulting in the loss of business opportunities in terms of consumer churn, out-of-stock, 
+Given that every demand planner works on a narrow segment of item portfolio, there is a high 
+variability in choices that different planners recommend. Additionally, the demand planners might not get enough opportunities 
+to discuss their views and insights over their recommendations. Hence, subtle effects like cannibalization
+\cite{shah2007retailer}, and item-affinity remain unaccounted for. Such inefficiencies lead to a gap between consumer needs 
+and item availablity, resulting in the loss of business opportunities in terms of consumer churn, and out-of-stock
 and excess inventory.
 
-In this paper, we apply multiple deep learning architectures along with tree based machine learning algorithms
-to predict the next logical item purchase at consumer level. We showcase the performance of individual models with 
-varying hyper-parameter configurations along with the results of stacked generalization ensemble \cite{wolpert1992stacked} 
-(algorithmic combination of predictions from different models) and F\textsubscript{1}-maximization (optimal purchase 
-probability cut-off at consumer level).
-In the next section \ref{sec:relatedwork}, we briefly discuss research work related to the problem in hand. 
-Section \ref{sec:methodology} explains the overall methodology adopted to solve the problem.
-It lays out neural network architectures and various algorithmic variants applied to the problem.
-Section \ref{sec:eval} describes the experiments performed, and results obtained in different modelling setups.
+Our paper makes the following contributions -
+\begin{itemize}
+\item We study and present the usefulness of applying various deep learning architectures along with tree based machine 
+learning algorithms to predict the next logical item purchase at consumer level.
+\item We present the performance of individual models with varying hyperparameter configurations.
+\item We implement stacked generalization ensemble framework \cite{wolpert1992stacked} 
+which combines predictions from different models using ensemble weights.
+\item We design and implement F\textsubscript{1}-maximization algorithm which optimises for purchase probability cut-off 
+at consumer level.
+\end{itemize}
