@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  8 SEP 2020 18:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  9 SEP 2020 01:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -472,7 +472,7 @@ Package pdftex.def Info: img/sampledata.png  used on input line 13.
 File: img/items.png Graphic file (type png)
 <use img/items.png>
 Package pdftex.def Info: img/items.png  used on input line 20.
-(pdftex.def)             Requested size: 180.67499pt x 188.72461pt.
+(pdftex.def)             Requested size: 162.6075pt x 169.85298pt.
 <img/basket.png, id=202, 481.8pt x 389.455pt>
 File: img/basket.png Graphic file (type png)
 <use img/basket.png>
@@ -487,14 +487,17 @@ Package pdftex.def Info: img/addtocart.png  used on input line 35.
 File: img/density.png Graphic file (type png)
 <use img/density.png>
 Package pdftex.def Info: img/density.png  used on input line 152.
-(pdftex.def)             Requested size: 180.67499pt x 214.77032pt.
+(pdftex.def)             Requested size: 144.54pt x 171.81497pt.
 
-[5]) (./conclusion.tex [6 <./img/sampledata.png>]) (./paper.bbl
+[5]
+Underfull \vbox (badness 7777) has occurred while \output is active []
 
-LaTeX Warning: Text page 7 contains only floats.
+)
+(./conclusion.tex [6 <./img/sampledata.png>]) (./paper.bbl
+Underfull \vbox (badness 1394) has occurred while \output is active []
 
-[7 <./img/items.png> <./img/basket.png> <./img/addtocart.png> <./img/density.pn
-g>]
+ [7 <./img/items.png> <./img/basket.png> <./img/addtocart.png> <./img/density.p
+ng>]
 Underfull \hbox (badness 2790) in paragraph at lines 63--66
 []\OT1/ptm/m/n/10 Guo, C.; and Berkhahn, F. 2016.  En-tity em-
  []
@@ -545,10 +548,10 @@ ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 1521431 bytes).
+Output written on paper.pdf (9 pages, 1522414 bytes).
 PDF statistics:
- 323 PDF objects out of 1000 (max. 8388607)
- 279 compressed objects within 3 object streams
+ 324 PDF objects out of 1000 (max. 8388607)
+ 280 compressed objects within 3 object streams
  82 named destinations out of 1000 (max. 500000)
  155 words of extra memory for PDF output out of 10000 (max. 10000000)
 

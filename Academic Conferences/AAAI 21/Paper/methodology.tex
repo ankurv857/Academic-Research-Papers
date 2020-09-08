@@ -157,21 +157,21 @@ time series (Consumer-Item) in sequential manner. Details around dataset and fea
 Hyper-parameters of tree based models are optimized
 using Bayesian Hyperparameter Optimization Technique, Hyperopt \cite{bergstra2013hyperopt}. 
 For deep learning, we use documented best practices along with our experimental results to
-choose model hyperparameters. Hyperparameter Optimization is performed over Validation dataset. 
+choose model hyperparameters. Hyperparameter Optimization is performed over validation dataset. 
 We list some of the hyperparameters along with the values we tune for Deep learning models.
   \begin{itemize}
-    \item {\bf Optimizer Parameters:} RMSProp \cite{bengio2015rmsprop} and Adam were used as different trial configurations. The learning rate 
-    was experimentally tuned to 1e-3. We also did weight decay of 1e-5 which helped a bit in model Regularization.
-    \item {\bf Scheduler Parameters:} Cyclic \cite{smith2017cyclical} and ReduceLROnPlateau \cite{zaheer2018adaptive} 
-    Learning rates were used as different trial configurations.
-    we used 1e-3 as max lr and 1e-6 as base lr for Cyclical learning rate along with the step size being the function of
-    length of train loader. ReduceLROnPlateau was tuned for 1e-6 as min lr.
+    \item {\bf Optimizer Parameters:} RMSProp \cite{bengio2015rmsprop} and Adam are used as different trial configurations. 
+    The learning rate is experimentally tuned to 1e-3. We also have weight decay of 1e-5 which helps a bit in model Regularization.
+    \item {\bf Scheduler Parameters:} CyclicLR \cite{smith2017cyclical} and ReduceLROnPlateau \cite{zaheer2018adaptive} 
+    Learning rates are used as different trial configurations.
+    we use 1e-3 as max lr and 1e-6 as base lr for cyclical learning rate along with the step size being the function of
+    length of train loader. ReduceLROnPlateau is tuned at 1e-6 as min lr.
     \item {\bf SWA:} Stochastic Weight Averaging (SWA) \cite{izmailov2018averaging} is used to improve generalization across Deep Learning
-    models. SWA performs an equal average of the weights traversed by SGD with a modified learning rate schedule. We used 
+    models. SWA performs an equal average of the weights traversed by SGD with a modified learning rate schedule. We use 
     1e-3 as SWA learning rate.
-    \item {\bf Parameter Average:} This is another generalization technique, which is weighted average of parameter weights 
-    of n minimas post training completion. Weights are based on total val loss for epoch with n set as 2 for our 
-    experiments.
+    \item {\bf Parameter Average:} This is a method to average the neural network parameters of n best model checkpoints 
+    post training, weighted by validation loss of respective checkpoints. The resulting model generalizes better than those 
+    with a single best checkpoint model for an unseen data. 
   \end{itemize}
 Apart from the above parameters we also iterate to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, number of LSTM layers, convnet parameters (kernel size, dilations, padding)
@@ -183,7 +183,7 @@ Hyperparameters used for Machine learning models with Hyperopt \cite{bergstra201
     \item {\bf Learning Rate:} Range set to vary between 1e-2 to 5e-1. 
     \item {\bf Max Depth:} Range set from 2 to 12 at step of 1.
   \end{itemize}
-Apart from above hyperparameters, Regularization parameters like Reg Lambda and Min Sample Leaf were also optimized using Hyperopt.
+Apart from above hyperparameters, regularization parameters like Reg Lambda and Min Sample Leaf are also optimized using Hyperopt.
 
 Deep learning models are built using deep learning framework
 PyTorch \cite{paszke2017automatic}, and are trained on GCP instance containing 6 CPUs and a single GPU. 
@@ -195,12 +195,12 @@ model weights in case of requirement. As described in Table \ref{tab:modelparams
 for each of 2 Machine Learning models.
 \subsection{Stacked Generalization Ensemble}
 Stacked generalization or Stacking \cite{wolpert1992stacked} is an ensemble method where a new model learns how to best 
-combine the predictions from multiple existing models. This is acieved by training an entirely new model using 
+combine the predictions from multiple existing models. This is achieved by training an entirely new model using 
 contributions from each submodel. 
 We use weighted K-best model as Stacker for combining k submodels (candidates) out of total 60 
 trained models. We iterate with different values of k ranging from 3 to 25 as presented in Table \ref{tab:stacking} . 
-Test1 BCELoss of submodels is used for weight initialization for the stacker models. For learning optimal weights of submodels, 
-we minimise Test1 BCELoss of the stacker model using gradient descent \cite{ruder2016overview}, 
+test1 BCELoss of submodels is used for weight initialization for the stacker models. For learning optimal weights of submodels, 
+we minimise test1 BCELoss of the stacker model using gradient descent \cite{ruder2016overview},
 stacking function can be described as:
   \begin{equation}
     \begin{array}{l}
@@ -237,7 +237,7 @@ and predictions (\ref{eqn:P})  of 'n' predicted items for consumer 'c'.
 A\textsubscript{c} represents the actuals for consumer 'c', with a\textsubscript{j} being 1/0 
 (purchased/non purchased). P\textsubscript{c} represents the predictions 
 for consumer 'c' for the respective item, with p\textsubscript{j} being probability value. 
-'n' is the total items model generated purchase probabilities for consumer 'c'.
+'n' is the total items for which the model generated purchase probabilities for consumer 'c'.
 Now we apply Decision rule D() which converts probabilities to binary predictions, as described below 
 in Equation \ref{eqn:Decision}.
   \begin{equation}
