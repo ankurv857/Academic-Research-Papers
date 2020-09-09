@@ -3,7 +3,7 @@
 We treat each relevant consumer-item as an individual object and shape them into weekly time series data
 based on historical transactions. In this setup, target value at each time step (week) takes a binary input, 1/0 
 (purchased/non purchased). \emph{Relevancy} of the consumer-item is defined by items transacted by consumer during training 
-time window. \emph{Postive samples} (purchased/1) are weeks where consumer did transact for an item, whereas 
+time window. \emph{Positive samples} (purchased/1) are weeks where consumer did transact for an item, whereas 
 \emph{Negative samples} (non purchased/0) are the weeks where the consumer did not buy that item.
 We apply sliding windows testing routine for generating
 out of time results. The time series is split into 4 parts - train, validation, 
@@ -59,7 +59,7 @@ Test2	  		&  Reporting Accuracy Metrics & 50,910 &  2 weeks\\
 \label{tab:datasplit}
 \end{table}
 \subsection{Loss Function}
-Since we are solving Binary classification problem, we believe that Binary Cross-Entropy should be the most appropriate 
+Since we are solving Binary Classification problem, we believe that Binary Cross-Entropy should be the most appropriate 
 loss function for training the models. We use the below formula to calculate Binary Cross-Entropy:
   \begin{equation}
       \begin{array}{l}
@@ -73,7 +73,7 @@ is the predicted probability against the target. The BCELoss takes non-negative 
 from Equation \ref{eqn:logloss} that Lower the BCELoss, better the Accuracy.
 \subsection{Model Architectures}
 As mentioned earlier in this section, traditional machine learning models are not really a suitable choice for modelling \emph{f} 
-(Equation \ref{eqn:fx}) due to non-linear interaction of the features. Hence, we work with
+(Equation \ref{eqn:fx}) due to non-linear interaction between the features. Hence, we work with
 tree based models like RandomForest, Xgboost \cite{chen2016xgboost} 
 to Deep learning models like Multi Layer Perceptron (MLP), Long Short 
 Term Memory (LSTM) and Temporal Convolutional Networks (TCN). Architectures of MLP, LSTM, TCN \cite{lea2016temporal} 
@@ -91,7 +91,7 @@ architecture comprising of 2 LSTM layers combined with entity embeddings. This c
 \item {\bf Entity Embeddings + Temporal Convolutional Network:} TCN (Figure \ref{fig:TCN}), originally
 proposed in \cite{lea2016temporal} , is considered a competitive architecture yielding the best results when evaluated over 
 our experimental dataset. This network comprises of 3 dilated Convolutional networks combined with entity embeddings.
-Similar to LSTM, this architecture, after convolving and concatenating, it flows into 
+Similar to LSTM, this architecture, after convolving and concatenating flows into 
 3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
 \item {\bf Entity Embeddings + Long Short Term Memory-Temporal Convolutional Network:} TCN-LSTM (Figure \ref{fig:TCN-LSTM})
 inherits the properties of LSTM and TCN in a fully connected network.
@@ -102,9 +102,9 @@ From data classification, Figure \ref{fig:dnndata}, we can see that data was sub
 attributes like sex, marital status and location along with different item attributes like category, department and brand.
 \item {\bf Temporal Categorical:} These are categorical features that vary with time. It includes all the datetime 
 related features like week, month of year, etc.
-\item {\bf Static Continuous:} These features are static but Continuous. This includes certain consumer attributes like
+\item {\bf Static Continuous:} These features are static but continuous. This includes certain consumer attributes like
 age and weight, item attributes like size, and certain derived features like target encoded features.
-\item {\bf Temporal Continuous:} These are time varying Continuous features. All consumer and item related
+\item {\bf Temporal Continuous:} These are time varying continuous features. All consumer and item related
 traditional attributes like number of orders, add to cart order, etc. falls under this bucket.
 \end{itemize}
 As mentioned earlier in this section, in all the above described neural network architectures, we learn the embeddings \cite{guo2016entity} of the 
@@ -156,7 +156,7 @@ time series (Consumer-Item) in sequential manner. Details around dataset and fea
 \subsection{Hyperparameter Tuning}
 Hyper-parameters of tree based models are optimized
 using Bayesian Hyperparameter Optimization Technique, Hyperopt \cite{bergstra2013hyperopt}. 
-For deep learning, we use documented best practices along with our experimental results to
+For Deep learning, we use documented best practices along with our experimental results to
 choose model hyperparameters. Hyperparameter Optimization is performed over validation dataset. 
 We list some of the hyperparameters along with the values we tune for Deep learning models.
   \begin{itemize}
@@ -190,7 +190,7 @@ PyTorch \cite{paszke2017automatic}, and are trained on GCP instance containing 6
 Scikit-learn \cite{pedregosa2011scikit} is used for Tree
 based models like RandomForest and Xgboost \cite{chen2016xgboost}. For Neural Network Architectures, 
 we save model weights of the best checkpoint, so that we may access the learned entity embeddings and other
-model weights in case of requirement. As described in Table \ref{tab:modelparams}, we build a total of 60 models, 
+model weights if required. As described in Table \ref{tab:modelparams}, we build a total of 60 models, 
 12 different configurations for each of 4 Deep Learning models and 6 best trials from Hyperopt \cite{bergstra2013hyperopt} 
 for each of 2 Machine Learning models.
 \subsection{Stacked Generalization Ensemble}
@@ -217,8 +217,8 @@ w\textsubscript{j} is the weight for j\textsuperscript{th} submodel.
 Post stacking, we optimize for purchase probability threshold based on
 probability distribution at a consumer level using F\textsubscript{1}-Maximization.
 This enables optimal thresholding of consumer level probabilities to  maximize F\textsubscript{1} measure \cite{lipton2014optimal}.
-To illustrate the above, let's say we generated purchase probabilities for 
-'n' items out of 'b' actually purchased items by consumer 'c'. Now, lets visualize the actuals (\ref{eqn:A}) 
+To illustrate the above, let us say we generated purchase probabilities for 
+'n' items out of 'b' actually purchased items by consumer 'c'. Now, let us visualize the actuals (\ref{eqn:A}) 
 and predictions (\ref{eqn:P})  of 'n' predicted items for consumer 'c'.
   \begin{equation}
     \begin{array}{l}
@@ -237,7 +237,7 @@ and predictions (\ref{eqn:P})  of 'n' predicted items for consumer 'c'.
 A\textsubscript{c} represents the actuals for consumer 'c', with a\textsubscript{j} being 1/0 
 (purchased/non purchased). P\textsubscript{c} represents the predictions 
 for consumer 'c' for the respective item, with p\textsubscript{j} being probability value. 
-'n' is the total items for which the model generated purchase probabilities for consumer 'c'.
+'n' represents total items for which the model generated purchase probabilities for consumer 'c'.
 Now we apply Decision rule D() which converts probabilities to binary predictions, as described below 
 in Equation \ref{eqn:Decision}.
   \begin{equation}

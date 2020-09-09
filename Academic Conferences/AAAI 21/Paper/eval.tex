@@ -168,14 +168,14 @@ hyperparameters to perform final experiments and present our results.
 Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} show the experimental results obtained across models with different 
 hyperparameter configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
 and Table \ref{tab:mlmodels} has Machine Learning model results. From model performance perspective, it is observed that 
-Temporal Convolution Network (TCN) has least average BCELoss of 0.0251, aprrox. 2\% better than the second best model
+Temporal Convolution Network (TCN) has least average BCELoss of 0.0251, approximately 2\% better than the second best model
 which is Multi Layer Perceptron (MLP) having average BCELoss of 0.0256. Table \ref{tab:training} presents
 the comparative analysis of average scores across all models. Also, we observe in Table \ref{tab:training} 
 that Deep Learning models out perform Machine Learning models including Xgboost and RandomForest in terms of accuracy.
-Average BCELoss of Deep Learning model is aprrox. 0.0266 , whereas for Machine Learning models its aprrox. 0.0388.
-From hyperparameter configuration perspective, we observe that RMSprop and CyclicLR emerged as the 
+Average BCELoss of Deep Learning model is approximately about 0.0266 , whereas for Machine Learning models its 
+approximately about 0.0388. From hyperparameter configuration perspective, we observe that RMSprop and CyclicLR emerged as the 
 winners as Optimizer and Scheduler respectively (from Table \ref{tab:dlmodels}). 7 out of 12 times, the 
-combination of RMSprop and CyclicLR (out of 3 possible combinations) generates the best result.
+combination of RMSprop and CyclicLR (out of 3 possible combinations) generate the best result.
 
 We also present the effectiveness of combining submodel predictions and F\textsubscript{1}-Maximization. 
 Table \ref{tab:stacking} outlines the results of stacking at different values of K for Weighted K-Best stacker model. 
