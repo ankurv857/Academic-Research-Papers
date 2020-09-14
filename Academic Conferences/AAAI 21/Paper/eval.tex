@@ -1,11 +1,12 @@
 \section{Experiments and Results}
 \label{sec:eval}
-We use transactional data from instacart kaggle challenge to train all our models. As can 
-be seen in Figure \ref{fig:sampledata} data has transactional details including consumer id, item id, 
-order id, add to cart order, date of transaction, aisle id and department id.
-Also, from Table 1, we can see that we utilize 1 year data which gets split into train, validation,
-test1 and test2. We generate consumer-item-week level data with purchase/ non purchase being the target.
-We use the above data to generate consumer-item purchase predictions for 2 time steps in the future (2 weeks in our case).
+We use transactional data from instacart kaggle challenge to train all our models (sample data \ref{fig:sampledata}). From 
+sample data we can see that data contains transactional details including
+order id, add to cart order, date of transaction, aisle id and department id for each consumer-item transaction.
+As described in Table \ref{tab:datasplit}, we utilize 1 year data for each consumer-item combination, 
+which then gets split into train, validation, test1 and test2 as per our validation strategy. 
+We generate consumer-item-week level data with purchase/ non purchase being the target,
+and use this data to train all our models.
  \begin{figure*}[!t]
     \centering 
     \caption{Sample Dataset} 
@@ -16,7 +17,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
   \begin{figure}[t]
     \centering 
     \caption{Most reordered Items across Departments} 
-    \includegraphics[width=2in]{img/items.png} 
+    \includegraphics[width=2.25in]{img/items.png} 
     \label{fig:items} 
   \end{figure}
 
@@ -71,7 +72,7 @@ We use the above data to generate consumer-item purchase predictions for 2 time 
 {%
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-{\bf Trial} & {\bf Hyper-Parameter} & {\bf Xgboost} & {\bf RandomForest} \\  
+{\bf Trial} & {\bf HyperParameter} & {\bf Xgboost} & {\bf RandomForest} \\  
 \hline\hline
 1  		&  HyperOpt &  {\bf 0.0332} &  0.0526   \\ 
 2	  		&  HyperOpt &  0.0364 &  0.0479   \\ 
@@ -151,49 +152,51 @@ Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
     \includegraphics[width=2in]{img/density.png} 
     \\ {\scriptsize \bf High density probability zone for the non purchased cases lies between 0 and 
     0.1, whereas for the purchased cases it lies between 0.25 and 0.35}
-    \label{fig:density} 
+    \label{fig:probdensity} 
   \end{figure}
 \subsection{Experiment Setups}
-We started with exploratary data analysis, looking at the data from various cuts and 
-trying to study the variations of the features with target. Some of them include looking at the 
-density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
-across departments Figure \ref{fig:items}, variation of reorder probability with add to cart order Figure \ref{fig:addtocart},
+We start with exploratary data analysis, looking at the data from various cuts. We
+study the variations of different features with our target (purchase/ non purchase). Some of our studies are
+density of consumers versus basket size (Figure~\ref{fig:basket}), reorder visualization of items 
+across departments (Figure \ref{fig:items}), variation of reorder probability with add to cart order (Figure \ref{fig:addtocart}),
 order probability variations at different temporal cuts like week, month and quarter, transactional metrics 
 like total orders, total reorders, recency, gap between orders, at both consumer and item levels.
-We then performed multiple experiments with above features and different hyper-configurations to land at reasonable 
-parameters to perform our experiments and present results.
+We then perform multiple experiments with the above mentioned features and different hyperparameter configurations to land at reasonable 
+hyperparameters to perform final experiments and present our results.
 
 \subsection{Results and Observations}
 Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} show the experimental results obtained across models with different 
-hyper-configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
+hyperparameter configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
 and Table \ref{tab:mlmodels} has Machine Learning model results. From model performance perspective, it is observed that 
-TCN showed the best Accuracy score at test2, with most of the other Deep Learning models having comparable scores.
-Also, from Table \ref{tab:training} we see that all the Deep Learning models out perform Machine Learning models 
-including Xgboost and RandomForest both in terms of Accuracy and Generalization. This table has the average of 
-BCELoss across 3 best trials, and it can be observed that TCN has the lowest BCELoss, which translates into
-best Accuracy. From hyper-parameter configuration perspective we observe that RMSprop and CyclicLR emerged as the 
-clear winners as Optimizer and Scheduler respectively from Table \ref{tab:dlmodels}. 7 out of 12 times, we 
-found this combination (out of 3 possible combinations) generating the best result.
+Temporal Convolution Network (TCN) has least average BCELoss of 0.0251, approximately 2\% better than the second best model
+which is Multi Layer Perceptron (MLP) having average BCELoss of 0.0256. Table \ref{tab:training} presents
+the comparative analysis of average scores across all models. Also, we observe in Table \ref{tab:training} 
+that Deep Learning models out perform Machine Learning models including Xgboost and RandomForest in terms of accuracy.
+Average BCELoss of Deep Learning model is approximately about 0.0266 , whereas for Machine Learning models its 
+approximately about 0.0388. From hyperparameter configuration perspective, we observe that RMSprop and CyclicLR emerged as the 
+winners as Optimizer and Scheduler respectively (from Table \ref{tab:dlmodels}). 7 out of 12 times, the 
+combination of RMSprop and CyclicLR (out of 3 possible combinations) generate the best result.
 
-We also present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
-results of stacking at different values of K, for Weighted K-Best model setups. We realised the best outcome at 
-K = 3, which led to a better score compared to any individual model.
+We also present the effectiveness of combining submodel predictions and F\textsubscript{1}-Maximization. 
+Table \ref{tab:stacking} outlines the results of stacking at different values of K for Weighted K-Best stacker model. 
+We realise the best accuracy or least BCELoss of 0.0242 at K = 3.
+To analyse our probability values post stacking, we plot the probability distributions for both labels of the target,
+as can be seen in Figure \ref{fig:probdensity}.
 Finally we apply F\textsubscript{1}-Maximization over stacked probability values so as to generate 
-binary predictions(1/0 referring to Purchase/Non Purchase). F\textsubscript{1}-Score Optimizer helps strike a 
+purchase predictions. F\textsubscript{1}-Score Optimizer helps strike
 balance between Precision and Recall \cite{buckland1994relationship}. Post F\textsubscript{1}-Maximization we 
 observe that Precision, Recall and F\textsubscript{1}-Score are close enough for all data splits, as can be seen 
-in Table \ref{tab:Fscore}. We scored {\bf 0.4109} over unseen data (Test2)
-from Table \ref{tab:Fscore} as F\textsubscript{1}-Score with the described framework.
+in Table \ref{tab:Fscore}. F\textsubscript{1}-Score of our model over unseen data (test2) is 0.4109
+(Table \ref{tab:Fscore}).
 \subsection{Industrial Applications}
-The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of its applications 
-include
+The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of them 
+include:
 \begin{itemize}
-\item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations can be 
-made at consumer level to provide a seamless and delightful consumer experience.
-\item {\bf Offer Personalization:} Having a prior knowledge of consumer choice can enable 
-business in designing optimal offers for its consumers.
-\item {\bf Inventory Planning:} Short Term Inventory Planning (2-4 weeks) is largely dependant over 
-consumer preference in near future. Solution of the current problem can assist planners in better inventory planning.
+\item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations and 
+optimal offer rollouts can be made at consumer level. This will enable a seamless and delightful consumer 
+shopping experience.
+\item {\bf Inventory Planning:} Consumer preference model can also be used in better short term inventory planning (2-4 weeks),
+which is largely dependant over what consumer is going to purchase in the near future.
 \item {\bf Assortment Planning:} In retail stores, consumer choice study can be used to optimize the store 
 layout with right product placement over right shelf.
 \end{itemize}

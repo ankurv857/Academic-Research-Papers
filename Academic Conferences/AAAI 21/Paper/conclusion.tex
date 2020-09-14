@@ -1,22 +1,24 @@
 \section{Conclusion}
 \label{sec:conclusion}
-We have presented our study of the consumer purchase behaviour in the context of large scale retail. 
+We have presented our study of the consumer purchase behaviour in the context of large scale e-retail. 
 We have shown that careful feature
 engineering when used in conjunction with Deep Neural Networks, can be used
 to predict the next (multi-timestep) logical purchase of consumers with reasonably good accuracies.
 While creating our models and features we have been cognizant of
-the fact that many features will not be available as is when predictions
-are being generated for future period. Hence we have used innovative transformations so that we don’t have to remember train
-data during forecast time, thereby reducing the computation and memory requirements during forecast generation.
+the fact that many features might not be available when predictions
+are being generated for future period. Hence we save model weights and use innovative transformations 
+so that we do not necessarily have to remember complete data during forecast time,
+thereby reducing the computation and memory requirements during forecast generation.
 
-As per our initial expectations, Deep Neural Network models outperformed the ML models like Xgboost and RandomForest.
-Sequence to Sequence architectures seemed to be theoretically sound choice for tackling our problem. Our results and 
-observations were inline with the above thought process. Model generalization and robustness
-was attained by model stacking. As per our expectation we realized gain in accuracy post stacking.
+As per our initial expectations, Deep Neural Network models outperform the ML models like Xgboost and RandomForest.
+Sequence to Sequence architectures seems to be sound choice for tackling our problem, and our results and 
+observations are inline with this thought process. Model generalization and robustness
+is attained using stacked generalization. As per our expectation we realize gain in accuracy post both stacking
+and F\textsubscript{1}-Maximization.
 
-At the same time we understand that computation strategy is key aspect in modelling
-Millions of customers, and we intend to explore further over this aspect by building 
-Transfer Learning framework \cite{yosinski2014transferable}. Also, we are working, to 
+At the same time we understand that computation strategy is a key aspect in modelling
+millions of consumers, and we intend to further explore this aspect by building 
+Transfer Learning framework \cite{yosinski2014transferable}. We are also working to 
 further improve our Sequence to Sequence neural network architectures to improve accuracy
 and decrease computation time.
  
