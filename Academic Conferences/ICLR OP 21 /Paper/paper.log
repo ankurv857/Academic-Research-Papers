@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  14 SEP 2020 16:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  14 SEP 2020 23:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -287,36 +287,66 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
 \Gin@req@height=\dimen148
 \Gin@req@width=\dimen149
 )
+(/usr/local/texlive/2020/texmf-dist/tex/latex/lipsum/lipsum.sty
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2020-03-06 L3 programming layer (loader) 
+
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count198
 \l__pdf_internal_box=\box47
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2020-03-06 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count199
+\g__xparse_grabber_int=\count266
+\l__xparse_m_args_int=\count267
+\l__xparse_v_nesting_int=\count268
+)
+Package: lipsum 2019/01/02 v2.2 150 paragraphs of Lorem Ipsum dummy text
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex
+File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/doublestroke/dsfont.sty
+Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
 (./paper.aux
 
 LaTeX Warning: Label `eqn:Pdash' multiply defined.
 
+
+LaTeX Warning: Label `eq:fx' multiply defined.
+
+
+LaTeX Warning: Label `eq:fx' multiply defined.
+
+
+LaTeX Warning: Label `eq:fx' multiply defined.
+
+
+LaTeX Warning: Label `eq:fx' multiply defined.
+
 )
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 3
-5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 4
+3.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -324,16 +354,16 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count199
+\scratchcounter=\count269
 \scratchdimen=\dimen150
 \scratchbox=\box49
-\nofMPsegments=\count266
-\nofMParguments=\count267
+\nofMPsegments=\count270
+\nofMParguments=\count271
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count268
+\MPscratchCnt=\count272
 \MPscratchDim=\dimen151
-\MPnumerator=\count269
-\makeMPintoPDFobject=\count270
+\MPnumerator=\count273
+\makeMPintoPDFobject=\count274
 \everyMPtoPDFconversion=\toks22
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -344,7 +374,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 35.
+Package hyperref Info: Link coloring OFF on input line 43.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -356,136 +386,213 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count271
+\c@section@level=\count275
 )
-LaTeX Info: Redefining \ref on input line 35.
-LaTeX Info: Redefining \pageref on input line 35.
-LaTeX Info: Redefining \nameref on input line 35.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
  (./paper.out) (./paper.out)
 \@outlinefile=\write3
 \openout3 = `paper.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
 
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./abstract.tex) (./methodology.tex
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-5.
+) (./abstract.tex) (./intro.tex
 
+Package natbib Warning: Citation `choudhury2019machine' on page 1 undefined on 
+input line 6.
+
+
+Package natbib Warning: Citation `shah2007retailer' on page 1 undefined on inpu
+t line 17.
+
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
+2.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+)
+
+Package natbib Warning: Citation `wolpert1992stacked' on page 1 undefined on in
+put line 25.
+
+) (./relatedwork.tex
+
+Package natbib Warning: Citation `fader2009probability' on page 1 undefined on 
+input line 6.
+
+
+Package natbib Warning: Citation `choudhury2019machine' on page 1 undefined on 
+input line 6.
+
+
+Package natbib Warning: Citation `martinez2020machine' on page 1 undefined on i
+nput line 9.
+
+
+Package natbib Warning: Citation `guo2016entity' on page 1 undefined on input l
+ine 13.
+
+
+Package natbib Warning: Citation `chen2016xgboost' on page 1 undefined on input
+ line 13.
+
+[1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
 
-Package natbib Warning: Citation `lea2016temporal' on page 2 undefined on input
- line 81.
+Package natbib Warning: Citation `fawaz2019deep' on page 2 undefined on input l
+ine 16.
 
-<img/dnndata.png, id=45, 773.89125pt x 190.7125pt>
+
+Package natbib Warning: Citation `serra2018towards' on page 2 undefined on inpu
+t line 20.
+
+
+Package natbib Warning: Citation `zheng2014time' on page 2 undefined on input l
+ine 20.
+
+
+Package natbib Warning: Citation `zhao2017convolutional' on page 2 undefined on
+ input line 21.
+
+
+Package natbib Warning: Citation `wang2017time' on page 2 undefined on input li
+ne 21.
+
+
+Package natbib Warning: Citation `guo2016entity' on page 2 undefined on input l
+ine 23.
+
+
+Package natbib Warning: Citation `lea2016temporal' on page 2 undefined on input
+ line 24.
+
+
+Package natbib Warning: Citation `karim2017lstm' on page 2 undefined on input l
+ine 25.
+
+) (./methodology.tex [2]
+
+Package natbib Warning: Citation `lea2016temporal' on page 3 undefined on input
+ line 94.
+
+<img/dnndata.png, id=78, 773.89125pt x 190.7125pt>
 File: img/dnndata.png Graphic file (type png)
 <use img/dnndata.png>
-Package pdftex.def Info: img/dnndata.png  used on input line 89.
-(pdftex.def)             Requested size: 317.98755pt x 78.3614pt.
-<img/TCN.png, id=47, 612.2875pt x 447.6725pt>
+Package pdftex.def Info: img/dnndata.png  used on input line 102.
+(pdftex.def)             Requested size: 397.48499pt x 97.95467pt.
+<img/TCN.png, id=80, 612.2875pt x 447.6725pt>
 File: img/TCN.png Graphic file (type png)
 <use img/TCN.png>
-Package pdftex.def Info: img/TCN.png  used on input line 95.
-(pdftex.def)             Requested size: 317.98755pt x 232.4973pt.
+Package pdftex.def Info: img/TCN.png  used on input line 108.
+(pdftex.def)             Requested size: 397.48499pt x 290.62163pt.
 
-Package natbib Warning: Citation `bergstra2013hyperopt' on page 2 undefined on 
-input line 100.
+Package natbib Warning: Citation `bergstra2013hyperopt' on page 3 undefined on 
+input line 113.
 
-[2 <./img/dnndata.png>]
+[3]
 
-Package natbib Warning: Citation `bengio2015rmsprop' on page 3 undefined on inp
-ut line 105.
-
-
-Package natbib Warning: Citation `smith2017cyclical' on page 3 undefined on inp
-ut line 107.
+Package natbib Warning: Citation `bengio2015rmsprop' on page 4 undefined on inp
+ut line 118.
 
 
-Package natbib Warning: Citation `zaheer2018adaptive' on page 3 undefined on in
-put line 107.
+Package natbib Warning: Citation `smith2017cyclical' on page 4 undefined on inp
+ut line 120.
 
 
-Package natbib Warning: Citation `izmailov2018averaging' on page 3 undefined on
- input line 111.
+Package natbib Warning: Citation `zaheer2018adaptive' on page 4 undefined on in
+put line 120.
 
 
-LaTeX Warning: Reference `eqn:logloss' on page 3 undefined on input line 120.
+Package natbib Warning: Citation `izmailov2018averaging' on page 4 undefined on
+ input line 124.
+
+[4 <./img/dnndata.png> <./img/TCN.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\mathsurround' on input line 135.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 122.
+(hyperref)                removing `\z@' on input line 135.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 122.
+(hyperref)                removing `subscript' on input line 135.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 122.
-
-
-Package natbib Warning: Citation `lipton2014optimal' on page 3 undefined on inp
-ut line 125.
+Package natbib Warning: Citation `lipton2014optimal' on page 5 undefined on inp
+ut line 138.
 
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
-32.
+45.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 132.
- [3 <./img/TCN.png>]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
 
-Package natbib Warning: Citation `lipton2014optimal' on page 4 undefined on inp
-ut line 175.
+
+Package natbib Warning: Citation `lipton2014optimal' on page 5 undefined on inp
+ut line 188.
+
+[5]
+<img/elasticity.png, id=119, 637.38126pt x 381.425pt>
+File: img/elasticity.png Graphic file (type png)
+<use img/elasticity.png>
+Package pdftex.def Info: img/elasticity.png  used on input line 263.
+(pdftex.def)             Requested size: 317.98755pt x 190.29297pt.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
+89.
+ (/usr/local/texlive/2020/texmf-dist/tex/latex/doublestroke/Udsrom.fd
+File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
+))
+(./eval.tex
+<img/sampledata.png, id=121, 944.52875pt x 199.74625pt>
+File: img/sampledata.png Graphic file (type png)
+<use img/sampledata.png>
+Package pdftex.def Info: img/sampledata.png  used on input line 12.
+(pdftex.def)             Requested size: 397.48499pt x 84.06049pt.
+) (./conclusion.tex [6 <./img/elasticity.png>]
+
+Package natbib Warning: Citation `yosinski2014transferable' on page 7 undefined
+ on input line 19.
 
 )
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 47.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 47.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
+[7 <./img/sampledata.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
  (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 47.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 47.
-
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: BF4971B4C7EA8B57C23642EBB9801106;403
-(rerunfilecheck)             After:  799571B8BA87C0FA24227BD10058F4CD;549.
-
-LaTeX Warning: There were undefined references.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 7A5076C2780A631BDA0C3FE7A7A9BFA6;822.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 47.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
  ) 
 Here is how much of TeX's memory you used:
- 7547 strings out of 480608
- 105210 string characters out of 5903631
- 384850 words of memory out of 5000000
- 23252 multiletter control sequences out of 15000+600000
- 555790 words of font info for 65 fonts, out of 8000000 for 9000
+ 8193 strings out of 480608
+ 122602 string characters out of 5903631
+ 574658 words of memory out of 5000000
+ 23847 multiletter control sequences out of 15000+600000
+ 556078 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,15n,49p,229b,346s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,16n,49p,229b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -494,13 +601,14 @@ ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
 /2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
 20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
 0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist
-/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/typ
-e1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (4 pages, 210816 bytes).
+texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2020
+/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 531948 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
- 26 named destinations out of 1000 (max. 500000)
- 59 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 PDF objects out of 1000 (max. 8388607)
+ 163 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 

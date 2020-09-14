@@ -44,7 +44,7 @@ d\textsubscript{t} is derived from datetime to capture trend and seasonality at 
 \caption{Modelling data splits}
 \vspace{0.5 in}
 \centering
-\resizebox{4.4in}{!}
+\resizebox{5.5in}{!}
 {%
 \begin{tabular}{|c|c|c|c|}
 \hline
@@ -72,6 +72,19 @@ age and weight, item attributes like size, and certain derived features like tar
 \item {\bf Temporal Continuous:} These are time varying continuous features. All consumer and item related
 traditional attributes like number of orders, add to cart order, etc. falls under this bucket.
 \end{itemize}
+\subsubsection{Loss Function}
+Since we are solving Binary Classification problem, we believe that Binary Cross-Entropy should be the most appropriate 
+loss function for training the models. We use the below formula to calculate Binary Cross-Entropy:
+  \begin{equation}
+      \begin{array}{l}
+        H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y.log(p(y))+
+        (1- y).log(1-p(y))
+      \end{array}
+    \label{eqn:logloss}
+  \end{equation}
+here H\textsubscript{p} represents computed loss, y is the target value (label), and p(y) 
+is the predicted probability against the target. The BCELoss takes non-negative values. We can infer 
+from Equation \ref{eqn:logloss} that Lower the BCELoss, better the Accuracy.
 \subsubsection{Model Architecture}
 As mentioned earlier in this section, traditional machine learning models are not really a suitable choice for modelling \emph{f} 
 (Equation \ref{eqn:fx}) due to non-linear interaction between the features.
@@ -86,13 +99,13 @@ Similar to LSTM, this architecture, after convolving and concatenating flows int
 \begin{figure}[t]
     \centering 
     \caption{Data classification for DNN Architectures} 
-    \includegraphics[width=4.4in]{img/dnndata.png} 
+    \includegraphics[width=5.5in]{img/dnndata.png} 
     \label{fig:dnndata} 
   \end{figure}
   \begin{figure}[t]
     \centering 
     \caption{Temporal Convolutional Network (TCN)} 
-    \includegraphics[width=4.4in]{img/TCN.png} 
+    \includegraphics[width=5.5in]{img/TCN.png} 
     \label{fig:TCN} 
   \end{figure}
 \subsubsection{Hyperparameter Tuning}
@@ -236,4 +249,65 @@ F\textsubscript{1}-score for consumer 'c'.
 Equation \ref{eq:constraint} represents the optimization function we solve to generate purchase predictions (1/0) for each consumer.
 
 \subsection{Elasticity Framework}
+Elasticity estimate is arrived at using simulations. To achieve that, for each consumer-item combination, base 
+offer percent is identified using the following criteria in order:
+\begin{itemize}
+\item Average of last 4 weeks non-zero offer percent values of the consumer-item combination
+\item Average of historical non-zero offer percent values of the consumer-item combination
+\item Average of last 4 weeks non-zero offer percent values of all same age consumer-item combinations within that category
+\end{itemize}
+
+  \begin{figure}[t]
+    \centering 
+    \caption{Purchase probability vs. Offer percentage} 
+    \includegraphics[width=4.4in]{img/elasticity.png} 
+    \label{fig:elasticity} 
+  \end{figure}
+ 
+ \begin{equation}
+    f(x) = \frac{1}{1 + e^{-(ax+b)}} \;\;\;\; ,\;\;\;\;
+    f\textsuperscript{'}(x) = a\times f(x)\times (1 - f(x))
+    \label{eq:fx}
+  \end{equation}
+
+
+ \begin{equation}
+    \epsilon(k,f(k)) = f\textsuperscript{'}(k) \times\frac{k}{f(k)} \;\;\;\; \;\;\;\;
+    \Rightarrow \epsilon(k,f(k)) = a\times k\times (1 - f(k))
+    \label{eq:fx}
+  \end{equation}
+
 \subsection{Multi-Objective Optimization}
+The optimization function needs to solve for the below Objectives:
+\begin{itemize}
+\item Maximize the Net Revenue (R\textsubscript{v})
+\item Maximize the Retention rate (R\textsubscript{r})
+\end{itemize}
+
+ \begin{equation}
+    R\textsubscript{v} = \sum_{i=1}^{n}\;\;\;[I\textsubscript{p} - I\textsubscript{p}\times (k \mypm \frac{\eta}{100}\times k)]\times
+    \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \epsilon(k,f(k))\times f(k))
+    \label{eq:fx}
+  \end{equation}
+
+\begin{equation}
+    R\textsubscript{r} = \frac{\sum_{i=1}^{n}\; \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \epsilon(k,f(k))\times f(k))}{n}
+    \label{eq:fx}
+  \end{equation}
+
+  \begin{equation}
+    \ \mathds{1} \ \textsubscript{c}(x) :=
+        \begin{cases}
+          1 & x \geq c\\
+          0 & \text{Otherwise}
+        \end{cases}
+    \label{eq:fx}
+  \end{equation}
+
+\begin{equation}
+    \max_{\lambda R\textsubscript{v} + \gamma R\textsubscript{r}} \;\;\;\; 2 * \frac{ V\textsubscript{Pr\textsubscript{c}}}{k + b}
+    \;\;\;\;,\;\;\;\;  \text{subject to: } \;\;\;\;  Pr\textsubscript{c}  \in \; [0,1]
+    \label{eq:constraint}
+  \end{equation}
+
+Net Revenue (R\textsubscript{v}) will be a function of 

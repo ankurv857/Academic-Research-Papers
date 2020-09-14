@@ -1,8 +1,13 @@
-\BOOKMARK [1][-]{section.1}{Methodology}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{Modelling}{section.1}% 2
-\BOOKMARK [3][-]{subsubsection.1.1.1}{Feature Engineering}{subsection.1.1}% 3
-\BOOKMARK [3][-]{subsubsection.1.1.2}{Model Architecture}{subsection.1.1}% 4
-\BOOKMARK [3][-]{subsubsection.1.1.3}{Hyperparameter Tuning}{subsection.1.1}% 5
-\BOOKMARK [2][-]{subsection.1.2}{F1-Maximization}{section.1}% 6
-\BOOKMARK [2][-]{subsection.1.3}{Elasticity Framework}{section.1}% 7
-\BOOKMARK [2][-]{subsection.1.4}{Multi-Objective Optimization}{section.1}% 8
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related Work}{}% 2
+\BOOKMARK [1][-]{section.3}{Methodology}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Modelling}{section.3}% 4
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Feature Engineering}{subsection.3.1}% 5
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Loss Function}{subsection.3.1}% 6
+\BOOKMARK [3][-]{subsubsection.3.1.3}{Model Architecture}{subsection.3.1}% 7
+\BOOKMARK [3][-]{subsubsection.3.1.4}{Hyperparameter Tuning}{subsection.3.1}% 8
+\BOOKMARK [2][-]{subsection.3.2}{F1-Maximization}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Elasticity Framework}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Multi-Objective Optimization}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{Experiments and Results}{}% 12
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 13
