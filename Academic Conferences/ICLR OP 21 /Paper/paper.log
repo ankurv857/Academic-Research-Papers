@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  14 SEP 2020 23:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  15 SEP 2020 20:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,6 +326,9 @@ LaTeX Warning: Label `eq:fx' multiply defined.
 
 LaTeX Warning: Label `eq:fx' multiply defined.
 
+
+LaTeX Warning: Label `tab:datasplit' multiply defined.
+
 )
 \openout1 = `paper.aux'.
 
@@ -485,12 +488,12 @@ ine 25.
 Package natbib Warning: Citation `lea2016temporal' on page 3 undefined on input
  line 94.
 
-<img/dnndata.png, id=78, 773.89125pt x 190.7125pt>
+<img/dnndata.png, id=70, 773.89125pt x 190.7125pt>
 File: img/dnndata.png Graphic file (type png)
 <use img/dnndata.png>
 Package pdftex.def Info: img/dnndata.png  used on input line 102.
 (pdftex.def)             Requested size: 397.48499pt x 97.95467pt.
-<img/TCN.png, id=80, 612.2875pt x 447.6725pt>
+<img/TCN.png, id=72, 612.2875pt x 447.6725pt>
 File: img/TCN.png Graphic file (type png)
 <use img/TCN.png>
 Package pdftex.def Info: img/TCN.png  used on input line 108.
@@ -546,25 +549,44 @@ Package natbib Warning: Citation `lipton2014optimal' on page 5 undefined on inp
 ut line 188.
 
 [5]
-<img/elasticity.png, id=119, 637.38126pt x 381.425pt>
+<img/elasticity.png, id=112, 637.38126pt x 381.425pt>
 File: img/elasticity.png Graphic file (type png)
 <use img/elasticity.png>
 Package pdftex.def Info: img/elasticity.png  used on input line 263.
 (pdftex.def)             Requested size: 317.98755pt x 190.29297pt.
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
-89.
+90.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-))
-(./eval.tex
-<img/sampledata.png, id=121, 944.52875pt x 199.74625pt>
+)
+[6 <./img/elasticity.png>]
+<img/sales_dist.png, id=125, 1005.7575pt x 294.09875pt>
+File: img/sales_dist.png Graphic file (type png)
+<use img/sales_dist.png>
+Package pdftex.def Info: img/sales_dist.png  used on input line 325.
+(pdftex.def)             Requested size: 397.48499pt x 116.2283pt.
+<img/cat_curves.png, id=126, 1158.3275pt x 355.3275pt>
+File: img/cat_curves.png Graphic file (type png)
+<use img/cat_curves.png>
+Package pdftex.def Info: img/cat_curves.png  used on input line 332.
+(pdftex.def)             Requested size: 397.48499pt x 121.93207pt.
+<img/prob_dist.png, id=127, 1206.5075pt x 210.7875pt>
+File: img/prob_dist.png Graphic file (type png)
+<use img/prob_dist.png>
+Package pdftex.def Info: img/prob_dist.png  used on input line 339.
+(pdftex.def)             Requested size: 397.48499pt x 69.44429pt.
+) (./eval.tex
+
+LaTeX Warning: Reference `fig:sampledata' on page 7 undefined on input line 4.
+
+<img/sampledata.png, id=128, 944.52875pt x 199.74625pt>
 File: img/sampledata.png Graphic file (type png)
 <use img/sampledata.png>
 Package pdftex.def Info: img/sampledata.png  used on input line 12.
 (pdftex.def)             Requested size: 397.48499pt x 84.06049pt.
-) (./conclusion.tex [6 <./img/elasticity.png>]
+) (./conclusion.tex [7 <./img/sales_dist.png> <./img/cat_curves.png>]
 
-Package natbib Warning: Citation `yosinski2014transferable' on page 7 undefined
+Package natbib Warning: Citation `yosinski2014transferable' on page 8 undefined
  on input line 19.
 
 )
@@ -572,13 +594,22 @@ Package natbib Warning: Citation `yosinski2014transferable' on page 7 undefined
 Package natbib Warning: There were undefined citations.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
-[7 <./img/sampledata.png>]
+[8 <./img/prob_dist.png> <./img/sampledata.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
  (./paper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
-Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 7A5076C2780A631BDA0C3FE7A7A9BFA6;822.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `paper.out':
+(rerunfilecheck)             Before: A129912A93A790B5968C83F9B7D9EE23;717
+(rerunfilecheck)             After:  7A5076C2780A631BDA0C3FE7A7A9BFA6;822.
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -586,10 +617,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
  ) 
 Here is how much of TeX's memory you used:
- 8193 strings out of 480608
- 122602 string characters out of 5903631
+ 8217 strings out of 480608
+ 123027 string characters out of 5903631
  574658 words of memory out of 5000000
- 23847 multiletter control sequences out of 15000+600000
+ 23863 multiletter control sequences out of 15000+600000
  556078 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,16n,49p,229b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -605,10 +636,10 @@ texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2020
 /texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 531948 bytes).
+Output written on paper.pdf (8 pages, 1544520 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
+ 200 PDF objects out of 1000 (max. 8388607)
  163 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 48 named destinations out of 1000 (max. 500000)
+ 124 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -285,13 +285,15 @@ The optimization function needs to solve for the below Objectives:
 \end{itemize}
 
  \begin{equation}
-    R\textsubscript{v} = \sum_{i=1}^{n}\;\;\;[I\textsubscript{p} - I\textsubscript{p}\times (k \mypm \frac{\eta}{100}\times k)]\times
-    \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \epsilon(k,f(k))\times f(k))
+    R\textsubscript{v} = \sum_{i=1}^{n}\;\;\;[I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times (k \mypm \eta\times k)]
+    \times
+    \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \eta\times \epsilon(k,f(k))\times f(k))
     \label{eq:fx}
   \end{equation}
 
 \begin{equation}
-    R\textsubscript{r} = \frac{\sum_{i=1}^{n}\; \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \epsilon(k,f(k))\times f(k))}{n}
+    R\textsubscript{r} = \frac{\sum_{i=1}^{n}\; \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \eta\times 
+    \epsilon(k,f(k))\times f(k))}{n}
     \label{eq:fx}
   \end{equation}
 
@@ -304,10 +306,56 @@ The optimization function needs to solve for the below Objectives:
     \label{eq:fx}
   \end{equation}
 
-\begin{equation}
-    \max_{\lambda R\textsubscript{v} + \gamma R\textsubscript{r}} \;\;\;\; 2 * \frac{ V\textsubscript{Pr\textsubscript{c}}}{k + b}
-    \;\;\;\;,\;\;\;\;  \text{subject to: } \;\;\;\;  Pr\textsubscript{c}  \in \; [0,1]
-    \label{eq:constraint}
-  \end{equation}
-
 Net Revenue (R\textsubscript{v}) will be a function of 
+
+\begin{equation}
+\begin{aligned}
+\max_{\eta, \lambda, \gamma} \quad & 
+\lambda R\textsubscript{v} + \gamma R\textsubscript{r}\\
+\textrm{s.t.} \quad & 
+\eta, \lambda, \gamma \in \; (0,1) \\
+&\lambda + \gamma = 1\\
+&R\textsubscript{r} >= R\textsubscript{rc} \\
+\end{aligned}
+\end{equation}
+
+  \begin{figure}[t]
+    \centering 
+    \caption{Category wise Sales Distribution} 
+    \includegraphics[width=5.5in]{img/sales_dist.png} 
+    \label{fig:sales_dist} 
+  \end{figure}
+
+  \begin{figure}[t]
+    \centering 
+    \caption{Category graphs} 
+    \includegraphics[width=5.5in]{img/cat_curves.png} 
+    \label{fig:cat_curves} 
+  \end{figure}
+
+ \begin{figure}[t]
+    \centering 
+    \caption{Probability Distributions} 
+    \includegraphics[width=5.5in]{img/prob_dist.png} 
+    \label{fig:prob_dist} 
+  \end{figure}
+  
+\begin{table}[t]
+\caption{Modelling Results}
+\vspace{0.3 in}
+\centering
+\resizebox{2.2in}{!}
+{%
+\begin{tabular}{|c|c|c|c|}
+\hline
+{\bf Metric} & {\bf Train} & {\bf Validation} & {\bf Test} \\  
+\hline\hline
+BCELoss  		&  0.0298 &  0.0318 &  0.0302 \\ \hline
+Precision	  		&  0.512 &  0.489 &  0.508 \\ \hline
+Recall	  		&  0.536 & 0.513&  0.523\\ \hline
+F\textsubscript{1}-Score	&  0.523 & 0.501 &  0.515\\
+\hline
+\end{tabular}
+}
+\label{tab:datasplit}
+\end{table}
