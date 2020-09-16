@@ -1,29 +1,15 @@
 \section{Introduction}
-Consumer behaviour insights have always been one of the key business drivers for retail, given
-fast changing consumer needs. Existing trend, competitor pricing, item reviews, sales and marketing are some of the 
-key factors driving today's consumer world in retail. While very little information is available
-on future variablities of the above factors, retailers do have large volumes of historical transactional data. Past study 
-\cite{choudhury2019machine} has shown that retailers use conventional techniques with available data to model consumer purchase. 
-While these help in estimating purchase pattern for loyal consumers and high selling items with reasonable accuracy, they 
-do not perform well for the long tail. Since multiple parameters interact non-linearly to define consumer purchase pattern,
-traditional models are not sufficient to achieve high accuracy across thousands to millions of consumers.
+In most retail/e-retail settings, promotions play an important role in boosting number of transactions and profit.
+Also, promotions are used on a daily basis in most of the retail environments including online retailers, 
+supermarkets, fashion retailers, etc. A typical retail firm sells thousands of items and needs to design offer 
+for all items at a given time. The depth of offer design is of very high importance as optimized 
+offer roll out can significantly enhance the business’ bottom line.
+In today’s economy, retailers offer hundreds or even thousands promotions simultaneously. Promotions aim to increase 
+sales and traffic, enhance awareness when introducing new items, clear leftover inventory, bolster customer loyalty, 
+and improve competitiveness.
 
-Most retail/e-retail brands, plan their short term inventory (2-4 weeks ahead)  based on consumer 
-purchase pattern. Also, certain sales and marketing strategies like Offer Personalization and personalized item
-recommendations are made leveraging results of consumer purchase predictions for the near future.
-Given that every demand planner works on a narrow segment of item portfolio, there is a high 
-variability in choices that different planners recommend. Additionally, the demand planners might not get enough opportunities 
-to discuss their views and insights over their recommendations. Hence, subtle effects like cannibalization
-\cite{shah2007retailer}, and item-affinity remain unaccounted for. Such inefficiencies lead to a gap between consumer needs 
-and item availability, resulting in the loss of business opportunities in terms of consumer churn, and out-of-stock
-and excess inventory.
-Our paper makes the following contributions -
-\begin{itemize}
-\item We study and present the usefulness of applying various deep learning architectures along with tree based machine 
-learning algorithms to predict the next logical item purchase at consumer level.
-\item We present the performance of individual models with varying hyperparameter configurations.
-\item We implement stacked generalization framework \cite{wolpert1992stacked} as an ensemble method where a new model learns 
-to combine the predictions from multiple existing models.
-\item We design and implement F\textsubscript{1}-maximization algorithm which optimises for purchase probability cut-off 
-at consumer level.
-\end{itemize}
+Surprisingly, many retailers still employ a manual process based on intuition and past experience to decide the depth and 
+timing of promotions. The unprecedented volume of data that is now available to retailers presents an opportunity to develop 
+decision support tools that can help retailers improve promotion decisions. The promotion planning process typically 
+involves a large number of decision variables, and needs to ensure that the relevant business constraints (called 
+promotion business rules) are satisfied.

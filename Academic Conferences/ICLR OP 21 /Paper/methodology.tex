@@ -40,25 +40,6 @@ ic\textsubscript{t} denotes transactional attributes of consumer 'c'  towards it
 d\textsubscript{t} is derived from datetime to capture trend and seasonality at time 't'. 
 'n' is the number of time lags.
 
-\begin{table}[t]
-\caption{Modelling data splits}
-\vspace{0.5 in}
-\centering
-\resizebox{5.5in}{!}
-{%
-\begin{tabular}{|c|c|c|c|}
-\hline
-{\bf Data Split} & {\bf Specifications} & {\bf Consumer-Item combinations} & {\bf Max Time-Series length} \\  
-\hline\hline
-Train  		&  Model training &  50,872 &  46 weeks \\ \hline
-Validation	  		&  HyperParameter Optimization &  50,888 &  2 weeks \\ \hline
-Test	  		&  Reporting Accuracy Metrics & 50,910 &  2 weeks\\
-\hline
-\end{tabular}
-}
-\label{tab:datasplit}
-\end{table}
-
 \subsection{Modelling}
 \subsubsection{Feature Engineering}
 From data classification, Figure \ref{fig:dnndata}, we can see that data was sub-divided 4 groups:
@@ -96,12 +77,6 @@ our experimental dataset. This network comprises of 3 dilated Convolutional netw
 Similar to LSTM, this architecture, after convolving and concatenating flows into 
 3 fully connected ReLU based layers yielding to dense layer which has sigmoid activation.
 \end{itemize}
-\begin{figure}[t]
-    \centering 
-    \caption{Data classification for DNN Architectures} 
-    \includegraphics[width=5.5in]{img/dnndata.png} 
-    \label{fig:dnndata} 
-  \end{figure}
   \begin{figure}[t]
     \centering 
     \caption{Temporal Convolutional Network (TCN)} 
@@ -318,51 +293,3 @@ Net Revenue (R\textsubscript{v}) will be a function of
 &R\textsubscript{r} >= R\textsubscript{rc} 
 \end{aligned}
 \end{equation}
-
-  \begin{figure}[t]
-    \centering 
-    \caption{Category wise Sales Distribution} 
-    \includegraphics[width=5.5in]{img/sales_dist.png} 
-    \label{fig:sales_dist} 
-  \end{figure}
-
-  \begin{figure}[t]
-    \centering 
-    \caption{Category graphs} 
-    \includegraphics[width=5.5in]{img/cat_curves.png} 
-    \label{fig:cat_curves} 
-  \end{figure}
-
- \begin{figure}[t]
-    \centering 
-    \caption{Probability Distributions} 
-    \includegraphics[width=5.5in]{img/prob_dist.png} 
-    \label{fig:prob_dist} 
-  \end{figure}
-
- \begin{figure}[t]
-    \centering 
-    \caption{Optimal Offers} 
-    \includegraphics[width=5.5in]{img/optimize.png} 
-    \label{fig:optimize} 
-  \end{figure}
-  
-\begin{table}[t]
-\caption{Modelling Results}
-\vspace{0.3 in}
-\centering
-\resizebox{2.2in}{!}
-{%
-\begin{tabular}{|c|c|c|c|}
-\hline
-{\bf Metric} & {\bf Train} & {\bf Validation} & {\bf Test} \\  
-\hline\hline
-BCELoss  		&  0.0298 &  0.0318 &  0.0302 \\ \hline
-Precision	  		&  0.512 &  0.489 &  0.508 \\ \hline
-Recall	  		&  0.536 & 0.513&  0.523\\ \hline
-F\textsubscript{1}-Score	&  0.523 & 0.501 &  0.515\\
-\hline
-\end{tabular}
-}
-\label{tab:datasplit}
-\end{table}

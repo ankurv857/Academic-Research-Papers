@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  15 SEP 2020 23:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  16 SEP 2020 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,9 +326,6 @@ LaTeX Warning: Label `eq:fx' multiply defined.
 
 LaTeX Warning: Label `eq:fx' multiply defined.
 
-
-LaTeX Warning: Label `tab:datasplit' multiply defined.
-
 )
 \openout1 = `paper.aux'.
 
@@ -409,178 +406,118 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./abstract.tex) (./intro.tex
+) (./abstract.tex) (./intro.tex) (./relatedwork.tex) (./methodology.tex
 
-Package natbib Warning: Citation `choudhury2019machine' on page 1 undefined on 
-input line 6.
-
-
-Package natbib Warning: Citation `shah2007retailer' on page 1 undefined on inpu
-t line 17.
-
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-2.
-(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-
-Package natbib Warning: Citation `wolpert1992stacked' on page 1 undefined on in
-put line 25.
-
-) (./relatedwork.tex
-
-Package natbib Warning: Citation `fader2009probability' on page 1 undefined on 
-input line 6.
-
-
-Package natbib Warning: Citation `choudhury2019machine' on page 1 undefined on 
-input line 6.
-
-
-Package natbib Warning: Citation `martinez2020machine' on page 1 undefined on i
-nput line 9.
-
-
-Package natbib Warning: Citation `guo2016entity' on page 1 undefined on input l
-ine 13.
-
-
-Package natbib Warning: Citation `chen2016xgboost' on page 1 undefined on input
- line 13.
+LaTeX Warning: Reference `tab:datasplit' on page 1 undefined on input line 10.
 
 [1{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
+5.
 
-Package natbib Warning: Citation `fawaz2019deep' on page 2 undefined on input l
-ine 16.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
 
+LaTeX Warning: Reference `fig:dnndata' on page 2 undefined on input line 45.
 
-Package natbib Warning: Citation `serra2018towards' on page 2 undefined on inpu
-t line 20.
-
-
-Package natbib Warning: Citation `zheng2014time' on page 2 undefined on input l
-ine 20.
-
-
-Package natbib Warning: Citation `zhao2017convolutional' on page 2 undefined on
- input line 21.
-
-
-Package natbib Warning: Citation `wang2017time' on page 2 undefined on input li
-ne 21.
-
-
-Package natbib Warning: Citation `guo2016entity' on page 2 undefined on input l
-ine 23.
-
-
-Package natbib Warning: Citation `lea2016temporal' on page 2 undefined on input
- line 24.
-
-
-Package natbib Warning: Citation `karim2017lstm' on page 2 undefined on input l
-ine 25.
-
-) (./methodology.tex [2]
+[2]
 
 Package natbib Warning: Citation `lea2016temporal' on page 3 undefined on input
- line 94.
+ line 75.
 
-<img/dnndata.png, id=78, 773.89125pt x 190.7125pt>
-File: img/dnndata.png Graphic file (type png)
-<use img/dnndata.png>
-Package pdftex.def Info: img/dnndata.png  used on input line 102.
-(pdftex.def)             Requested size: 397.48499pt x 97.95467pt.
-<img/TCN.png, id=80, 612.2875pt x 447.6725pt>
+<img/TCN.png, id=80, 650.43pt x 607.26875pt>
 File: img/TCN.png Graphic file (type png)
 <use img/TCN.png>
-Package pdftex.def Info: img/TCN.png  used on input line 108.
-(pdftex.def)             Requested size: 397.48499pt x 290.62163pt.
+Package pdftex.def Info: img/TCN.png  used on input line 83.
+(pdftex.def)             Requested size: 397.48499pt x 371.1191pt.
 
 Package natbib Warning: Citation `bergstra2013hyperopt' on page 3 undefined on 
-input line 113.
+input line 88.
 
-[3]
 
-Package natbib Warning: Citation `bengio2015rmsprop' on page 4 undefined on inp
-ut line 118.
+Package natbib Warning: Citation `bengio2015rmsprop' on page 3 undefined on inp
+ut line 93.
 
+[3 <./img/TCN.png>]
 
 Package natbib Warning: Citation `smith2017cyclical' on page 4 undefined on inp
-ut line 120.
+ut line 95.
 
 
 Package natbib Warning: Citation `zaheer2018adaptive' on page 4 undefined on in
-put line 120.
+put line 95.
 
 
 Package natbib Warning: Citation `izmailov2018averaging' on page 4 undefined on
- input line 124.
-
-[4 <./img/dnndata.png> <./img/TCN.png>]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 135.
+ input line 99.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 135.
+(hyperref)                removing `\mathsurround' on input line 110.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 135.
+(hyperref)                removing `\z@' on input line 110.
 
 
-Package natbib Warning: Citation `lipton2014optimal' on page 5 undefined on inp
-ut line 138.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `subscript' on input line 110.
+
+
+Package natbib Warning: Citation `lipton2014optimal' on page 4 undefined on inp
+ut line 113.
 
 LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 1
-45.
+20.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 145.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 120.
 
 
-Package natbib Warning: Citation `lipton2014optimal' on page 5 undefined on inp
-ut line 188.
+Package natbib Warning: Citation `lipton2014optimal' on page 4 undefined on inp
+ut line 163.
 
-[5]
-<img/elasticity.png, id=120, 637.38126pt x 381.425pt>
+[4]
+<img/elasticity.png, id=109, 637.38126pt x 381.425pt>
 File: img/elasticity.png Graphic file (type png)
 <use img/elasticity.png>
-Package pdftex.def Info: img/elasticity.png  used on input line 263.
+Package pdftex.def Info: img/elasticity.png  used on input line 238.
 (pdftex.def)             Requested size: 317.98755pt x 190.29297pt.
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
-90.
+65.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
-)
-<img/sales_dist.png, id=121, 1005.7575pt x 294.09875pt>
+))
+(./eval.tex
+
+LaTeX Warning: Reference `fig:sampledata' on page 5 undefined on input line 4.
+
+[5 <./img/elasticity.png>]
+<img/sales_dist.png, id=123, 1005.7575pt x 294.09875pt>
 File: img/sales_dist.png Graphic file (type png)
 <use img/sales_dist.png>
-Package pdftex.def Info: img/sales_dist.png  used on input line 325.
+Package pdftex.def Info: img/sales_dist.png  used on input line 14.
 (pdftex.def)             Requested size: 397.48499pt x 116.2283pt.
-<img/cat_curves.png, id=122, 1158.3275pt x 355.3275pt>
+<img/cat_curves.png, id=124, 1158.3275pt x 355.3275pt>
 File: img/cat_curves.png Graphic file (type png)
 <use img/cat_curves.png>
-Package pdftex.def Info: img/cat_curves.png  used on input line 332.
+Package pdftex.def Info: img/cat_curves.png  used on input line 21.
 (pdftex.def)             Requested size: 397.48499pt x 121.93207pt.
-<img/prob_dist.png, id=123, 1206.5075pt x 210.7875pt>
+<img/prob_dist.png, id=125, 1206.5075pt x 210.7875pt>
 File: img/prob_dist.png Graphic file (type png)
 <use img/prob_dist.png>
-Package pdftex.def Info: img/prob_dist.png  used on input line 339.
+Package pdftex.def Info: img/prob_dist.png  used on input line 28.
 (pdftex.def)             Requested size: 397.48499pt x 69.44429pt.
-<img/optimize.png, id=124, 1024.82875pt x 413.545pt>
+<img/optimize.png, id=126, 1268.74pt x 513.92pt>
 File: img/optimize.png Graphic file (type png)
 <use img/optimize.png>
-Package pdftex.def Info: img/optimize.png  used on input line 346.
-(pdftex.def)             Requested size: 397.48499pt x 160.39215pt.
-)
-(./eval.tex) (./conclusion.tex [6 <./img/elasticity.png>]
+Package pdftex.def Info: img/optimize.png  used on input line 35.
+(pdftex.def)             Requested size: 397.48499pt x 161.00737pt.
+) (./conclusion.tex [6 <./img/sales_dist.png> <./img/cat_curves.png>]
 
 Package natbib Warning: Citation `yosinski2014transferable' on page 7 undefined
  on input line 19.
@@ -590,8 +527,7 @@ Package natbib Warning: Citation `yosinski2014transferable' on page 7 undefined
 Package natbib Warning: There were undefined citations.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
-[7 <./img/sales_dist.png> <./img/cat_curves.png>] [8 <./img/prob_dist.png> <./i
-mg/optimize.png>] [9]
+[7 <./img/prob_dist.png> <./img/optimize.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
  (./paper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
@@ -600,37 +536,37 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 7A5076C2780A631BDA0C3FE7A7A9BFA6;822.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
  ) 
 Here is how much of TeX's memory you used:
- 8222 strings out of 480608
- 123065 string characters out of 5903631
- 575658 words of memory out of 5000000
- 23866 multiletter control sequences out of 15000+600000
- 556078 words of font info for 68 fonts, out of 8000000 for 9000
+ 8214 strings out of 480608
+ 122958 string characters out of 5903631
+ 579658 words of memory out of 5000000
+ 23863 multiletter control sequences out of 15000+600000
+ 557704 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,16n,49p,229b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{figure.8} has been referenced but does not exist,
- replaced by a fixed one
-
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texl
-ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texli
-ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive
-/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
-020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/te
-xmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2020/t
-exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dist/
-fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/type
-1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 1668232 bytes).
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
+ve/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/202
+0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/
+texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2020
+/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 1913121 bytes).
 PDF statistics:
- 213 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 50 named destinations out of 1000 (max. 500000)
- 140 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 PDF objects out of 1000 (max. 8388607)
+ 162 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
