@@ -1,15 +1,26 @@
 \section{Introduction}
-In most retail/e-retail settings, promotions play an important role in boosting number of transactions and profit.
-Also, promotions are used on a daily basis in most of the retail environments including online retailers, 
-supermarkets, fashion retailers, etc. A typical retail firm sells thousands of items and needs to design offer 
-for all items at a given time. The depth of offer design is of very high importance as optimized 
-offer roll out can significantly enhance the business’ bottom line.
-In today’s economy, retailers offer hundreds or even thousands promotions simultaneously. Promotions aim to increase 
-sales and traffic, enhance awareness when introducing new items, clear leftover inventory, bolster customer loyalty, 
-and improve competitiveness.
+In most retail settings, promotions play an important role in boosting the sales and traffic of the organisation.
+Promotions aim to enhance awareness when introducing new items, clear leftover inventory, bolster customer loyalty, 
+and improve competitiveness. Also, promotions are used on a daily basis in most retail environments including online retailers, 
+supermarkets, fashion retailers, etc. A typical retail firm sells thousands of items in a week and needs to design offer 
+for all items for the given time period. Offer design decisions are of primary importance for most retail firms, 
+as optimal offer roll out can significantly enhance the business’ bottom line.
 
-Surprisingly, many retailers still employ a manual process based on intuition and past experience to decide the depth and 
-timing of promotions. The unprecedented volume of data that is now available to retailers presents an opportunity to develop 
-decision support tools that can help retailers improve promotion decisions. The promotion planning process typically 
-involves a large number of decision variables, and needs to ensure that the relevant business constraints (called 
-promotion business rules) are satisfied.
+Most retailers still employ a manual process based on intuition and past experience of the category managers
+to decide the depth and timing of promotions. The category manager has to manually solve the promotion optimization problem
+at consumer-item granularity, i.e., how to select an optimal offer for each period in a finite horizon so as to maximize the 
+retailer’s profit. It is a difficult problem to solve, given that promotion planning process typically 
+involves a large number of decision variables, and needs to ensure that the relevant business constraints or offer rules
+are satisfied. The high volume of data that is now available to retailers presents an opportunity to develop 
+machine learning based solutions that can help the category managers improve promotion decisions.
+
+In this paper, we propose deep learning with multi-obective optimization based approach to solve 
+promotion optimization problem that can help retailers decide the promotions for multiple items while accounting 
+for many important modelling aspects observed in retail data. The ultimate goal here is to maximize net revenue and
+consumer retention rate by promoting the right items at the right time using the right offer discounts at 
+consumer-item level. Our contributions in this paper include a) Temporal Convolutional Neural Network architecture
+with hyperparameter configurations to predict the item purchase probability at consumer level for the given time period. 
+b) Design and implementation of F\textsubscript{1}-maximization algorithm which optimises for purchase 
+probability cut-off at consumer level. c) Methodology to estimate offer elasticity of purchase probability at consumer 
+item granularity. d) Constraint based multi-obective optimization technique to estimate optimal offers 
+at consumer-item granularity.
