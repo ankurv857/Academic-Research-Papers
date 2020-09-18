@@ -1,10 +1,13 @@
 \section{Related Work}
 \label{sec:relatedwork}
 In the past few years, various works have been done to solve Promotion Optimization problem.
-Closer to our work is \cite{fader2009probability}, which presents study over the impact 
-linear optimizationon promotion planning. The paper proposes general classes of demand functions 
+Some of the past works are [\cite{cohen2018promotion}, \cite{cohen2017impact}, \cite{cohen2020optimizing}], 
+which presents study over the impact 
+linear optimization promotion planning. 
+The paper proposes general classes of demand functions 
 (including multiplicative and additive), which incorporate the post-promotion dip effect, and can 
 be estimated from sales data. They then propose a linear integer programming to solve Promotion
 Optimization problem. We propose a neural network based solution to first predict the 
 item purchase probability, then estimate the offer-elasticity of purchase probability at consumer item granularity,
 and finally apply dynamic programming approach to solve Promotion Optimization problem.
+The optimization framework has been motivated from [\cite{ferreira2016analytics}].

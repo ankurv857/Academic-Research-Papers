@@ -3,46 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: paper.aux
 The style file: paper.bst
 Database file #1: paper.bib
-Warning--I didn't find a database entry for "fader2009probability"
-You've used 7 entries,
+Warning--empty journal in paszke2017automatic
+You've used 15 entries,
             2773 wiz_defined-function locations,
-            631 strings with 6185 characters,
-and the built_in function-call counts, 4184 in all, are:
-= -- 386
-> -- 235
-< -- 7
-+ -- 79
-- -- 72
-* -- 312
-:= -- 598
-add.period$ -- 24
-call.type$ -- 7
-change.case$ -- 45
-chr.to.int$ -- 7
-cite$ -- 14
-duplicate$ -- 205
-empty$ -- 334
-format.name$ -- 81
-if$ -- 923
+            668 strings with 7550 characters,
+and the built_in function-call counts, 8388 in all, are:
+= -- 753
+> -- 529
+< -- 12
++ -- 177
+- -- 162
+* -- 659
+:= -- 1241
+add.period$ -- 49
+call.type$ -- 15
+change.case$ -- 99
+chr.to.int$ -- 15
+cite$ -- 31
+duplicate$ -- 391
+empty$ -- 643
+format.name$ -- 185
+if$ -- 1806
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 7
-newline$ -- 43
-num.names$ -- 28
-pop$ -- 105
+missing$ -- 15
+newline$ -- 83
+num.names$ -- 60
+pop$ -- 214
 preamble$ -- 1
-purify$ -- 38
+purify$ -- 84
 quote$ -- 0
-skip$ -- 173
+skip$ -- 329
 stack$ -- 0
-substring$ -- 182
-swap$ -- 59
-text.length$ -- 5
+substring$ -- 306
+swap$ -- 85
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 77
-warning$ -- 0
-while$ -- 36
+type$ -- 165
+warning$ -- 1
+while$ -- 70
 width$ -- 0
-write$ -- 99
+write$ -- 199
 (There was 1 warning)

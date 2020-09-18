@@ -61,13 +61,15 @@ from Equation \ref{eqn:logloss} that Lower the BCELoss, better the Accuracy.
 
 \subsubsection{Model Architecture}
 Traditional machine learning models may not be a suitable choice for modelling \emph{h} (Equation \ref{eqn:fx}) due to 
-non-linear interactions between the features. Hence, we use Entity Embeddings + Temporal Convolutional Network (TCN) 
+non-linear interactions between the features. Sequence to Sequence [\cite{sutskever2014sequence}] neural network 
+architectures seems to be sound choice for tackling our problem.
+Hence, we use Entity Embeddings [\cite{guo2016entity}] + Temporal Convolutional Network (TCN) 
 (Figure \ref{fig:TCN}) architecture for building all the models 
-across categories. Originally proposed in \cite{lea2016temporal}, TCN can take a sequence of any length and map it to an 
+across categories. Originally proposed in [\cite{lea2016temporal}], TCN can take a sequence of any length and map it to an 
 output sequence of the same length. For this to accomplish, TCN uses a 1D fully-convolutional network (FCN) architecture, 
 where each hidden layer is the same length as the input layer, and zero padding of length (kernel size-1) is added to 
 keep subsequent layers the same length as previous ones. Also, the convolutions in the architecture are causal, 
-meaning that there is no information leakage from future to past. To achieve this, TCN uses causal convolutions, 
+meaning that there is no information leakage from future to past. To achieve this, TCN uses causal convolutions [\cite{bai2018empirical}], 
 convolutions where an output at time t is convolved only with elements from time t and earlier in the previous layer.
 For 1-D sequence input x and filter f the dilated convolution operation DC on element k of the sequence is defined as:
   \begin{equation}
@@ -86,7 +88,7 @@ at the top level to represent a wider range of inputs, thus
 effectively expanding the receptive field of a ConvNet.
 
 As can be seen in Figure \ref{fig:TCN}, Our network architecture comprises of 3 dilated Convolutions combined with 
-entity embeddings. Post Convolutions and concatenation with embedding tensor, the created tensor flows through 
+entity embeddings [\cite{guo2016entity}]. Post Convolutions and concatenation with embedding tensor, the created tensor flows through 
 3 fully connected ReLU layers yielding to sigmoid dense layer. To seggregate static and temporal
 features, we group input tensor into 4 seperate tensors, as can be seen in \ref{fig:TCN}:
 
@@ -109,13 +111,13 @@ We use documented best practices along with our experimental results to
 choose model hyperparameters. Hyperparameter Optimization is performed over validation dataset. 
 We list some of the hyperparameters along with the values we tune for Deep neural network models.
 
-{\bf Optimizer Parameters:} RMSProp \cite{bengio2015rmsprop} and Adam are used as optimizers across model runs. 
+{\bf Optimizer Parameters:} RMSProp [\cite{bengio2015rmsprop}] and Adam are used as optimizers across model runs. 
 The learning rate is experimentally tuned to 1e-3. We also have weight decay of 1e-5 which helps a bit in model Regularization.
-{\bf Scheduler Parameters:} CyclicLR \cite{smith2017cyclical} and ReduceLROnPlateau \cite{zaheer2018adaptive} 
+{\bf Scheduler Parameters:} CyclicLR [\cite{smith2017cyclical}] and ReduceLROnPlateau [\cite{zaheer2018adaptive}] 
 Learning rates are used as schedulers across model runs.
 we use 1e-3 as max lr and 1e-6 as base lr for cyclical learning rate along with the step size being the function of
 length of train loader. ReduceLROnPlateau is tuned at 1e-6 as min lr.
-{\bf SWA:} Stochastic Weight Averaging (SWA) \cite{izmailov2018averaging} is used to improve generalization 
+{\bf SWA:} Stochastic Weight Averaging (SWA) [\cite{izmailov2018averaging}] is used to improve generalization 
 across Deep Learning models. SWA performs an equal average of the weights traversed by SGD with a modified 
 learning rate schedule. We use 1e-3 as SWA learning rate.
 {\bf Parameter Average:} This is a method to average the neural network parameters of n best model checkpoints 
@@ -124,12 +126,13 @@ post training, weighted by validation loss of respective checkpoints.
 Apart from these parameters we also iterate to tune network parameters like number of epochs, batch size, 
 number of Fully Connected Layers, convnet parameters (kernel size, dilations, padding)
 and embedding sizes for the categorical features. Binary Cross-Entropy \ref{eqn:logloss} is used as loss 
-function for all the models trained across categories.
+function for all the models trained across categories. Neural Network models are built using deep learning framework
+PyTorch [\cite{paszke2017automatic}], and are trained on GCP instance containing 6 CPUs and a single GPU. 
 
 \subsection{F\textsubscript{1}-Maximization}
 Post stacking, we optimize for purchase probability threshold based on
 probability distribution at a consumer level using F\textsubscript{1}-Maximization.
-This enables optimal thresholding of consumer level probabilities to  maximize F\textsubscript{1} measure \cite{lipton2014optimal}.
+This enables optimal thresholding of consumer level probabilities to  maximize F\textsubscript{1} measure [\cite{lipton2014optimal}].
 To illustrate the above, let us say we generated purchase probabilities for 
 'n' items out of 'b' actually purchased items by consumer 'c'. Now, let us visualize the actuals
 and predictions (\ref{eqn:A})  of 'n' predicted items for consumer 'c'.
@@ -169,7 +172,7 @@ in Equation \ref{eqn:Decision}.
     \end{array}
     \label{eqn:Pdash}
   \end{equation}
-Pr\textsubscript{c} is the probability cut-off to be optimized for maximizing F\textsubscript{1} measure \cite{lipton2014optimal} 
+Pr\textsubscript{c} is the probability cut-off to be optimized for maximizing F\textsubscript{1} measure [\cite{lipton2014optimal}]
 for consumer 'c'. Decision rule D() converts probabilities P\textsubscript{c} to binary predictions 
 P\textsuperscript{'}\textsubscript{c} such that if p\textsubscript{j} is less than 
 Pr\textsubscript{c} then p\textsuperscript{'}\textsubscript{j} equals 0, otherwise 1.
@@ -265,53 +268,60 @@ equation \ref{eq:offerelasticity} shown below, k being the offer percent and f(k
     \label{eq:offerelasticity}
   \end{equation}
 
-\subsection{Multi-Objective Optimization}
-Post estimation of offer-elasticity of purchase probability, for each category, we solve the below multi-objective
-optimization function (Equation \ref{eq:optimizer}) using dynamic programming approach 
-which converges after meeting the dual objective of
-a) Net Revenue (R\textsubscript{v}) maximization and b) Consumer Retention Rate (R\textsubscript{r}) maximization.
+\subsection{Offer Optimization}
+Post estimation of offer-elasticity of purchase probability, for each category, we solve the
+optimization function (Equation \ref{eq:optimizer}) to maximize Net Revenue (R\textsubscript{v}),
+with Consumer Retention Rate (R\textsubscript{r}) greater than category threshold.
 Lets study the individual components of the optimization function in detail.
 Net Revenue from i\textsuperscript{th} consumer-item sample (R\textsubscript{v\textsubscript{i}}) 
 can be expressed as Equation \ref{eq:netrev}, and Consumer Retention Rate  of 
 i\textsuperscript{th} consumer-item sample (R\textsubscript{r\textsubscript{i}}) can be expressed as Equation \ref{eq:retrate}.
  \begin{equation}
-    R\textsubscript{v\textsubscript{i}} = [I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times (k \mypm \eta\times k)]
+    R\textsubscript{v\textsubscript{i}} = [I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times 
+    (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i})]
     \times
-    \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \eta\times \epsilon(k,f(k))\times f(k))
-    \;\; , where \;\;
-    \eta \in \; (0,1)
+    \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm \eta\textsubscript{i}\times 
+    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i}))
+    \;\; , \;\;
+    \eta\textsubscript{i} \in \; (0,1)
     \label{eq:netrev}
   \end{equation}
   \begin{equation}
-    R\textsubscript{r\textsubscript{i}} = \ \mathds{1} \ \textsubscript{c}(f(k) \mypm \eta\times 
-    \epsilon(k,f(k))\times f(k))
-    \;\;\;\;\;\;\;\;   , where \;\;
-    \ \mathds{1} \ \textsubscript{c}(x) :=
+    R\textsubscript{r\textsubscript{i}} = \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm 
+    \eta\textsubscript{i}\times 
+    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i}))
+    \;\;\;\;\  , where \;\;
+    \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(x) :=
         \begin{cases}
-          1 & x \geq c\\
+          1 & x \geq Pr\textsubscript{c}\\
           0 & \text{Otherwise}
         \end{cases}
     \label{eq:retrate}
   \end{equation}
-I\textsubscript{p} is the price of the i\textsuperscript{th} item, k being the offer percent and f(k) being purchase probability.
-$\eta$ is the change in offer percent k. $ \mathds{1} \textsubscript{c}()$ denotes the Indicator function as can be seen 
-in Equation \ref{eq:retrate}. $\epsilon(k,f(k))$ denotes the k percent offer-elasticity of f(k) purchase probability.
-
+I\textsubscript{p} is the price of the item, k\textsubscript{i} and f(k\textsubscript{i}) 
+being the offer percent and purchase probability for the i\textsuperscript{th} consumer-item.
+$\eta\textsubscript{i}$ is the change in offer percent k\textsubscript{i}.
+$ \mathds{1} \textsubscript{Pr\textsubscript{c}}()$ (Equation \ref{eq:retrate}) denotes the Indicator function 
+at Pr\textsubscript{c}, which is the optimal probability cut-off obtained from F\textsubscript{1}-Maximization 
+algorithm for consumer ’c’ (Equation \ref{eq:constraint}). $\epsilon(k\textsubscript{i},f(k\textsubscript{i}))$ 
+denotes the k\textsubscript{i} percent offer-elasticity of f(k\textsubscript{i}) purchase probability.
 Now, using Equations \ref{eq:netrev} and \ref{eq:retrate}, we formulate our constraint based 
 multi-objective optimization function which calculates the optimal offer percent for each of the 
 consumer-item sample, as can be seen below in Equation \ref{eq:optimizer}
 \begin{equation}
 \begin{aligned}
-\max_{\eta, \lambda, \gamma} \quad & 
-\lambda \sum_{i=1}^{n} R\textsubscript{v\textsubscript{i}} + \gamma \frac{1}{n} \sum_{i=1}^{n} R\textsubscript{r\textsubscript{i}} \\
-\textrm{s.t.} \;\;\;: \quad & \eta, \lambda, \gamma \in \; (0,1) \\
-& \lambda + \gamma = 1 \\
+\max_{\eta\textsubscript{i}} \quad & 
+\sum_{i=1}^{n} R\textsubscript{v\textsubscript{i}}  \\
+\textrm{s.t.} \;\;\;: \quad & \eta\textsubscript{i} = 0.05\times j \;\;\;\;  
+\forall \;\;  j \;\; \in \;\; \mathbb{Z}^+  \;\;and\;\; j<20 \\
 & \frac{1}{n} \sum_{i=1}^{n} R\textsubscript{r\textsubscript{i}} >= R\textsubscript{rc} \\
-& (k \mypm \eta\times k) \in \; (0,50]
+& (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i}) \in \; (0,50]
 \end{aligned}
 \label{eq:optimizer}
 \end{equation}
 Above in the equation, $n$ is the total consumer-item samples modelled for a particular category.
 $\lambda$ and $\gamma$ are learned optimal weights for Net Revenue and Consumer Retention Rate respectively.
 $R\textsubscript{rc}$ denaotes the Retention rate cut-off of category $c$. This is determined using the latest
-2 weeks of consumer-item samples.
+2 weeks of consumer-item samples. We solve the Equation \ref{eq:optimizer} Linear Programming approach
+described in [\cite{ferreira2016analytics}] 
+
