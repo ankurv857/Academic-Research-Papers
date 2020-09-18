@@ -226,7 +226,7 @@ As can be seen, Formulae \ref{eqn:F1} is used to calculate Precision, Recall and
 F\textsubscript{1}-score for consumer 'c'. 
   \begin{equation}
     \max_{V\textsubscript{Pr\textsubscript{c}}} \;\;\;\; 2 * \frac{ V\textsubscript{Pr\textsubscript{c}}}{k + b}
-    \;\;\;\;,\;\;\;\;  \text{subject to: } \;\;\;\;  Pr\textsubscript{c}  \in \; [0,1]
+    \;\;\;\;,\;\;\;\;  \text{subject to: } \;\;\;\;  Pr\textsubscript{c}  \in \; (0,1)
     \label{eq:constraint}
   \end{equation}
 Equation \ref{eq:constraint} represents the optimization function we solve to generate purchase predictions (1/0) for each consumer.
@@ -270,34 +270,31 @@ equation \ref{eq:offerelasticity} shown below, k being the offer percent and f(k
 
 \subsection{Offer Optimization}
 Post estimation of offer-elasticity of purchase probability, for each category, we solve the
-optimization function (Equation \ref{eq:optimizer}) to maximize Net Revenue (R\textsubscript{v}),
-with Consumer Retention Rate (R\textsubscript{r}) greater than category threshold.
-Lets study the individual components of the optimization function in detail.
-Net Revenue from i\textsuperscript{th} consumer-item sample (R\textsubscript{v\textsubscript{i}}) 
-can be expressed as Equation \ref{eq:netrev}, and Consumer Retention Rate  of 
-i\textsuperscript{th} consumer-item sample (R\textsubscript{r\textsubscript{i}}) can be expressed as Equation \ref{eq:retrate}.
- \begin{equation}
-    R\textsubscript{v\textsubscript{i}} = [I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times 
+below optimization function (Equation \ref{eq:optimizer}) to maximize Net Revenue,
+with Consumer Retention Rate greater than category threshold (R\textsubscript{rc}).
+\begin{equation}
+\begin{aligned}
+\max_{\eta\textsubscript{i}} \quad & 
+\sum_{i=1}^{n} [I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times 
     (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i})]
     \times
     \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm \eta\textsubscript{i}\times 
-    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i}))
-    \;\; , \;\;
-    \eta\textsubscript{i} \in \; (0,1)
-    \label{eq:netrev}
-  \end{equation}
-  \begin{equation}
-    R\textsubscript{r\textsubscript{i}} = \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm 
+    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i})) \\
+\textrm{s.t.} \;\;\;: \quad & \eta\textsubscript{i} = 0.05\times j \;\;\;\;  
+\forall \;\;  j \;\; \in \;\; \mathbb{Z}^+  \;\;and\;\; j<20 \\
+& (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i}) \in \; (0,50]\\
+& \frac{1}{n} \sum_{i=1}^{n} \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm 
     \eta\textsubscript{i}\times 
-    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i}))
-    \;\;\;\;\  , where \;\;
-    \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(x) :=
+    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i})) \;\; >= \;\; R\textsubscript{rc} \\
+&\ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(x) :=
         \begin{cases}
           1 & x \geq Pr\textsubscript{c}\\
           0 & \text{Otherwise}
         \end{cases}
-    \label{eq:retrate}
-  \end{equation}
+\end{aligned}
+\label{eq:optimizer}
+\end{equation}
+In the equation above, $n$ is the total consumer-item samples modelled for a particular category.
 I\textsubscript{p} is the price of the item, k\textsubscript{i} and f(k\textsubscript{i}) 
 being the offer percent and purchase probability for the i\textsuperscript{th} consumer-item.
 $\eta\textsubscript{i}$ is the change in offer percent k\textsubscript{i}.
@@ -305,22 +302,6 @@ $ \mathds{1} \textsubscript{Pr\textsubscript{c}}()$ (Equation \ref{eq:retrate}) 
 at Pr\textsubscript{c}, which is the optimal probability cut-off obtained from F\textsubscript{1}-Maximization 
 algorithm for consumer ’c’ (Equation \ref{eq:constraint}). $\epsilon(k\textsubscript{i},f(k\textsubscript{i}))$ 
 denotes the k\textsubscript{i} percent offer-elasticity of f(k\textsubscript{i}) purchase probability.
-Now, using Equations \ref{eq:netrev} and \ref{eq:retrate}, we formulate our constraint based 
-multi-objective optimization function which calculates the optimal offer percent for each of the 
-consumer-item sample, as can be seen below in Equation \ref{eq:optimizer}
-\begin{equation}
-\begin{aligned}
-\max_{\eta\textsubscript{i}} \quad & 
-\sum_{i=1}^{n} R\textsubscript{v\textsubscript{i}}  \\
-\textrm{s.t.} \;\;\;: \quad & \eta\textsubscript{i} = 0.05\times j \;\;\;\;  
-\forall \;\;  j \;\; \in \;\; \mathbb{Z}^+  \;\;and\;\; j<20 \\
-& \frac{1}{n} \sum_{i=1}^{n} R\textsubscript{r\textsubscript{i}} >= R\textsubscript{rc} \\
-& (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i}) \in \; (0,50]
-\end{aligned}
-\label{eq:optimizer}
-\end{equation}
-Above in the equation, $n$ is the total consumer-item samples modelled for a particular category.
-$\lambda$ and $\gamma$ are learned optimal weights for Net Revenue and Consumer Retention Rate respectively.
 $R\textsubscript{rc}$ denaotes the Retention rate cut-off of category $c$. This is determined using the latest
 2 weeks of consumer-item samples. We solve the Equation \ref{eq:optimizer} Linear Programming approach
 described in [\cite{ferreira2016analytics}] 
