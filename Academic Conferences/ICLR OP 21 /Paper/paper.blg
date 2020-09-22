@@ -4,45 +4,45 @@ The top-level auxiliary file: paper.aux
 The style file: paper.bst
 Database file #1: paper.bib
 Warning--empty journal in paszke2017automatic
-You've used 15 entries,
+You've used 14 entries,
             2773 wiz_defined-function locations,
-            668 strings with 7550 characters,
-and the built_in function-call counts, 8388 in all, are:
-= -- 753
-> -- 529
-< -- 12
-+ -- 177
-- -- 162
-* -- 659
-:= -- 1241
-add.period$ -- 49
-call.type$ -- 15
-change.case$ -- 99
-chr.to.int$ -- 15
-cite$ -- 31
-duplicate$ -- 391
-empty$ -- 643
-format.name$ -- 185
-if$ -- 1806
+            662 strings with 7372 characters,
+and the built_in function-call counts, 7839 in all, are:
+= -- 697
+> -- 508
+< -- 10
++ -- 170
+- -- 156
+* -- 624
+:= -- 1166
+add.period$ -- 45
+call.type$ -- 14
+change.case$ -- 94
+chr.to.int$ -- 14
+cite$ -- 29
+duplicate$ -- 360
+empty$ -- 593
+format.name$ -- 176
+if$ -- 1678
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 15
-newline$ -- 83
-num.names$ -- 60
-pop$ -- 214
+missing$ -- 14
+newline$ -- 78
+num.names$ -- 56
+pop$ -- 202
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 80
 quote$ -- 0
-skip$ -- 329
+skip$ -- 305
 stack$ -- 0
-substring$ -- 306
-swap$ -- 85
-text.length$ -- 7
+substring$ -- 280
+swap$ -- 77
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 165
+type$ -- 154
 warning$ -- 1
-while$ -- 70
+while$ -- 64
 width$ -- 0
-write$ -- 199
+write$ -- 185
 (There was 1 warning)

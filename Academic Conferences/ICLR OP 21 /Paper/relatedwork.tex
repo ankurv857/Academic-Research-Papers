@@ -1,13 +1,16 @@
 \section{Related Work}
 \label{sec:relatedwork}
-In the past few years, various works have been done to solve Promotion Optimization problem.
-Some of the past works are [\cite{cohen2018promotion}, \cite{cohen2017impact}, \cite{cohen2020optimizing}], 
-which presents study over the impact 
-linear optimization promotion planning. 
-The paper proposes general classes of demand functions 
-(including multiplicative and additive), which incorporate the post-promotion dip effect, and can 
-be estimated from sales data. They then propose a linear integer programming to solve Promotion
-Optimization problem. We propose a neural network based solution to first predict the 
-item purchase probability, then estimate the offer-elasticity of purchase probability at consumer item granularity,
-and finally apply dynamic programming approach to solve Promotion Optimization problem.
-The optimization framework has been motivated from [\cite{ferreira2016analytics}].
+There has been a significant amount of research conducted on offer-based revenue management over the past few decades.
+Multiple great works have been done to solve Promotion Optimization problem.
+One such work is \cite{cohen2017impact}, where the
+author proposes general classes of demand functions (including multiplicative and additive), which incorporates
+post-promotion dip effect, and uses Linear integer programming to solve Promotion Optimization problem.
+In one of the other work [\cite{cohen2018promotion}], the author lays out different types of promotions
+used in retail, and then formulates the promotion optimization problem for multiple items.
+In paper \cite{cohen2018promotion}, the author shows the application of discrete linearization method for solving 
+promotion optimization. Gathering learnings from the above papers, we create our framework for offer optimization.
+The distinguishing features of our work in this field include 
+(i) the use of a nonparametric neural network based approach to estimate the item purchase probability at consumer level,
+(ii) the establishment of the functional relationship between historical offer values and purchase probabilities, and
+(iii) the creation of a new model and efficient algorithm to set offers by solving a multi-consumer-item promotion
+optimization that incorporates offer-elasticity of purchase probability at a reference offer value
