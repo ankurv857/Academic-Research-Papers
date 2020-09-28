@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  25 SEP 2020 12:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.2)  28 SEP 2020 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -424,47 +424,43 @@ File: omsptm.fd
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 142.
  [4 <./img/TCN.png>]
-<img/elasticity.png, id=162, 637.38126pt x 381.425pt>
+<img/elasticity.png, id=164, 637.38126pt x 381.425pt>
 File: img/elasticity.png Graphic file (type png)
 <use img/elasticity.png>
-Package pdftex.def Info: img/elasticity.png  used on input line 262.
+Package pdftex.def Info: img/elasticity.png  used on input line 265.
 (pdftex.def)             Requested size: 317.98755pt x 190.29297pt.
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 2
-81.
+84.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
-Underfull \vbox (badness 1082) has occurred while \output is active []
-
- [5])
-(./eval.tex
-<img/sales_dist.png, id=182, 1005.7575pt x 294.09875pt>
+[5]) (./eval.tex
+<img/sales_dist.png, id=187, 1005.7575pt x 294.09875pt>
 File: img/sales_dist.png Graphic file (type png)
 <use img/sales_dist.png>
 Package pdftex.def Info: img/sales_dist.png  used on input line 11.
 (pdftex.def)             Requested size: 397.48499pt x 116.2283pt.
-<img/cat_curves.png, id=184, 1158.3275pt x 355.3275pt>
+<img/cat_curves.png, id=189, 1158.3275pt x 355.3275pt>
 File: img/cat_curves.png Graphic file (type png)
 <use img/cat_curves.png>
 Package pdftex.def Info: img/cat_curves.png  used on input line 29.
 (pdftex.def)             Requested size: 397.48499pt x 121.93207pt.
-<img/prob_dist.png, id=185, 1206.5075pt x 210.7875pt>
+<img/prob_dist.png, id=190, 1206.5075pt x 210.7875pt>
 File: img/prob_dist.png Graphic file (type png)
 <use img/prob_dist.png>
 Package pdftex.def Info: img/prob_dist.png  used on input line 37.
 (pdftex.def)             Requested size: 397.48499pt x 69.44429pt.
  [6 <./img/elasticity.png>]
-<img/optimize.png, id=199, 1268.74pt x 513.92pt>
+<img/optimize.png, id=204, 1268.74pt x 513.92pt>
 File: img/optimize.png Graphic file (type png)
 <use img/optimize.png>
 Package pdftex.def Info: img/optimize.png  used on input line 64.
 (pdftex.def)             Requested size: 397.48499pt x 161.00737pt.
  [7 <./img/sales_dist.png> <./img/cat_curves.png> <./img/prob_dist.png>]) (./co
-nclusion.tex) [8 <./img/optimize.png>]
-(./paper.bbl) [9
+nclusion.tex) [8 <./img/optimize.png>] (./paper.bbl) [9
 
 ] (./appendix.tex
-<img/data.png, id=226, 1053.9375pt x 574.145pt>
+<img/data.png, id=230, 1053.9375pt x 574.145pt>
 File: img/data.png Graphic file (type png)
 <use img/data.png>
 Package pdftex.def Info: img/data.png  used on input line 6.
@@ -493,7 +489,7 @@ Here is how much of TeX's memory you used:
  23896 multiletter control sequences out of 15000+600000
  559016 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,21n,49p,229b,342s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,16n,49p,229b,342s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -507,10 +503,10 @@ texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2020
 2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2020/texmf
 -dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2020/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (10 pages, 2219770 bytes).
+Output written on paper.pdf (10 pages, 2220317 bytes).
 PDF statistics:
- 289 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
+ 293 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
  63 named destinations out of 1000 (max. 500000)
  164 words of extra memory for PDF output out of 10000 (max. 10000000)
 

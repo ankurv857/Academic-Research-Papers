@@ -232,30 +232,33 @@ F\textsubscript{1}-score for consumer 'c'.
 Equation \ref{eq:constraint} represents the optimization function we solve to generate purchase predictions (1/0) for each consumer.
 
 \subsection{Elasticity Framework}
-Post modelling, we establish the functional relationship between historical offer values and purchase
+After modelling, we establish the functional relationship between historical offer values and purchase
 probabilities obtained from the model, which is then used to estimate offer-elasticity of purchase probability at 
-consumer item granularity. With multiple experiments and business insights we find sigmoid function (Figure \ref{fig:elasticity}) 
-to be an apt choice to study the variation of purchase probability with offer percent. 
+consumer item granularity. Given that our output layer of deep net is sigmoid and we are modelling for
+probability values, sigmoid function (Figure \ref{fig:elasticity}) seemed to us as an apt choice to study 
+the variation of purchase probability with offer percent. We also perform multiple experiments as described in 
+Figure \ref{fig:cat_curves} - Section \ref{sec:eval} to see the goodness of fit of sigmoid curve over our 
+dataset across different categories. The average R\textsuperscript{2} value for 8 categories 
+is seen to be approximately 75 percent.
 \begin{equation}
     f(x) = \frac{1}{1 + e^{-(ax+b)}} \;\;\;\; ,\;\;\;\;
     f\textsuperscript{'}(x) = a\times f(x)\times (1 - f(x))
     \label{eq:sig}
   \end{equation}
-We also understand that parameters of the
-function will vary with categories, hence we learn seperate parameters of sigmoid for each category.
-We use the sigmoid curve to estimate elasticities, the x-elasticity of y measures the fractional response of y to a 
+Since the functional relationship might vary with categories, we learn seperate parameters of sigmoid for each category.
+We then use sigmoid curve to estimate elasticities, the x-elasticity of y measures the fractional response of y to a 
 fraction change in x, which can be written as:
 \begin{equation}
     x-elasticity \;of\; y: \epsilon(x,y) = \frac{dy/y}{dx/x}
     \label{eq:elasticity}
   \end{equation}
-We incorporate the equation \ref{eq:elasticity} to determine the offer-elasticity of purchase probability.
+We incorporate equation \ref{eq:elasticity} to determine the offer-elasticity of purchase probability.
 We use historical offer percent values at consumer-item granularity, identified using following criteria
 in that order: a) average of last 4 weeks non-zero offer percent values of the consumer-item combination
 b) average of historical non-zero offer percent values of the consumer-item combination
 c) average of last 4 weeks non-zero offer percent values of all same age consumer-item combinations within that category.
-Using Equations \ref{eq:sig} and \ref{eq:elasticity}, we may establish the offer-elasticity of purchase probability
-equation \ref{eq:offerelasticity} shown below, k being the offer percent and f(k) being purchase probability.
+Using Equations \ref{eq:sig} and \ref{eq:elasticity}, we establish the offer-elasticity of purchase probability
+(equation \ref{eq:offerelasticity}) as  shown below, k being the offer percent and f(k) being purchase probability.
   \begin{figure}[t]
     \centering 
     \caption{Purchase probability vs. Offer percentage} 
@@ -276,14 +279,14 @@ with Consumer Retention Rate greater than category threshold (R\textsubscript{rc
 \begin{aligned}
 \max_{\eta\textsubscript{i}} \quad & 
 \sum_{i=1}^{n} [I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times 
-    (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i})]
+    (k\textsubscript{i} + \eta\textsubscript{i}\times k\textsubscript{i})]
     \times
-    \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm \eta\textsubscript{i}\times 
+    \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) + \eta\textsubscript{i}\times 
     \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i})) \\
 \textrm{s.t.} \;\;\;: \quad & \eta\textsubscript{i} = 0.05\times j \;\;\;\;  
-\forall \;\;  j \;\; \in \;\; \mathbb{Z}^+  \;\;and\;\; j<20 \\
-& (k\textsubscript{i} \mypm \eta\textsubscript{i}\times k\textsubscript{i}) \in \; (0,50]\\
-& \frac{1}{n} \sum_{i=1}^{n} \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) \mypm 
+\forall \;\;  j \;\; \in \;\; \mathbb{Z}  \;\;and\;\; j \in \; (-20, 20) \\
+& (k\textsubscript{i} + \eta\textsubscript{i}\times k\textsubscript{i}) \in \; (o\textsubscript{1}, o\textsubscript{2})\\
+& \frac{1}{n} \sum_{i=1}^{n} \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) + 
     \eta\textsubscript{i}\times 
     \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i})) \;\; >= \;\; R\textsubscript{rc} \\
 &\ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(x) :=
@@ -302,6 +305,10 @@ $ \mathds{1} \textsubscript{Pr\textsubscript{c}}()$ denotes the Indicator functi
 at Pr\textsubscript{c}, which is the optimal probability cut-off obtained from F\textsubscript{1}-Maximization 
 algorithm for consumer ’c’ (Equation \ref{eq:constraint}). $\epsilon(k\textsubscript{i},f(k\textsubscript{i}))$ 
 denotes the k\textsubscript{i} percent offer-elasticity of f(k\textsubscript{i}) purchase probability.
-$R\textsubscript{rc}$ denaotes the Retention rate cut-off of category $c$. This is determined using the latest
-2 weeks of consumer-item samples. We solve the Equation \ref{eq:optimizer} using Linear Programming approach.
+$R\textsubscript{rc}$ denaotes the Retention rate cut-off of category $c$. o\textsubscript{1} and o\textsubscript{2} 
+refers to offer range for that category. This is determined using the latest
+2 weeks of consumer-item samples. We solve the Equation \ref{eq:optimizer} using Linear Programming approach
+to compute optimal offer at consumer-item granularity. We observe that there is variance in the optimal 
+offers generated from optimization engine across categories.We have shown the distribution of offers across
+categories in Figure \ref{fig:optimize} - Section \ref{sec:eval}.
 
