@@ -1,199 +1,94 @@
 \section{Experiments and Results}
 \label{sec:eval}
-We use transactional data from instacart kaggle challenge to train all our models. As can 
-be seen in Figure \ref{fig:sampledata} data has transactional details including consumer id, item id, 
-order id, add to cart order, date of transaction, aisle id and department id.
-Also, from Table 1, we can see that we utilize 1 year data which gets split into train, validation,
-test1 and test2. We generate consumer-item-week level data with purchase/ non purchase being the target.
-We use the above data to generate consumer-item purchase predictions for 2 time steps in the future (2 weeks in our case).
- \begin{figure*}[!t]
-    \centering 
-    \caption{Sample Dataset} 
-    \includegraphics[width=6.6in]{img/sampledata.png} 
-    \label{fig:sampledata} 
-  \end{figure*}
-
-  \begin{figure}[t]
-    \centering 
-    \caption{Most reordered Items across Departments} 
-    \includegraphics[width=2in]{img/items.png} 
-    \label{fig:items} 
-  \end{figure}
-
-  \begin{figure}[t]
-    \centering 
-    \caption{Density of consumers Vs. Basket Size} 
-    \includegraphics[width=3in, height = 2in]{img/basket.png} 
-    \\ {\scriptsize \bf Basket size between 5-8 has maximum consumer density}
-    \label{fig:basket} 
-  \end{figure}
-
-  \begin{figure}[t]
-    \centering 
-    \caption{Reorder probability Vs. Add to cart order} 
-    \includegraphics[width=3in , height = 2in]{img/addtocart.png} 
-    \label{fig:addtocart} 
-    \\ {\scriptsize \bf Probability of reordering decreases as the order of add to cart increases}
-  \end{figure}
-
-\begin{center}
-\begin{table*}[!t]
-\caption{BCELoss of Test2 for 12 Trials of Deep Learning Models} 
-\centering
-\resizebox{\textwidth}{!}{\begin{tabular}{|r|l|r|r|r|r|r|r|r|}
-  \hline
- {\bf Trial} & {\bf Optimizer} & {\bf Scheduler} & {\bf SWA} & {\bf Parameter Avg} &  {\bf MLP} & {\bf LSTM} 
- &  {\bf TCN} & {\bf TCN-LSTM} \\ [0.5ex] 
-  \hline\hline
-1 & RMSprop & ReduceLROnPlateau & True & False &  {\bf 0.0276} & 0.0306 & {\bf 0.0249} & 0.0307 \\ 
-2 & RMSprop & CyclicLR & True & False &  0.0708 & {\bf 0.0269} & {\bf 0.0269} & 0.0348 \\ 
-3 & Adam & ReduceLROnPlateau & True & False &  0.0295 & 0.0303 & 0.0667 & 0.0337 \\ 
-4 & RMSprop & ReduceLROnPlateau & False & False &  0.0297 & {\bf 0.0275} & 0.0364 & 0.0759 \\ 
-5 & RMSprop & CyclicLR & False & False &  {\bf 0.0250} & 0.0306 & 0.0600 & {\bf 0.0286} \\ 
-6 & Adam & ReduceLROnPlateau & False & False&  0.0360 & {\bf 0.0302} & 0.0590 & 0.0309 \\ 
-7 & RMSprop & ReduceLROnPlateau & False & True &  0.0293 & 0.0432 & 0.0453 & 0.0381 \\ 
-8 & RMSprop & CyclicLR& False & True &  {\bf 0.0245} & 0.0378 & 0.0569 & {\bf 0.0262} \\ 
-9 & Adam & ReduceLROnPlateau & False & True & 0.0700 & 0.0491 & 0.0610 & 0.0382 \\ 
-10 & RMSprop & ReduceLROnPlateau & True & True & 0.0356 & 0.0364 & {\bf 0.0238} & 0.0309 \\ 
-11 & RMSprop & CyclicLR & True & True &  0.0420 & 0.0377 & 0.0284 & {\bf 0.0269} \\ 
-12 & Adam  & ReduceLROnPlateau & True & True&  0.0321 & 0.0306 & 0.0547 & 0.0305 \\ [1ex] 
-   \hline
-\end{tabular}}
-\label{tab:dlmodels}
-\end{table*} 
-\end{center}
-
-\begin{table}[t]
-\caption{BCELoss of Test2 for 6 best Trials of ML Models}
-\vspace{0.1 in}
-\centering
-\resizebox{3.3in}{!}
-{%
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-{\bf Trial} & {\bf Hyper-Parameter} & {\bf Xgboost} & {\bf RandomForest} \\  
-\hline\hline
-1  		&  HyperOpt &  {\bf 0.0332} &  0.0526   \\ 
-2	  		&  HyperOpt &  0.0364 &  0.0479   \\ 
-3  		&  HyperOpt &  0.0347 &  {\bf 0.0416}  \\ 
-4	  		&  HyperOpt &  0.0364 &  {\bf 0.0449}  \\ 
-5	  		&  HyperOpt &  {\bf 0.0335} &  {\bf 0.0459}  \\ 
-6	  		&  HyperOpt &  {\bf 0.0339} &  0.0578  \\ 
-\hline
-\end{tabular}
-}
-\label{tab:mlmodels}
-\end{table}
-
-
-\begin{table}[t]
-\caption{ BCELoss mean of top 3 trials across data splits}
-\vspace{0.1 in}
-\centering
-\resizebox{3.3in}{!}
-{%
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-{\bf Model Type} & {\bf Val BCELoss} & {\bf Test1 BCELoss} & {\bf Test2 BCELoss} \\ 
-\hline\hline 
-MLP	  		&  0.0405 &  0.0289 &  0.0256  \\ \hline
-LSTM  		&  0.0373 &  0.0293 &  0.0282 \\ \hline
-{\bf TCN}			&  {\bf 0.0368}  &  {\bf 0.0292} &  {\bf 0.0251}  \\ \hline
-TCNLSTM 	& 0.0368  & 0.0304	& 0.0273	 \\ \hline
-Xgboost 	& 0.0352 & 0.0318	& 0.0335	\\ \hline
-RandomForest & 0.0437 & 0.0389	& 0.0441	\\ \hline
-\end{tabular}
-}
-\label{tab:training}
-\end{table}
-
-\begin{table}[t]
-\caption{ Stacked Generalization Results}
-\vspace{0.1 in}
-\centering
-\resizebox{3.3in}{!}
-{%
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-{\bf Model Type} & {\bf K Value} & {\bf Val BCELoss} & {\bf Test1 BCELoss} & {\bf Test2 BCELoss} \\ 
-\hline\hline 
-{\bf Weighted K Best}	  &  {\bf 3}  &  {\bf 0.0386} &  {\bf 0.0278} &  {\bf 0.0242}  \\ \hline
-Weighted K Best	  		&  5  &  0.0373 &  0.0282 &  0.0245  \\ \hline
-Weighted K Best	  		 &  10 &  0.0397 &  0.0290 &  0.0258  \\ \hline
-Weighted K Best	  		 &  15 &  0.0389 &  0.0296 &  0.0272  \\ \hline
-Weighted K Best	  		&  25  &  0.0394 &  0.0316 &  0.0287  \\ \hline
-\end{tabular}
-}
-\label{tab:stacking}
-\end{table}
-
-\begin{table}[hbt!]
-\caption{Final Accuracy post F\textsubscript{1}-Maximization}
-\vspace{0.1 in}
-\centering
-\resizebox{2.5in}{!}
-{%
-\begin{tabular}{|c|c|c|c|}
-\hline
-{\bf Data Split} & {\bf Precision} & {\bf Recall} & {\bf F\textsubscript{1}-Score} \\ 
-\hline\hline 
-Validation	  	 &  0.3401 &  0.4981 &  0.4042  \\ \hline
-Test1	  		 &  0.3323 &  0.5103 &  0.4024  \\ \hline
-Test2	  		 & 0.3506 &  0.4964 &  0.4109 \\ \hline
-\end{tabular}
-}
-\label{tab:Fscore}
-\end{table}
-
+We use kaggle dataset available at AmExpert 2019. Figure \ref{fig:data} shows the schema of the data we have used 
+to build our models. As mentioned in Section \ref{sec:methodology}, we use a maximum of 1 year data aggregated at bi-weekly 
+level at consumer-item granularity. We split the data into three part train, validation and test based 
+on our validation strategy. We generate consumer - item - bi-weekly data with purchase/ non purchase 
+being the target , and use this data to train all our models.
   \begin{figure}[hbt!]
     \centering 
-    \caption{Probability Distributions} 
-    \includegraphics[width=2in]{img/density.png} 
-    \\ {\scriptsize \bf High density probability zone for the non purchased cases lies between 0 and 
-    0.1, whereas for the purchased cases it lies between 0.25 and 0.35}
-    \label{fig:density} 
+    \caption{Exploratory Data Analysis} 
+    \includegraphics[width=5.5in]{img/sales_dist.png} 
+    \\ {\scriptsize \bf Graph-1: Category-wise sales distribution, Graph-2:  density of transactions with varying offer percent,
+    and Graph-3: density of transactions with varying basket size}
+    \label{fig:sales_dist} 
   \end{figure}
-\subsection{Experiment Setups}
-We started with exploratary data analysis, looking at the data from various cuts and 
-trying to study the variations of the features with target. Some of them include looking at the 
-density of consumers with different basket sizes Figure~\ref{fig:basket}, orders placed for items 
-across departments Figure \ref{fig:items}, variation of reorder probability with add to cart order Figure \ref{fig:addtocart},
-order probability variations at different temporal cuts like week, month and quarter, transactional metrics 
+  \subsection{Experiment Setups}
+We start with exploratary data analysis, looking at the data from various cuts. We
+study the variations of different features with our target (purchase/ non purchase). Some of our studies include
+category-wise sales distribution, density of transactions with varying offer percent 
+and density of transactions with varying basket size (Figure~\ref{fig:sales_dist}).
+We observe that Grocery and Pharmaceutical contributes to approximately 77 percent of total sales.
+We also look at order probability variations at different temporal cuts like week, month and quarter, transactional metrics 
 like total orders, total reorders, recency, gap between orders, at both consumer and item levels.
-We then performed multiple experiments with above features and different hyper-configurations to land at reasonable 
-parameters to perform our experiments and present results.
-
+We then perform multiple experiments with the above mentioned features and different hyperparameter 
+configurations to land at reasonable hyperparameters to perform final experiments and present our results.
+  \begin{figure}[hbt!]
+    \centering 
+    \caption{Offer-elasticity of purchase probability} 
+    \includegraphics[width=5.5in]{img/cat_curves.png} 
+    \\ {\scriptsize \bf Category level visualizations describing the sensitivity of change in
+    offer with purchase probability}
+    \label{fig:cat_curves} 
+  \end{figure}
+ \begin{figure}[hbt!]
+    \centering 
+    \caption{Probability Distributions} 
+    \includegraphics[width=5.5in]{img/prob_dist.png} 
+    \\ {\scriptsize \bf Chart-1: Predicted probability distribution at actual label equals 0, 
+    Chart-2:  Predicted probability distribution at actual label equals 1,
+    and Chart-3: cut-off probability distribution post F\textsubscript{1}-Maximization}
+    \label{fig:prob_dist} 
+  \end{figure}
 \subsection{Results and Observations}
-Tables \ref{tab:dlmodels} and \ref{tab:mlmodels} show the experimental results obtained across models with different 
-hyper-configurations. Table \ref{tab:dlmodels} contains the Deep Learning Experiment setup results
-and Table \ref{tab:mlmodels} has Machine Learning model results. From model performance perspective, it is observed that 
-TCN showed the best Accuracy score at test2, with most of the other Deep Learning models having comparable scores.
-Also, from Table \ref{tab:training} we see that all the Deep Learning models out perform Machine Learning models 
-including Xgboost and RandomForest both in terms of Accuracy and Generalization. This table has the average of 
-BCELoss across 3 best trials, and it can be observed that TCN has the lowest BCELoss, which translates into
-best Accuracy. From hyper-parameter configuration perspective we observe that RMSprop and CyclicLR emerged as the 
-clear winners as Optimizer and Scheduler respectively from Table \ref{tab:dlmodels}. 7 out of 12 times, we 
-found this combination (out of 3 possible combinations) generating the best result.
-
-We also present the effectiveness of combining predictions in the form of stacking. From Table \ref{tab:stacking}, we can see the 
-results of stacking at different values of K, for Weighted K-Best model setups. We realised the best outcome at 
-K = 3, which led to a better score compared to any individual model.
-Finally we apply F\textsubscript{1}-Maximization over stacked probability values so as to generate 
-binary predictions(1/0 referring to Purchase/Non Purchase). F\textsubscript{1}-Score Optimizer helps strike a 
-balance between Precision and Recall \cite{buckland1994relationship}. Post F\textsubscript{1}-Maximization we 
-observe that Precision, Recall and F\textsubscript{1}-Score are close enough for all data splits, as can be seen 
-in Table \ref{tab:Fscore}. We scored {\bf 0.4109} over unseen data (Test2)
-from Table \ref{tab:Fscore} as F\textsubscript{1}-Score with the described framework.
-\subsection{Industrial Applications}
-The Next Logical Purchase framework has multiple applications in retail/e-retail industry. Some of its applications 
-include
-\begin{itemize}
-\item {\bf Personalized Marketing:} With prior knowledge of next logical purchase, accurate item recommendations can be 
-made at consumer level to provide a seamless and delightful consumer experience.
-\item {\bf Offer Personalization:} Having a prior knowledge of consumer choice can enable 
-business in designing optimal offers for its consumers.
-\item {\bf Inventory Planning:} Short Term Inventory Planning (2-4 weeks) is largely dependant over 
-consumer preference in near future. Solution of the current problem can assist planners in better inventory planning.
-\item {\bf Assortment Planning:} In retail stores, consumer choice study can be used to optimize the store 
-layout with right product placement over right shelf.
-\end{itemize}
+Figure \ref{fig:cat_curves} shows the functional relationship of offer percetage with purchase probability 
+obtained across different categories. It also contains the equations and goodness of fit in the 
+form of R\textsuperscript{2} for each category. Seafood and Bakery are the top 2 best fitted categories
+with R\textsuperscript{2} values of 0.83 and 0.82 respectively. Figure \ref{fig:prob_dist} Chart-1 and Chart-2 shows the 
+predicted probability distribution when actual label equals 0 and 1 respectively over the validation data split.
+Chart-3 shows the cut-off probability distribution post F\textsubscript{1}-Maximization, and, we observe 
+that highest density of cut-off probability lies between 0.2 to 0.3. Table \ref{tab:model_results} presents the 
+accuracy values post Modelling and F\textsubscript{1}-Maximization. It also has the average elasticity values 
+along with weighted offer percent computed post optimization. From model performance perspective
+, it is observed that Grocery category has least BCELoss of 0.0283. Pharmaceutical and Meat categories
+followed Grocery with BCELoss of 0.0296 and 0.0299 respectively. Also, Grocery has the best
+F\textsubscript{1} score of 0.512 followed by Meat and Pharmaceutical scoring 0.511 and 0.509
+respectively. Vegetables is the most elastic category with elasticity value of 1.53, whereas 
+Packaged meat and Skin and Hair care are the least elastic categories with elasticity value of 0.62.
+From Figure \ref{fig:optimize}, we can see the graphical representation of distribution of 
+optimal offer calculated through optimization. We find Skin and Hair care along with Pharmaceutical to be 
+left skewed, whereas Vegetables as well as Flowers and Plants to be right skewed.
+ \begin{figure}[hbt!]
+    \centering 
+    \caption{Consumer-Item percent distribution with offer percent across categories}
+    \includegraphics[width=5.5in]{img/optimize.png} 
+    \\ {\scriptsize \bf Category level visualizations of frequency distribution of offers generated by
+    optimization engine}
+    \label{fig:optimize} 
+  \end{figure}
+\begin{center}
+\begin{table*}[hbt!]
+\caption{Model Results and Elasticity} 
+\centering
+\resizebox{\textwidth}{!}{\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+{\bf Category} & {\bf Sample size} & {\bf BCELoss} & {\bf Precision} & {\bf Recall} & {\bf F\textsubscript{1}-Score} & 
+{\bf Avg Elasticity} & {\bf Weighted Offer Percent} \\
+\hline\hline
+Grocery  		&  28,990 &  {\bf 0.0283 } & {\bf 0.524} & {\bf 0.501} & {\bf 0.512} & {\bf 1.13} & 23.37\\ \hline
+Bakery  		&  1,628 &  0.0415 & 0.346 & 0.391 & 0.367 & 1.06 & 22.15 \\ \hline
+Pharmaceutical  		&  20,492 &  {\bf 0.0296} & {\bf 0.538} & 0.483 & {\bf 0.509} & 0.73 & 17.89 \\ \hline
+Packaged Meat  		&  1,473 &  0.0329 & 0.473 & 0.452 & 0.462 & 0.62 & 19.15 \\ \hline
+Seafood  		&  539 &  0.0382 & 0.497 & 0.379 & 0.43 & 0.89 & 16.23\\ \hline
+Natural Products  		&  2,399 &  0.0319 & 0.451 & {\bf 0.524} & 0.485 & 0.95 & 21.78 \\ \hline
+Dairy, Juices, Snacks  		&  2,060 & 0.0396 & 0.394 & 0.492 & 0.438 & 1.04 & 22.02\\ \hline
+Prepared Food  		&  1,407 &  0.0472 & 0.338 & 0.295 & 0.315 & 1.03 & {\bf 28.27} \\ \hline
+Skin, Hair Care  		&  1,906 &  0.0391 & 0.429 & 0.453 & 0.441 & 0.62 & 7.93 \\ \hline
+Meat  		&  1,767 &  {\bf 0.0299} & {\bf 0.498} & {\bf 0.524} & {\bf 0.511} & 0.94 & 18.92\\ \hline
+Flowers, Plants  		&  491 & 0.0483 & 0.275 & 0.318 & 0.295 & {\bf 1.43} & {\bf 30.24} \\ \hline
+Vegetables (cut)  		&  124 &  0.0469 & 0.364 & 0.267 & 0.308 & {\bf 1.53} & {\bf 37.92}\\
+\hline
+\end{tabular}}
+\label{tab:model_results}
+\end{table*} 
+\end{center}

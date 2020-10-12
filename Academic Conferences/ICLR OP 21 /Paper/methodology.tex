@@ -1,3 +1,315 @@
 \section{Methodology}
 \label{sec:methodology}
+We built seperate models for each category, as we understand that consumer purchase pattern and personalized 
+marketing strategies might vary with categories.
+
+\subsection{Modelling}
+In our model setup, we treat each relevant consumer-item as an individual object and shape them into bi-weekly time series 
+data based on historical transactions, where the target value at each time step (2 weeks) takes a binary input, 1/0 
+(purchased/non purchased). \emph{Relevancy} of the consumer-item is defined by items transacted by consumer during training 
+time window. Our \emph{Positive samples} (purchased/1) are time steps where consumer did transact the item, whereas 
+\emph{Negative samples} (non purchased/0) are the time steps where the consumer did not buy that item.
+We apply sliding windows testing routine for generating out of time results. The time series is split into 
+3 parts - train (48 weeks), validation (2 weeks) and test (2 weeks). All our models are built in a multi-object 
+fashion for an individual category, which allows the gradient movement to happen across all consumer-item combinations 
+split in batches. This enables cross-learning to happen across consumers/items. A row 
+in time series is represented by
+  \begin{equation}
+    \begin{array}{l}
+      y\textsubscript{cit}  = h(i\textsubscript{t}, c\textsubscript{t},..,c\textsubscript{t-n}, ic\textsubscript{t}
+      ,..,ic\textsubscript{t-n}, d\textsubscript{t},..,d\textsubscript{t-n})
+    \end{array}
+    \label{eqn:fx}
+  \end{equation}
+where y\textsubscript{cit} is purchase prediction for consumer 'c' for item ’i’ at time ’t’. 
+'n' is the number of time lags.
+i\textsubscript{t} denotes attributes of item ’i’ like category, department, brand, color, size, etc at time 't'. 
+c\textsubscript{t} denotes attributes of consumer 'c' like age, sex and transactional attributes at time 't'. 
+c\textsubscript{t-n} denotes the transactional attributes of consumer 'c' at a lag of 't-n' time steps.
+ic\textsubscript{t} denotes transactional attributes such as basket size, price, offer, etc. 
+of consumer 'c'  towards item 'i' at time 't' . 
+d\textsubscript{t} is derived from datetime to capture trend and seasonality at time 't'. 
+
+\subsubsection{Feature Engineering}
+Based on available dataset, we generate multiple features for the modelling activity. Some of the 
+feature groups we perform our experiments are:
+
+{\bf Datetime:} We use transactional metrics at various temporal cuts like week, month, etc.
+Datetime related features capturing seasonality and trend are also generated.
+{\bf Consumer-Item Profile:} We use transactional metrics at different granularities like consumer, item,
+and consumer-item. We also create features like Time since first order, 
+Time since last order, time gap between orders, Reorder rates, Reorder frequency, 
+Streak - user purchased the item in a row, Average position in the cart, Total number of orders.
+{\bf Price/Promotions:} We use relative price and historical offer discount percentage to 
+purchase propensity at varying price, and discount values.
+{\bf Lagged Offsets:} We use statistical rolling operations like mean, median, variance, 
+kurtosis and skewness over temporal regressors for different lag periods to generate offsets.
+
+\subsubsection{Loss Function}
+Since we are solving Binary Classification problem, we believe that Binary Cross-Entropy should be the most appropriate 
+loss function for training the models. We use the below formula to calculate Binary Cross-Entropy:
+  \begin{equation}
+      \begin{array}{l}
+        H\textsubscript{p} = - \frac{1}{N}$$\sum_{i=1}^{N}y.log(p(y))+
+        (1- y).log(1-p(y))
+      \end{array}
+    \label{eqn:logloss}
+  \end{equation}
+here H\textsubscript{p} represents computed loss, y is the target value (label), and p(y) 
+is the predicted probability against the target. The BCELoss takes non-negative values. We can infer 
+from Equation \ref{eqn:logloss} that Lower the BCELoss, better the Accuracy.
+
+\subsubsection{Model Architecture}
+Traditional machine learning models may not be a suitable choice for modelling \emph{h} (Equation \ref{eqn:fx}) due to 
+non-linear interactions between the features. Sequence to Sequence [\cite{sutskever2014sequence}] neural network 
+architectures seems to be sound choice for tackling our problem.
+Hence, we use Entity Embeddings [\cite{guo2016entity}] + Temporal Convolutional Network (TCN) 
+(Figure \ref{fig:TCN}) architecture for building all the models 
+across categories. Originally proposed in [\cite{lea2016temporal}], TCN can take a sequence of any length and map it to an 
+output sequence of the same length. For this to accomplish, TCN uses a 1D fully-convolutional network (FCN) architecture, 
+where each hidden layer is the same length as the input layer, and zero padding of length (kernel size-1) is added to 
+keep subsequent layers the same length as previous ones. Also, the convolutions in the architecture are causal, 
+meaning that there is no information leakage from future to past. To achieve this, TCN uses causal convolutions [\cite{bai2018empirical}], 
+convolutions where an output at time t is convolved only with elements from time t and earlier in the previous layer.
+For 1-D sequence input x and filter f the dilated convolution operation DC on element k of the sequence is defined as:
+  \begin{equation}
+      \begin{array}{l}
+        DC(k) = (x\ast \textsubscript{d}f)(k) =  \sum_{i=0}^{n-1}f(i)\cdot x\textsubscript{k-d\textsubscript{i}}
+        \;, where \;
+        x \in \mathcal{R}^n \;and\;
+        f : \{0, . . . , n-1\} \to \mathcal{R}
+      \end{array}
+    \label{eqn:logloss}
+  \end{equation}
+where d is the dilation factor, n is the filter size, and k-d\textsubscript{i}
+accounts for the direction of the past. When d = 1, a dilated convolution reduces to a
+regular convolution. Using larger dilation enables an output
+at the top level to represent a wider range of inputs, thus
+effectively expanding the receptive field of a ConvNet.
+
+As can be seen in Figure \ref{fig:TCN}, Our network architecture comprises of 3 dilated Convolutions combined with 
+entity embeddings [\cite{guo2016entity}]. Post Convolutions and concatenation with embedding tensor, the created tensor flows through 
+3 fully connected ReLU layers yielding to sigmoid dense layer. To seggregate static and temporal
+features, we group input tensor into 4 seperate tensors, as can be seen in \ref{fig:TCN}:
+
+{\bf Static Categorical:} These are categorical features that do not vary with time. This includes consumer
+attributes like sex, marital status and location along with different item attributes like category, department and brand.
+{\bf Temporal Categorical:} These are categorical features that vary with time. It includes all the datetime 
+related features like week, month of year, etc.
+{\bf Static Continuous:} These features are static but continuous. This includes certain consumer attributes like
+age and weight, item attributes like size, and certain derived features like target encoded features.
+{\bf Temporal Continuous:} These are time varying continuous features. All consumer and item related
+traditional attributes like number of orders, add to cart order, etc. falls under this bucket.
+  \begin{figure}[t]
+    \centering 
+    \caption{Temporal Convolutional Network (TCN)} 
+    \includegraphics[width=4.4in]{img/TCN.png} 
+    \label{fig:TCN} 
+  \end{figure}
+\subsubsection{Hyperparameter Tuning}
+We use documented best practices along with our experimental results to
+choose model hyperparameters. Hyperparameter Optimization is performed over validation dataset. 
+We list some of the hyperparameters along with the values we tune for Deep neural network models.
+
+{\bf Optimizer Parameters:} RMSProp [\cite{bengio2015rmsprop}] and Adam are used as optimizers across model runs. 
+The learning rate is experimentally tuned to 1e-3. We also have weight decay of 1e-5 which helps a bit in model Regularization.
+{\bf Scheduler Parameters:} CyclicLR [\cite{smith2017cyclical}] and ReduceLROnPlateau [\cite{zaheer2018adaptive}] 
+Learning rates are used as schedulers across model runs.
+we use 1e-3 as max lr and 1e-6 as base lr for cyclical learning rate along with the step size being the function of
+length of train loader. ReduceLROnPlateau is tuned at 1e-6 as min lr.
+{\bf SWA:} Stochastic Weight Averaging (SWA) [\cite{izmailov2018averaging}] is used to improve generalization 
+across Deep Learning models. SWA performs an equal average of the weights traversed by SGD with a modified 
+learning rate schedule. We use 1e-3 as SWA learning rate.
+{\bf Parameter Average:} This is a method to average the neural network parameters of n best model checkpoints 
+post training, weighted by validation loss of respective checkpoints.
+
+Apart from these parameters we also iterate to tune network parameters like number of epochs, batch size, 
+number of Fully Connected Layers, convnet parameters (kernel size, dilations, padding)
+and embedding sizes for the categorical features. Binary Cross-Entropy \ref{eqn:logloss} is used as loss 
+function for all the models trained across categories. Neural Network models are built using deep learning framework
+PyTorch [\cite{paszke2017automatic}], and are trained on GCP instance containing 6 CPUs and a single GPU. 
+
+\subsection{F\textsubscript{1}-Maximization}
+Post stacking, we optimize for purchase probability threshold based on
+probability distribution at a consumer level using F\textsubscript{1}-Maximization.
+This enables optimal thresholding of consumer level probabilities to  maximize F\textsubscript{1} measure [\cite{lipton2014optimal}].
+To illustrate the above, let us say we generated purchase probabilities for 
+'n' items out of 'b' actually purchased items by consumer 'c'. Now, let us visualize the actuals
+and predictions (\ref{eqn:A})  of 'n' predicted items for consumer 'c'.
+  \begin{equation}
+    \begin{array}{l}
+      A\textsubscript{c} = [a\textsubscript{1}, a\textsubscript{2}, .., a\textsubscript{n}] 
+       \; \forall \; a\textsubscript{j} \in \; $\{0,1\}$ \;\;,\;\;
+      P\textsubscript{c} = [p\textsubscript{1}, p\textsubscript{2}, .., p\textsubscript{n}]
+      \; \forall \; p\textsubscript{j} \in \; [0,1]
+    \end{array}
+    \label{eqn:A}
+  \end{equation}
+A\textsubscript{c} represents the actuals for consumer 'c', with a\textsubscript{j} being 1/0 
+(purchased/non purchased). P\textsubscript{c} represents the predictions 
+for consumer 'c' for the respective item, with p\textsubscript{j} being probability value. 
+'n' represents total items for which the model generated purchase probabilities for consumer 'c'.
+Now we apply Decision rule D() which converts probabilities to binary predictions, as described below 
+in Equation \ref{eqn:Decision}.
+  \begin{equation}
+    \begin{array}{l}
+      D(Pr\textsubscript{c}) : P\textsubscript{c}\textsuperscript{1 x n}
+      \to P\textsuperscript{'}\textsubscript{c}\textsuperscript{1 x n}
+      \;\; : p\textsuperscript{'}\textsubscript{j} = 
+        \begin{cases}
+          1 & p\textsubscript{j} \geq Pr\textsubscript{c} \\
+          0 & \text{Otherwise}
+        \end{cases}
+    \end{array}
+    \label{eqn:Decision}
+  \end{equation}
+  \begin{equation}
+    \begin{array}{l}
+      P\textsuperscript{'}\textsubscript{c} = [p\textsuperscript{'}\textsubscript{1}, 
+      p\textsuperscript{'}\textsubscript{2}, .., p\textsuperscript{'}\textsubscript{n}]\; 
+      \forall \; p\textsuperscript{'}\textsubscript{j} \in \; $\{0,1\}$ \;\;,\;\;
+      k =\sum_{i=1}^{n}p\textsuperscript{'}\textsubscript{i}
+    \end{array}
+    \label{eqn:Pdash}
+  \end{equation}
+Pr\textsubscript{c} is the probability cut-off to be optimized for maximizing F\textsubscript{1} measure [\cite{lipton2014optimal}]
+for consumer 'c'. Decision rule D() converts probabilities P\textsubscript{c} to binary predictions 
+P\textsuperscript{'}\textsubscript{c} such that if p\textsubscript{j} is less than 
+Pr\textsubscript{c} then p\textsuperscript{'}\textsubscript{j} equals 0, otherwise 1.
+'k' is the sum of predictions generated post applying Decision rule D(). Now we solve for F\textsubscript{1} measure
+using equations and formulae described below.
+  \begin{equation}
+    \begin{array}{l}
+      V\textsubscript{Pr\textsubscript{c}} = 
+      P\textsuperscript{'}\textsubscript{c}
+      \;\times\; A\textsubscript{c}\textsuperscript{T}
+      \;
+      \Rightarrow	
+      \left( \begin{array}{ccc}
+      p\textsuperscript{'}\textsubscript{1} & .. & 
+      p\textsuperscript{'}\textsubscript{n}
+      \end{array} \right)
+      \times
+      %
+      \left( \begin{array}{ccc}
+      a\textsubscript{1} \\
+      .. \\
+      a\textsubscript{n} \\
+      \end{array} \right)
+    \end{array}
+    \label{eqn:probability}
+  \end{equation}
+  \begin{equation}
+    \begin{array}{l}
+      Precision\textsubscript{c}= \frac{V\textsubscript{Pr\textsubscript{c}}} {k}
+      \;\;,\;\;
+      Recall\textsubscript{c}= \frac{V\textsubscript{Pr\textsubscript{c}}} {b}
+      \;\;,\;\;
+      F\textsubscript{1\textsubscript{c}} = \frac{2 \times Precision\textsubscript{c} 
+      \times Recall\textsubscript{c}} 
+      {Precision\textsubscript{c} + Recall\textsubscript{c}}
+      \;
+      \;\; \Rightarrow	\;\;
+      2 * 
+      \frac{
+        V\textsubscript{Pr\textsubscript{c}}
+      }
+      {
+        k + b
+      }
+    \end{array}
+    \label{eqn:F1}
+  \end{equation}
+V\textsubscript{Pr\textsubscript{c}} represents the number of items with purchase 
+probabilities greater than Pr\textsubscript{c} which were actually purchased (True Positives). 
+As can be seen, Formulae \ref{eqn:F1} is used to calculate Precision, Recall and 
+F\textsubscript{1}-score for consumer 'c'. 
+  \begin{equation}
+    \max_{V\textsubscript{Pr\textsubscript{c}}} \;\;\;\; 2 * \frac{ V\textsubscript{Pr\textsubscript{c}}}{k + b}
+    \;\;\;\;,\;\;\;\;  \text{subject to: } \;\;\;\;  Pr\textsubscript{c}  \in \; (0,1)
+    \label{eq:constraint}
+  \end{equation}
+Equation \ref{eq:constraint} represents the optimization function we solve to generate purchase predictions (1/0) for each consumer.
+Figure \ref{fig:prob_dist} - Section \ref{sec:eval} shows the predicted probability distributions.
+
+\subsection{Elasticity Framework}
+After modelling, we establish the functional relationship between historical offer values and purchase
+probabilities obtained from the model, which is then used to estimate offer-elasticity of purchase probability at 
+consumer item granularity. Given that our output layer of deep net is sigmoid and we are modelling for
+probability values, sigmoid function (Figure \ref{fig:elasticity}) seemed to us as an apt choice to study 
+the variation of purchase probability with offer percent. We also perform multiple experiments as described in 
+Figure \ref{fig:cat_curves} - Section \ref{sec:eval} to see the goodness of fit of sigmoid curve over our 
+dataset across different categories. The average R\textsuperscript{2} value for 8 categories 
+is seen to be approximately 75 percent.
+\begin{equation}
+    f(x) = \frac{1}{1 + e^{-(ax+b)}} \;\;\;\; ,\;\;\;\;
+    f\textsuperscript{'}(x) = a\times f(x)\times (1 - f(x))
+    \label{eq:sig}
+  \end{equation}
+Since the functional relationship might vary with categories, we learn seperate parameters of sigmoid for each category.
+We then use sigmoid curve to estimate elasticities, the x-elasticity of y measures the fractional response of y to a 
+fraction change in x, which can be written as:
+\begin{equation}
+    x-elasticity \;of\; y: \epsilon(x,y) = \frac{dy/y}{dx/x}
+    \label{eq:elasticity}
+  \end{equation}
+We incorporate equation \ref{eq:elasticity} to determine the offer-elasticity of purchase probability.
+We use historical offer percent values at consumer-item granularity, identified using following criteria
+in that order: a) average of last 4 weeks non-zero offer percent values of the consumer-item combination
+b) average of historical non-zero offer percent values of the consumer-item combination
+c) average of last 4 weeks non-zero offer percent values of all same age consumer-item combinations within that category.
+Using Equations \ref{eq:sig} and \ref{eq:elasticity}, we establish the offer-elasticity of purchase probability
+(equation \ref{eq:offerelasticity}) as  shown below, k being the offer percent and f(k) being purchase probability.
+  \begin{figure}[t]
+    \centering 
+    \caption{Purchase probability vs. Offer percentage} 
+    \includegraphics[width=4.4in]{img/elasticity.png} 
+    \label{fig:elasticity} 
+  \end{figure}
+ \begin{equation}
+    \epsilon(k,f(k)) = f\textsuperscript{'}(k) \times\frac{k}{f(k)} \;\;\;\; \;\;\;\;
+    \Rightarrow \;\;\;\;\epsilon(k,f(k)) = a\times k\times (1 - f(k))
+    \label{eq:offerelasticity}
+  \end{equation}
+
+\subsection{Offer Optimization}
+Post estimation of offer-elasticity of purchase probability, for each category, we solve the
+below optimization function (Equation \ref{eq:optimizer}) to maximize Net Revenue,
+with Consumer Retention Rate greater than category threshold (R\textsubscript{rc}).
+\begin{equation}
+\begin{aligned}
+\max_{\eta\textsubscript{i}} \quad & 
+\sum_{i=1}^{n} [I\textsubscript{p} - \frac{I\textsubscript{p}}{100} \times 
+    (k\textsubscript{i} + \eta\textsubscript{i}\times k\textsubscript{i})]
+    \times
+    \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) + \eta\textsubscript{i}\times 
+    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i})) \\
+\textrm{s.t.} \;\;\;: \quad & \eta\textsubscript{i} = 0.05\times j \;\;\;\;  
+\forall \;\;  j \;\; \in \;\; \mathbb{Z}  \;\;and\;\; j \in \; (-20, 20) \\
+& (k\textsubscript{i} + \eta\textsubscript{i}\times k\textsubscript{i}) \in \; (o\textsubscript{1}, o\textsubscript{2})\\
+& \frac{1}{n} \sum_{i=1}^{n} \ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(f(k\textsubscript{i}) + 
+    \eta\textsubscript{i}\times 
+    \epsilon(k\textsubscript{i},f(k\textsubscript{i}))\times f(k\textsubscript{i})) \;\; >= \;\; R\textsubscript{rc} \\
+&\ \mathds{1} \ \textsubscript{Pr\textsubscript{c}}(x) :=
+        \begin{cases}
+          1 & x \geq Pr\textsubscript{c}\\
+          0 & \text{Otherwise}
+        \end{cases}
+\end{aligned}
+\label{eq:optimizer}
+\end{equation}
+In the equation above, $n$ is the total consumer-item samples modelled for a particular category.
+I\textsubscript{p} is the price of the item, k\textsubscript{i} and f(k\textsubscript{i}) 
+being the offer percent and purchase probability for the i\textsuperscript{th} consumer-item.
+$\eta\textsubscript{i}$ is the change in offer percent k\textsubscript{i}.
+$ \mathds{1} \textsubscript{Pr\textsubscript{c}}()$ denotes the Indicator function 
+at Pr\textsubscript{c}, which is the optimal probability cut-off obtained from F\textsubscript{1}-Maximization 
+algorithm for consumer ’c’ (Equation \ref{eq:constraint}). $\epsilon(k\textsubscript{i},f(k\textsubscript{i}))$ 
+denotes the k\textsubscript{i} percent offer-elasticity of f(k\textsubscript{i}) purchase probability.
+$R\textsubscript{rc}$ denaotes the Retention rate cut-off of category $c$. o\textsubscript{1} and o\textsubscript{2} 
+refers to offer range for that category. This is determined using the latest
+2 weeks of consumer-item samples. We solve the Equation \ref{eq:optimizer} using Linear Programming approach
+to compute optimal offer at consumer-item granularity. We observe that there is variance in the optimal 
+offers generated from optimization engine across categories.We have shown the distribution of offers across
+categories in Figure \ref{fig:optimize} - Section \ref{sec:eval}.
 
